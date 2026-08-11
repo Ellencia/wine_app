@@ -11,5 +11,6 @@
 - [ ] 실제 브랜드명(consts.ts)·보유 와인 데이터로 교체
 - [ ] 보틀 누끼 사진 준비 후 SVG 플레이스홀더 교체
 - [ ] 칵테일 영상 YouTube 업로드 후 youtubeId 연결
-- [ ] GitHub repo 생성(LICENSE 포함) 후 연결
-- [ ] Cloudflare Pages 배포
+- [x] GitHub repo 생성(LICENSE 포함) 후 연결 — Ellencia/wine_app
+- [x] GitHub Pages 배포 — https://ellencia.github.io/wine_app/ (push하면 자동 재배포)
+- [ ] (선택) 커스텀 도메인 연결 또는 Cloudflare Pages 이전 검토
