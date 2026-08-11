@@ -1,0 +1,26 @@
+---
+import { SITE_DOMAIN } from '../consts';
+---
+
+<footer class="site-footer">
+  <span class="label label--muted">{SITE_DOMAIN}</span>
+  <span class="bar" aria-hidden="true"></span>
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 26px 0 14px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .bar {
+    width: 128px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--ink);
+  }
+</style>

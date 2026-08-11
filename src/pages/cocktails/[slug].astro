@@ -1,0 +1,94 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import { url } from '../../consts';
+
+export async function getStaticPaths() {
+  const cocktails = await getCollection('cocktails');
+  return cocktails.map((cocktail) => ({ params: { slug: cocktail.id }, props: { cocktail } }));
+}
+
+type Props = { cocktail: CollectionEntry<'cocktails'> };
+const { cocktail } = Astro.props;
+const { Content } = await render(cocktail);
+const d = cocktail.data;
+const wines = await getCollection('wines');
+const wine = wines.find((w) => w.id === d.wineId);
+---
+
+<Base title={d.name}>
+  <a class="label label--muted back-link" href={url('/cocktails')}>Back to Recipes</a>
+
+  <div class="head split-row">
+    <span class="label">{d.name}</span>
+    <span class="label label--muted">{d.nameKo}</span>
+  </div>
+
+  <YouTubeEmbed youtubeId={d.youtubeId} title={d.name} />
+
+  <section class="block">
+    <h2 class="label label--muted">Ingredients</h2>
+    <ul class="ingredients">
+      {d.ingredients.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="label label--muted">Method</h2>
+    <div class="method"><Content /></div>
+  </section>
+
+  {
+    wine && (
+      <section class="block">
+        <h2 class="label label--muted">Base Wine</h2>
+        <a class="related-link split-row" href={url(`/wines/${wine.id}`)}>
+          <span class="label">{wine.data.name}</span>
+          <span class="label label--muted">{wine.data.vintage}</span>
+        </a>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .head {
+    margin-bottom: 20px;
+  }
+
+  .block {
+    margin-bottom: 34px;
+  }
+
+  .block h2 {
+    margin-bottom: 8px;
+  }
+
+  .ingredients li {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+  }
+
+  .method {
+    font-size: 13.5px;
+    color: #35322e;
+  }
+
+  .method :global(ol) {
+    padding-left: 20px;
+  }
+
+  .method :global(li) {
+    margin-bottom: 6px;
+  }
+
+  .related-link {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+type Props = { label: string; value: number };
+const { label, value } = Astro.props;
+const dots = [1, 2, 3, 4, 5];
+---
+
+<div class="scale">
+  <span class="label label--muted">{label}</span>
+  <span class="dots" aria-label={`${label} ${value} / 5`}>
+    {dots.map((i) => <i class:list={['dot', { on: i <= value }]}></i>)}
+  </span>
+</div>
+
+<style>
+  .scale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dots {
+    display: flex;
+    gap: 7px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+  }
+
+  .dot.on {
+    background: var(--ink);
+  }
+</style>

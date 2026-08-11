@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { url } from '../consts';
+
+const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base>
+  <p class="label label--muted page-title">Collection</p>
+  <ul class="wine-grid">
+    {
+      wines.map((w) => (
+        <li>
+          <a href={url(`/wines/${w.id}`)}>
+            <img src={url(w.data.image)} alt={`${w.data.name} 보틀`} loading="lazy" />
+            <span class="label name">{w.data.name}</span>
+            <span class="label label--muted sub">
+              {w.data.region}, {w.data.country} {w.data.vintage}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  .wine-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 18px;
+  }
+
+  .wine-grid a {
+    display: block;
+    text-align: center;
+  }
+
+  .wine-grid img {
+    height: 200px;
+    margin: 0 auto 16px;
+    object-fit: contain;
+  }
+
+  .wine-grid .name {
+    display: block;
+  }
+
+  .wine-grid .sub {
+    display: block;
+    font-size: 9.5px;
+  }
+</style>

@@ -1,0 +1,295 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { url } from '../consts';
+
+const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
+const profiles = wines.map((w) => ({
+  id: w.id,
+  name: w.data.name,
+  region: `${w.data.region}, ${w.data.country}`,
+  vintage: w.data.vintage,
+  link: url(`/wines/${w.id}`),
+  image: url(w.data.image),
+  type: w.data.type,
+  body: w.data.body,
+  sweetness: w.data.sweetness,
+  acidity: w.data.acidity,
+  tannin: w.data.tannin,
+}));
+
+// 와인 용어 없이 일상 취향으로 4축(바디·당도·산도·타닌)을 유추하는 질문들.
+// add: 선택 시 축별 가점, filter: 와인 타입 필터 (마지막 질문만)
+const questions = [
+  {
+    q: '커피는 어떻게 드세요?',
+    options: [
+      { t: '에스프레소나 진한 아메리카노', add: { tannin: 2, body: 2 } },
+      { t: '부드러운 라떼', add: { body: 1 } },
+      { t: '달달한 바닐라 라떼', add: { sweetness: 2 } },
+    ],
+  },
+  {
+    q: '초콜릿을 고른다면?',
+    options: [
+      { t: '카카오 90% 다크', add: { tannin: 2 } },
+      { t: '밀크 초콜릿', add: { sweetness: 1, tannin: 1 } },
+      { t: '화이트 초콜릿', add: { sweetness: 2 } },
+    ],
+  },
+  {
+    q: '여름에 손이 가는 음료는?',
+    options: [
+      { t: '상큼한 레몬에이드', add: { acidity: 2 } },
+      { t: '복숭아 아이스티', add: { sweetness: 1, acidity: 1 } },
+      { t: '그냥 시원한 물', add: {} },
+    ],
+  },
+  {
+    q: '국물 요리를 고른다면?',
+    options: [
+      { t: '진한 사골곰탕', add: { body: 2 } },
+      { t: '얼큰한 김치찌개', add: { body: 1, acidity: 1 } },
+      { t: '맑은 콩나물국', add: {} },
+    ],
+  },
+  {
+    q: '홍차·녹차의 떫은맛은?',
+    options: [
+      { t: '진하게 우려야 제맛', add: { tannin: 2 } },
+      { t: '적당하면 좋음', add: { tannin: 1 } },
+      { t: '떫으면 싫음', add: {} },
+    ],
+  },
+  {
+    q: '오늘의 와인 색은?',
+    options: [
+      { t: '레드', filter: ['red'] },
+      { t: '화이트 · 로제 · 스파클링', filter: ['white', 'rose', 'sparkling', 'orange'] },
+      { t: '아무거나 좋음', filter: null },
+    ],
+  },
+];
+---
+
+<Base title="Taste Finder">
+  <section class="quiz">
+    <div data-screen="intro">
+      <p class="label label--muted">Taste Finder</p>
+      <h1 class="serif intro-title">내 와인 취향 찾기</h1>
+      <p class="intro-desc">
+        여섯 개의 일상 취향 질문으로<br />지금 나에게 맞는 와인을 찾아드립니다.
+      </p>
+      <button class="btn" data-start>시작하기</button>
+    </div>
+
+    <div data-screen="question" hidden>
+      <p class="label label--muted" data-progress></p>
+      <h2 class="serif q-title" data-question></h2>
+      <div class="options" data-options></div>
+    </div>
+
+    <div data-screen="result" hidden>
+      <p class="label label--muted">Your Wine</p>
+      <div data-top></div>
+      <p class="label label--muted also-label" data-also-label hidden>Also Try</p>
+      <div class="also" data-also></div>
+      <p class="note" data-note hidden></p>
+      <button class="btn" data-restart>다시 하기</button>
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ profiles, questions }}>
+  const screens = {
+    intro: document.querySelector('[data-screen="intro"]'),
+    question: document.querySelector('[data-screen="question"]'),
+    result: document.querySelector('[data-screen="result"]'),
+  };
+  const el = {
+    progress: document.querySelector('[data-progress]'),
+    question: document.querySelector('[data-question]'),
+    options: document.querySelector('[data-options]'),
+    top: document.querySelector('[data-top]'),
+    also: document.querySelector('[data-also]'),
+    alsoLabel: document.querySelector('[data-also-label]'),
+    note: document.querySelector('[data-note]'),
+  };
+
+  let step = 0;
+  let scores = null;
+  let typeFilter = null;
+
+  function show(name) {
+    for (const key of Object.keys(screens)) screens[key].hidden = key !== name;
+  }
+
+  function start() {
+    step = 0;
+    scores = { body: 1, sweetness: 1, acidity: 1, tannin: 1 };
+    typeFilter = null;
+    renderQuestion();
+    show('question');
+  }
+
+  function renderQuestion() {
+    const q = questions[step];
+    el.progress.textContent = `${step + 1} / ${questions.length}`;
+    el.question.textContent = q.q;
+    el.options.innerHTML = '';
+    q.options.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.textContent = opt.t;
+      btn.addEventListener('click', () => answer(opt));
+      el.options.appendChild(btn);
+    });
+  }
+
+  function answer(opt) {
+    if (opt.add) {
+      for (const [axis, v] of Object.entries(opt.add)) scores[axis] += v;
+    }
+    if (opt.filter !== undefined) typeFilter = opt.filter;
+    step += 1;
+    if (step < questions.length) renderQuestion();
+    else showResult();
+  }
+
+  function clamp(v) {
+    return Math.min(5, Math.max(1, v));
+  }
+
+  function showResult() {
+    for (const axis of Object.keys(scores)) scores[axis] = clamp(scores[axis]);
+
+    let candidates = typeFilter ? profiles.filter((p) => typeFilter.includes(p.type)) : profiles.slice();
+    let fallback = false;
+    if (candidates.length === 0) {
+      candidates = profiles.slice();
+      fallback = true;
+    }
+
+    // 맨해튼 거리: 4축 절대차의 합이 작을수록 취향에 가까움
+    const ranked = candidates
+      .map((p) => ({
+        ...p,
+        distance:
+          Math.abs(scores.body - p.body) +
+          Math.abs(scores.sweetness - p.sweetness) +
+          Math.abs(scores.acidity - p.acidity) +
+          Math.abs(scores.tannin - p.tannin),
+      }))
+      .sort((a, b) => a.distance - b.distance);
+
+    el.top.innerHTML = card(ranked[0], true);
+    const also = ranked.slice(1, 3);
+    el.alsoLabel.hidden = also.length === 0;
+    el.also.innerHTML = also.map((p) => card(p, false)).join('');
+
+    el.note.hidden = !fallback;
+    if (fallback) el.note.textContent = '선택한 스타일의 와인이 아직 없어 전체 컬렉션에서 추천했습니다.';
+    show('result');
+  }
+
+  function card(p, big) {
+    return `
+      <a class="result-card${big ? ' result-card--big' : ''}" href="${p.link}">
+        <img src="${p.image}" alt="${p.name} 보틀" />
+        <span class="label">${p.name}</span>
+        <span class="label label--muted">${p.region} · ${p.vintage}</span>
+      </a>`;
+  }
+
+  document.querySelector('[data-start]').addEventListener('click', start);
+  document.querySelector('[data-restart]').addEventListener('click', start);
+</script>
+
+<style>
+  .quiz {
+    text-align: center;
+    padding-top: 28px;
+  }
+
+  .intro-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 12px 0 14px;
+  }
+
+  .intro-desc {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+
+  .q-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 16px 0 26px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .options {
+    display: grid;
+    gap: 12px;
+  }
+
+  .quiz :global(.option) {
+    border: 1px solid var(--ink);
+    padding: 14px 16px;
+    font-size: 13px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .quiz :global(.option:hover) {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .quiz :global(.result-card) {
+    display: block;
+    margin: 18px auto 6px;
+  }
+
+  .quiz :global(.result-card img) {
+    height: 170px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+  }
+
+  .quiz :global(.result-card--big img) {
+    height: 230px;
+  }
+
+  .quiz :global(.result-card .label) {
+    display: block;
+  }
+
+  .also {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .also :global(.result-card img) {
+    height: 120px;
+  }
+
+  .also-label {
+    margin-top: 32px;
+  }
+
+  .note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  .quiz .btn {
+    margin-top: 28px;
+  }
+</style>

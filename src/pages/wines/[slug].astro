@@ -1,0 +1,164 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ScaleDots from '../../components/ScaleDots.astro';
+import { url } from '../../consts';
+
+export async function getStaticPaths() {
+  const wines = await getCollection('wines');
+  return wines.map((wine) => ({ params: { slug: wine.id }, props: { wine } }));
+}
+
+type Props = { wine: CollectionEntry<'wines'> };
+const { wine } = Astro.props;
+const { Content } = await render(wine);
+const d = wine.data;
+
+// 헤더 우측에는 목업처럼 품종명만 (블렌딩 % 제거)
+const varietiesShort = d.varieties.replace(/\s*\d+(\.\d+)?%/g, '');
+
+const analysis = [
+  d.rs != null ? `잔당 ${d.rs} g/L` : null,
+  d.ta != null ? `총산 ${d.ta} g/L` : null,
+  d.ph != null ? `pH ${d.ph}` : null,
+]
+  .filter(Boolean)
+  .join(' · ');
+
+const rows = [
+  ['생산자', d.producer],
+  ['품종', d.varieties],
+  ['빈티지', d.vintage],
+  ['산지', [d.appellation, d.region, d.country].filter(Boolean).join(', ')],
+  ['알코올', `${d.abv}%`],
+  ['양조', d.vinification],
+  ['숙성', d.aging],
+  ['분석 수치', analysis || undefined],
+  ['푸드 페어링', d.pairing],
+  ['서빙 온도', d.servingTemp],
+].filter((row) => row[1]);
+
+const cocktails = (await getCollection('cocktails')).filter((c) => c.data.wineId === wine.id);
+---
+
+<Base title={d.name}>
+  <a class="label label--muted back-link" href={url('/')}>Back to Collection</a>
+  <img class="bottle" src={url(d.image)} alt={`${d.name} 보틀`} />
+
+  <div class="head">
+    <div class="split-row label">
+      <span>{d.name}</span>
+      <span>{varietiesShort}</span>
+    </div>
+    <div class="split-row label label--muted">
+      <span>{d.region}, {d.country}</span>
+      <span>{d.vintage}</span>
+    </div>
+  </div>
+
+  <div class="desc"><Content /></div>
+
+  <section class="sheet">
+    <h2 class="label label--muted">Technical Sheet</h2>
+    <dl>
+      {
+        rows.map(([k, v]) => (
+          <div class="row">
+            <dt>{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="profile-box">
+    <h2 class="label label--muted">Style Profile</h2>
+    <div class="profile">
+      <ScaleDots label="바디" value={d.body} />
+      <ScaleDots label="당도" value={d.sweetness} />
+      <ScaleDots label="산도" value={d.acidity} />
+      <ScaleDots label="타닌" value={d.tannin} />
+    </div>
+  </section>
+
+  {
+    cocktails.length > 0 && (
+      <section class="related">
+        <h2 class="label label--muted">Cocktail Pairing</h2>
+        {cocktails.map((c) => (
+          <a class="related-link split-row" href={url(`/cocktails/${c.id}`)}>
+            <span class="label">{c.data.name}</span>
+            <span class="label label--muted">{c.data.nameKo}</span>
+          </a>
+        ))}
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .bottle {
+    height: 300px;
+    margin: 4px auto 32px;
+    object-fit: contain;
+  }
+
+  .head .split-row + .split-row {
+    margin-top: 16px;
+  }
+
+  .head .split-row > span:first-child {
+    max-width: 55%;
+  }
+
+  .desc {
+    margin: 24px 0 36px;
+    font-size: 13.5px;
+    color: #35322e;
+  }
+
+  .sheet,
+  .profile-box,
+  .related {
+    margin-bottom: 36px;
+  }
+
+  .sheet h2,
+  .profile-box h2,
+  .related h2 {
+    margin-bottom: 8px;
+  }
+
+  .sheet .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 12.5px;
+  }
+
+  .sheet dt {
+    color: var(--muted);
+    flex: 0 0 auto;
+  }
+
+  .sheet dd {
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .profile {
+    display: grid;
+    gap: 12px;
+    padding-top: 6px;
+  }
+
+  .related-link {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+</style>
