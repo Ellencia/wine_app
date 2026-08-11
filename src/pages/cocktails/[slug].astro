@@ -16,6 +16,13 @@ const { Content } = await render(cocktail);
 const d = cocktail.data;
 const wines = await getCollection('wines');
 const wine = wines.find((w) => w.id === d.wineId);
+
+// 데이터 정합성: wineId 오타를 조용히 넘기지 않고 빌드를 멈춰서 알림
+if (d.wineId && !wine) {
+  throw new Error(
+    `[cocktails/${cocktail.id}] wineId "${d.wineId}"에 해당하는 와인이 src/content/wines/에 없습니다. 파일명(확장자 제외)과 일치해야 합니다.`,
+  );
+}
 ---
 
 <Base title={d.name}>

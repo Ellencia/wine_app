@@ -95,7 +95,10 @@ const questions = [
       <p class="label label--muted also-label" data-also-label hidden>Also Try</p>
       <div class="also" data-also></div>
       <p class="note" data-note hidden></p>
-      <button class="btn" data-restart>다시 하기</button>
+      <div class="result-actions">
+        <button class="btn" data-share>결과 공유하기</button>
+        <button class="btn" data-restart>다시 하기</button>
+      </div>
     </div>
   </section>
 </Base>
@@ -128,6 +131,7 @@ const questions = [
     step = 0;
     scores = { body: 1, sweetness: 1, acidity: 1, tannin: 1 };
     typeFilter = null;
+    history.replaceState(null, '', location.pathname); // 공유 파라미터 제거
     renderQuestion();
     show('question');
   }
@@ -182,14 +186,40 @@ const questions = [
       }))
       .sort((a, b) => a.distance - b.distance);
 
-    el.top.innerHTML = card(ranked[0], true);
-    const also = ranked.slice(1, 3);
+    renderResult(ranked.slice(0, 3), fallback);
+
+    // 결과를 URL에 실어 "내 결과" 링크 공유가 가능하게 함
+    const ids = ranked.slice(0, 3).map((p) => p.id).join(',');
+    history.replaceState(null, '', `${location.pathname}?r=${encodeURIComponent(ids)}${fallback ? '&f=1' : ''}`);
+  }
+
+  function renderResult(list, fallback) {
+    el.top.innerHTML = card(list[0], true);
+    const also = list.slice(1);
     el.alsoLabel.hidden = also.length === 0;
     el.also.innerHTML = also.map((p) => card(p, false)).join('');
 
     el.note.hidden = !fallback;
     if (fallback) el.note.textContent = '선택한 스타일의 와인이 아직 없어 전체 컬렉션에서 추천했습니다.';
     show('result');
+  }
+
+  async function share() {
+    const btn = document.querySelector('[data-share]');
+    const data = { title: document.title, text: '내 와인 취향 찾기 결과', url: location.href };
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+      } catch {
+        // 사용자가 공유 시트를 닫은 경우 — 무시
+      }
+    } else {
+      await navigator.clipboard.writeText(location.href);
+      btn.textContent = '링크 복사됨';
+      setTimeout(() => {
+        btn.textContent = '결과 공유하기';
+      }, 1500);
+    }
   }
 
   function card(p, big) {
@@ -203,6 +233,18 @@ const questions = [
 
   document.querySelector('[data-start]').addEventListener('click', start);
   document.querySelector('[data-restart]').addEventListener('click', start);
+  document.querySelector('[data-share]').addEventListener('click', share);
+
+  // 공유 링크(?r=...)로 진입한 경우 결과 화면을 바로 복원
+  const params = new URLSearchParams(location.search);
+  const shared = params.get('r');
+  if (shared) {
+    const restored = shared
+      .split(',')
+      .map((id) => profiles.find((p) => p.id === id))
+      .filter(Boolean);
+    if (restored.length > 0) renderResult(restored, params.get('f') === '1');
+  }
 </script>
 
 <style>
@@ -290,6 +332,16 @@ const questions = [
   }
 
   .quiz .btn {
+    margin-top: 28px;
+  }
+
+  .result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .result-actions .btn {
     margin-top: 28px;
   }
 </style>

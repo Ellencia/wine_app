@@ -13,4 +13,6 @@
 - [ ] 칵테일 영상 YouTube 업로드 후 youtubeId 연결
 - [x] GitHub repo 생성(LICENSE 포함) 후 연결 — Ellencia/wine_app
 - [x] GitHub Pages 배포 — https://ellencia.github.io/wine_app/ (push하면 자동 재배포)
+- [x] 부가기능 1차: PWA 홈 화면 설치·OG 공유 미리보기·사이트맵·404 페이지
+- [x] 부가기능 2차: 퀴즈 결과 URL 공유·테크시트 인쇄 CSS·이전/다음 네비·wineId 빌드 검증
 - [ ] (선택) 커스텀 도메인 연결 또는 Cloudflare Pages 이전 검토

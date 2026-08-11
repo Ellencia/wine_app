@@ -4,12 +4,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_NAME, url } from '../consts';
 
-type Props = { title?: string; description?: string };
+type Props = { title?: string; description?: string; ogImage?: string };
 const {
   title,
   description = '보유 와인 카탈로그, 테크니컬 시트, 칵테일 레시피, 취향 찾기',
+  ogImage,
 } = Astro.props;
 const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+// 공유 미리보기용 절대 URL (og:image는 절대 경로여야 카톡·SNS가 읽음)
+const siteOrigin = Astro.site ?? Astro.url;
+const ogImageAbs = new URL(ogImage ?? url('/images/og-default.png'), siteOrigin).href;
+const ogUrlAbs = new URL(Astro.url.pathname, siteOrigin).href;
 ---
 
 <!doctype html>
@@ -19,6 +24,16 @@ const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="manifest" href={url('/manifest.webmanifest')} />
+    <link rel="apple-touch-icon" href={url('/icons/apple-touch-icon.png')} />
+    <meta name="theme-color" content="#fefdfb" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrlAbs} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

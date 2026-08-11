@@ -141,3 +141,31 @@ main {
 .page-title {
   margin-bottom: 20px;
 }
+
+/* 인쇄: 와인 상세를 A4 테크니컬 시트로 출력하기 위한 규칙 */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .app {
+    max-width: 100%;
+    min-height: auto;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* 아이콘은 그리드 자리를 유지해야 로고가 가운데에 남음 */
+  .site-header .menu-btn,
+  .site-header .bag {
+    visibility: hidden;
+  }
+
+  .site-header .nav,
+  .site-footer .bar,
+  .back-link,
+  .btn {
+    display: none !important;
+  }
+}

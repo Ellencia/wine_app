@@ -6,12 +6,24 @@ import ScaleDots from '../../components/ScaleDots.astro';
 import { url } from '../../consts';
 
 export async function getStaticPaths() {
-  const wines = await getCollection('wines');
-  return wines.map((wine) => ({ params: { slug: wine.id }, props: { wine } }));
+  const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
+  return wines.map((wine, i) => ({
+    params: { slug: wine.id },
+    props: {
+      wine,
+      // 컬렉션을 순서대로 순환하는 이전/다음 (와인이 1개뿐이면 없음)
+      prev: wines.length > 1 ? wines[(i - 1 + wines.length) % wines.length] : null,
+      next: wines.length > 1 ? wines[(i + 1) % wines.length] : null,
+    },
+  }));
 }
 
-type Props = { wine: CollectionEntry<'wines'> };
-const { wine } = Astro.props;
+type Props = {
+  wine: CollectionEntry<'wines'>;
+  prev: CollectionEntry<'wines'> | null;
+  next: CollectionEntry<'wines'> | null;
+};
+const { wine, prev, next } = Astro.props;
 const { Content } = await render(wine);
 const d = wine.data;
 
@@ -40,9 +52,12 @@ const rows = [
 ].filter((row) => row[1]);
 
 const cocktails = (await getCollection('cocktails')).filter((c) => c.data.wineId === wine.id);
+
+// 실제 제품사진(png/jpg 등)이 들어오면 그 사진이 공유 미리보기로 쓰임 (SVG는 SNS가 못 읽어 기본 이미지 사용)
+const ogImage = /\.(png|jpe?g|webp|avif)$/i.test(d.image) ? url(d.image) : undefined;
 ---
 
-<Base title={d.name}>
+<Base title={d.name} description={`${d.name} — ${d.varieties}, ${d.region}`} ogImage={ogImage}>
   <a class="label label--muted back-link" href={url('/')}>Back to Collection</a>
   <img class="bottle" src={url(d.image)} alt={`${d.name} 보틀`} />
 
@@ -94,6 +109,21 @@ const cocktails = (await getCollection('cocktails')).filter((c) => c.data.wineId
           </a>
         ))}
       </section>
+    )
+  }
+
+  {
+    prev && next && (
+      <nav class="pager">
+        <a href={url(`/wines/${prev.id}`)}>
+          <span class="label label--muted">Prev</span>
+          <span class="label">{prev.data.name}</span>
+        </a>
+        <a class="next" href={url(`/wines/${next.id}`)}>
+          <span class="label label--muted">Next</span>
+          <span class="label">{next.data.name}</span>
+        </a>
+      </nav>
     )
   }
 </Base>
@@ -160,5 +190,35 @@ const cocktails = (await getCollection('cocktails')).filter((c) => c.data.wineId
   .related-link {
     padding: 12px 0;
     border-bottom: 1px solid var(--hairline);
+  }
+
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 18px;
+  }
+
+  .pager a {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .pager .next {
+    text-align: right;
+  }
+
+  /* 인쇄 시 테크시트만 남기고 탐색 요소 제거 */
+  @media print {
+    .related,
+    .pager {
+      display: none;
+    }
+
+    .bottle {
+      height: 220px;
+    }
   }
 </style>

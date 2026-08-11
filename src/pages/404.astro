@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../consts';
+---
+
+<Base title="404">
+  <section class="nf">
+    <p class="label label--muted">404</p>
+    <h1 class="serif">Page Not Found</h1>
+    <p class="msg">찾는 페이지가 없습니다.<br />주소가 바뀌었거나 삭제된 페이지입니다.</p>
+    <a class="btn" href={url('/')}>Back to Collection</a>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    text-align: center;
+    padding-top: 70px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 12px 0 12px;
+  }
+
+  .msg {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+</style>
