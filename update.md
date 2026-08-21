@@ -1,6 +1,7 @@
 # 변경 이력
 
 ## 2026-08-12
+- 취향 퀴즈 로직 개선: 축 시작점 3·음수 가점(싫음 표현)·중립 답은 비교 제외·당도/타닌 가중치, 결과에 취향 요약 문장 + 4축 프로필 표시, 공유 URL에 프로필 포함
 - 샘플 와인 7종 추가(총 10종): JiJiJi, Cara Sur Criolla, Chacra Barda, Riccitelli Semillón, Colomé Torrontés, Torrontés Brutal, Malamado — 품종·산지·도수 웹 검증, 보틀 SVG 7종, 퀴즈 4가지 취향 경로가 서로 다른 와인으로 갈라지는 것 확인
 - 부가기능 7종 추가: PWA 홈 화면 설치(manifest+아이콘), OG 공유 미리보기, 퀴즈 결과 URL 공유(Web Share), 테크시트 인쇄 CSS, 404 페이지, 사이트맵, 칵테일 wineId 빌드 검증, 와인 상세 이전/다음 네비
 - GitHub Pages 배포 완료 — https://ellencia.github.io/wine_app/ (repo Ellencia/wine_app, MIT LICENSE, Actions 자동 배포)

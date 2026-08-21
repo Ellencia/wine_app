@@ -18,23 +18,26 @@ const profiles = wines.map((w) => ({
   tannin: w.data.tannin,
 }));
 
-// 와인 용어 없이 일상 취향으로 4축(바디·당도·산도·타닌)을 유추하는 질문들.
-// add: 선택 시 축별 가점, filter: 와인 타입 필터 (마지막 질문만)
+// 취향 퀴즈 설계
+// - 4축(body 바디 / sweetness 당도 / acidity 산도 / tannin 타닌)은 모두 3(중간)에서 시작
+// - add: 선택 시 축별 증감. 음수 가능. 값이 0이어도 키가 있으면 "중간을 선호"로 취급
+// - add: {} 는 중립(상관없음) — 그 축은 거리 계산에서 제외됨
+// - filter: 와인 타입 필터 (마지막 질문만)
 const questions = [
   {
     q: '커피는 어떻게 드세요?',
     options: [
-      { t: '에스프레소나 진한 아메리카노', add: { tannin: 2, body: 2 } },
-      { t: '부드러운 라떼', add: { body: 1 } },
-      { t: '달달한 바닐라 라떼', add: { sweetness: 2 } },
+      { t: '에스프레소나 진한 아메리카노', add: { tannin: 2, body: 1 } },
+      { t: '부드러운 라떼', add: { body: 1, tannin: -1, acidity: -1 } },
+      { t: '달달한 바닐라 라떼', add: { sweetness: 2, tannin: -1 } },
     ],
   },
   {
     q: '초콜릿을 고른다면?',
     options: [
-      { t: '카카오 90% 다크', add: { tannin: 2 } },
-      { t: '밀크 초콜릿', add: { sweetness: 1, tannin: 1 } },
-      { t: '화이트 초콜릿', add: { sweetness: 2 } },
+      { t: '카카오 90% 다크', add: { tannin: 2, sweetness: -2 } },
+      { t: '밀크 초콜릿', add: { sweetness: 1 } },
+      { t: '화이트 초콜릿', add: { sweetness: 2, tannin: -2 } },
     ],
   },
   {
@@ -50,15 +53,15 @@ const questions = [
     options: [
       { t: '진한 사골곰탕', add: { body: 2 } },
       { t: '얼큰한 김치찌개', add: { body: 1, acidity: 1 } },
-      { t: '맑은 콩나물국', add: {} },
+      { t: '맑은 콩나물국', add: { body: -1 } },
     ],
   },
   {
     q: '홍차·녹차의 떫은맛은?',
     options: [
       { t: '진하게 우려야 제맛', add: { tannin: 2 } },
-      { t: '적당하면 좋음', add: { tannin: 1 } },
-      { t: '떫으면 싫음', add: {} },
+      { t: '적당하면 좋음', add: { tannin: 0 } },
+      { t: '떫으면 싫음', add: { tannin: -2 } },
     ],
   },
   {
@@ -70,6 +73,9 @@ const questions = [
     ],
   },
 ];
+
+// 축 가중치 — 당도·타닌(쓴맛) 민감도가 와인 취향을 더 크게 가른다는 연구(Vinotype)를 반영
+const weights = { body: 1.0, sweetness: 1.5, acidity: 1.0, tannin: 1.3 };
 ---
 
 <Base title="Taste Finder">
@@ -90,7 +96,10 @@ const questions = [
     </div>
 
     <div data-screen="result" hidden>
-      <p class="label label--muted">Your Wine</p>
+      <p class="label label--muted" data-taste-label>Your Taste</p>
+      <p class="summary serif" data-summary></p>
+      <div class="profile" data-profile></div>
+      <p class="label label--muted wine-label">Your Wine</p>
       <div data-top></div>
       <p class="label label--muted also-label" data-also-label hidden>Also Try</p>
       <div class="also" data-also></div>
@@ -103,7 +112,19 @@ const questions = [
   </section>
 </Base>
 
-<script define:vars={{ profiles, questions }}>
+<script define:vars={{ profiles, questions, weights }}>
+  const AXES = ['body', 'sweetness', 'acidity', 'tannin'];
+  const AXIS_KO = { body: '바디', sweetness: '당도', acidity: '산도', tannin: '타닌' };
+  const AXIS_KEY = { body: 'b', sweetness: 's', acidity: 'a', tannin: 't' };
+  const KEY_AXIS = { b: 'body', s: 'sweetness', a: 'acidity', t: 'tannin' };
+  // 결과 설명 문구: [낮을 때, 높을 때]
+  const PHRASE = {
+    body: ['가벼운 바디', '묵직한 바디'],
+    sweetness: ['드라이한 맛', '달콤한 맛'],
+    acidity: ['부드러운 산미', '상큼한 산미'],
+    tannin: ['매끄러운 질감', '단단한 타닌'],
+  };
+
   const screens = {
     intro: document.querySelector('[data-screen="intro"]'),
     question: document.querySelector('[data-screen="question"]'),
@@ -113,6 +134,9 @@ const questions = [
     progress: document.querySelector('[data-progress]'),
     question: document.querySelector('[data-question]'),
     options: document.querySelector('[data-options]'),
+    tasteLabel: document.querySelector('[data-taste-label]'),
+    summary: document.querySelector('[data-summary]'),
+    profile: document.querySelector('[data-profile]'),
     top: document.querySelector('[data-top]'),
     also: document.querySelector('[data-also]'),
     alsoLabel: document.querySelector('[data-also-label]'),
@@ -120,7 +144,8 @@ const questions = [
   };
 
   let step = 0;
-  let scores = null;
+  let scores = null; // 축별 점수 (3에서 시작)
+  let touched = null; // 답변으로 건드린 축 — 이것만 거리 계산에 씀
   let typeFilter = null;
 
   function show(name) {
@@ -129,7 +154,8 @@ const questions = [
 
   function start() {
     step = 0;
-    scores = { body: 1, sweetness: 1, acidity: 1, tannin: 1 };
+    scores = { body: 3, sweetness: 3, acidity: 3, tannin: 3 };
+    touched = new Set();
     typeFilter = null;
     history.replaceState(null, '', location.pathname); // 공유 파라미터 제거
     renderQuestion();
@@ -152,7 +178,10 @@ const questions = [
 
   function answer(opt) {
     if (opt.add) {
-      for (const [axis, v] of Object.entries(opt.add)) scores[axis] += v;
+      for (const [axis, v] of Object.entries(opt.add)) {
+        scores[axis] += v;
+        touched.add(axis);
+      }
     }
     if (opt.filter !== undefined) typeFilter = opt.filter;
     step += 1;
@@ -165,7 +194,10 @@ const questions = [
   }
 
   function showResult() {
-    for (const axis of Object.keys(scores)) scores[axis] = clamp(scores[axis]);
+    // 사용자 프로필: 건드린 축만. 전부 중립이면 "중간(3)" 기준으로 전 축 비교
+    const profile = {};
+    const axes = touched.size > 0 ? AXES.filter((a) => touched.has(a)) : AXES;
+    for (const a of axes) profile[a] = touched.size > 0 ? clamp(scores[a]) : 3;
 
     let candidates = typeFilter ? profiles.filter((p) => typeFilter.includes(p.type)) : profiles.slice();
     let fallback = false;
@@ -174,26 +206,44 @@ const questions = [
       fallback = true;
     }
 
-    // 맨해튼 거리: 4축 절대차의 합이 작을수록 취향에 가까움
+    // 가중 맨해튼 거리: 건드린 축에 대해 (가중치 x |사용자 - 와인|)의 합. 작을수록 취향에 가까움
     const ranked = candidates
       .map((p) => ({
         ...p,
-        distance:
-          Math.abs(scores.body - p.body) +
-          Math.abs(scores.sweetness - p.sweetness) +
-          Math.abs(scores.acidity - p.acidity) +
-          Math.abs(scores.tannin - p.tannin),
+        distance: axes.reduce((sum, a) => sum + weights[a] * Math.abs(profile[a] - p[a]), 0),
       }))
       .sort((a, b) => a.distance - b.distance);
 
-    renderResult(ranked.slice(0, 3), fallback);
+    renderResult(ranked.slice(0, 3), fallback, profile);
 
-    // 결과를 URL에 실어 "내 결과" 링크 공유가 가능하게 함
+    // 결과(와인 id + 취향 프로필)를 URL에 실어 "내 결과" 링크 공유가 가능하게 함
     const ids = ranked.slice(0, 3).map((p) => p.id).join(',');
-    history.replaceState(null, '', `${location.pathname}?r=${encodeURIComponent(ids)}${fallback ? '&f=1' : ''}`);
+    const q = `?r=${encodeURIComponent(ids)}&p=${encodeProfile(profile)}${fallback ? '&f=1' : ''}`;
+    history.replaceState(null, '', location.pathname + q);
   }
 
-  function renderResult(list, fallback) {
+  function encodeProfile(profile) {
+    return AXES.filter((a) => a in profile).map((a) => AXIS_KEY[a] + profile[a]).join('');
+  }
+
+  function decodeProfile(str) {
+    const out = {};
+    for (const m of (str || '').matchAll(/([bsat])([1-5])/g)) out[KEY_AXIS[m[1]]] = Number(m[2]);
+    return out;
+  }
+
+  function renderResult(list, fallback, profile) {
+    const hasProfile = Object.keys(profile).length > 0;
+    el.tasteLabel.hidden = !hasProfile;
+    el.summary.hidden = !hasProfile;
+    el.profile.hidden = !hasProfile;
+    if (hasProfile) {
+      el.summary.textContent = summarize(profile);
+      el.profile.innerHTML = AXES.filter((a) => a in profile)
+        .map((a) => profileRow(a, profile[a]))
+        .join('');
+    }
+
     el.top.innerHTML = card(list[0], true);
     const also = list.slice(1);
     el.alsoLabel.hidden = also.length === 0;
@@ -202,6 +252,39 @@ const questions = [
     el.note.hidden = !fallback;
     if (fallback) el.note.textContent = '선택한 스타일의 와인이 아직 없어 전체 컬렉션에서 추천했습니다.';
     show('result');
+  }
+
+  // 한글 받침 유무 (조사 선택용)
+  function hasBatchim(str) {
+    const c = str.charCodeAt(str.length - 1);
+    return c >= 0xac00 && c <= 0xd7a3 && (c - 0xac00) % 28 !== 0;
+  }
+
+  // 중간(3)에서 많이 벗어난 축 순(가중치 반영)으로 최대 2개를 골라 한 문장으로
+  function summarize(profile) {
+    const dev = (a) => Math.abs(profile[a] - 3) * weights[a];
+    const strong = AXES.filter((a) => a in profile && profile[a] !== 3)
+      .sort((x, y) => dev(y) - dev(x))
+      .slice(0, 2)
+      .map((a) => PHRASE[a][profile[a] > 3 ? 1 : 0]);
+    if (strong.length === 0) return '균형 잡힌 무난한 스타일을 좋아하는 취향이에요.';
+    const joined = strong.length === 2 ? `${strong[0]}${hasBatchim(strong[0]) ? '과' : '와'} ${strong[1]}` : strong[0];
+    const last = strong[strong.length - 1];
+    return `${joined}${hasBatchim(last) ? '을' : '를'} 좋아하는 취향이에요.`;
+  }
+
+  function profileRow(axis, value) {
+    const dots = [1, 2, 3, 4, 5].map((i) => `<i class="dot${i <= value ? ' on' : ''}"></i>`).join('');
+    return `<div class="prow"><span class="label label--muted">${AXIS_KO[axis]}</span><span class="dots">${dots}</span></div>`;
+  }
+
+  function card(p, big) {
+    return `
+      <a class="result-card${big ? ' result-card--big' : ''}" href="${p.link}">
+        <img src="${p.image}" alt="${p.name} 보틀" />
+        <span class="label">${p.name}</span>
+        <span class="label label--muted">${p.region} · ${p.vintage}</span>
+      </a>`;
   }
 
   async function share() {
@@ -222,20 +305,11 @@ const questions = [
     }
   }
 
-  function card(p, big) {
-    return `
-      <a class="result-card${big ? ' result-card--big' : ''}" href="${p.link}">
-        <img src="${p.image}" alt="${p.name} 보틀" />
-        <span class="label">${p.name}</span>
-        <span class="label label--muted">${p.region} · ${p.vintage}</span>
-      </a>`;
-  }
-
   document.querySelector('[data-start]').addEventListener('click', start);
   document.querySelector('[data-restart]').addEventListener('click', start);
   document.querySelector('[data-share]').addEventListener('click', share);
 
-  // 공유 링크(?r=...)로 진입한 경우 결과 화면을 바로 복원
+  // 공유 링크(?r=...&p=...)로 진입한 경우 결과 화면을 바로 복원
   const params = new URLSearchParams(location.search);
   const shared = params.get('r');
   if (shared) {
@@ -243,7 +317,7 @@ const questions = [
       .split(',')
       .map((id) => profiles.find((p) => p.id === id))
       .filter(Boolean);
-    if (restored.length > 0) renderResult(restored, params.get('f') === '1');
+    if (restored.length > 0) renderResult(restored, params.get('f') === '1', decodeProfile(params.get('p')));
   }
 </script>
 
@@ -290,6 +364,43 @@ const questions = [
   .quiz :global(.option:hover) {
     background: var(--ink);
     color: var(--bg);
+  }
+
+  .summary {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 10px 0 18px;
+  }
+
+  .profile {
+    display: grid;
+    gap: 10px;
+    max-width: 240px;
+    margin: 0 auto 34px;
+  }
+
+  .quiz :global(.prow) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quiz :global(.dots) {
+    display: flex;
+    gap: 7px;
+  }
+
+  .quiz :global(.dot) {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+    display: inline-block;
+  }
+
+  .quiz :global(.dot.on) {
+    background: var(--ink);
   }
 
   .quiz :global(.result-card) {
