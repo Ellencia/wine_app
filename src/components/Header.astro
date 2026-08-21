@@ -97,5 +97,14 @@ import { SITE_NAME, url } from '../consts';
       const open = nav.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(open));
     });
+    // 메뉴 바깥을 누르면 닫힘
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('open')) return;
+      const target = e.target as Node;
+      if (!nav.contains(target) && !btn.contains(target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 </script>
