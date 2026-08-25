@@ -38,8 +38,8 @@ const moreCount = varieties.length - topVarieties.length;
     <div class="chips" data-chips="variety">
       <button class="chip on" data-value="all">전체</button>
       {topVarieties.map(([v]) => <button class="chip" data-value={v}>{v}</button>)}
-      {moreCount > 0 && <button class="chip chip--more" data-more aria-expanded="false">품종 더보기 ({moreCount})</button>}
     </div>
+    {moreCount > 0 && <button class="chip chip--more" data-more aria-expanded="false">더보기 +{moreCount}</button>}
   </div>
 
   <div class="variety-panel" data-variety-panel hidden>
@@ -143,7 +143,7 @@ const moreCount = varieties.length - topVarieties.length;
       chip.dataset.value = value;
       chip.textContent = value;
       if (!dynamic) {
-        group.insertBefore(chip, moreBtn);
+        group.insertBefore(chip, group.children[1] ?? null); // "전체" 바로 옆 — 스크롤 없이 보이는 자리
         chip.addEventListener('click', () => select(group, chip!.dataset.value || 'all'));
       }
     } else if (dynamic && dynamic !== chip) {
@@ -151,6 +151,7 @@ const moreCount = varieties.length - topVarieties.length;
     }
     state[key] = chip ? value : 'all';
     group.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => c.classList.toggle('on', c.dataset.value === state[key]));
+    chip?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
     if (key === 'variety') togglePanel(false);
     apply();
   }
@@ -182,33 +183,41 @@ const moreCount = varieties.length - topVarieties.length;
     margin-bottom: 14px;
   }
 
+  /* 필터 행은 항상 한 줄: [라벨][가로 스크롤 칩][더보기] */
   .filter {
     display: grid;
-    grid-template-columns: 34px 1fr;
-    align-items: start;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .filter-label {
-    font-size: 9.5px;
-    padding-top: 8px;
+    font-size: 9px;
   }
 
-  /* 가로 스크롤 대신 줄바꿈 — 모바일에서 손가락으로 훑지 않아도 전부 보이게 */
   .chips {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    min-width: 0;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1px 0;
+    scroll-snap-type: x proximity;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
   }
 
   .chip {
+    flex: 0 0 auto;
     border: 1px solid var(--hairline);
-    padding: 7px 12px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
     white-space: nowrap;
+    scroll-snap-align: start;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
 
@@ -221,6 +230,7 @@ const moreCount = varieties.length - topVarieties.length;
   .chip--more {
     border-style: dashed;
     color: var(--muted);
+    padding: 6px 8px;
   }
 
   .variety-panel {
