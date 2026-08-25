@@ -136,7 +136,9 @@ const moreCount = varieties.length - topVarieties.length;
     // 상위 칩에 없는 품종(더보기 패널·상세 페이지 태그에서 진입)은 "선택 칩" 한 칸에만 표시
     const dynamic = group.querySelector<HTMLButtonElement>('.chip--dynamic');
     if (!chip && key === 'variety' && value !== 'all') {
-      chip = dynamic ?? document.createElement('button');
+      // 기존 칩을 복제해야 Astro 스코프 CSS 속성(data-astro-cid)이 따라와 같은 모양이 됨
+      const template = group.querySelector<HTMLButtonElement>('.chip[data-value="all"]');
+      chip = dynamic ?? (template!.cloneNode(false) as HTMLButtonElement);
       chip.className = 'chip chip--dynamic';
       chip.dataset.value = value;
       chip.textContent = value;
