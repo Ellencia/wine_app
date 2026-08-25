@@ -1,0 +1,155 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const CATEGORY_ORDER = ['기본', '등급', '산지', '양조', '당도', '시음', '재배'];
+const entries = (await getCollection('glossary')).sort((a, b) => a.data.order - b.data.order);
+const categories = [...new Set(entries.map((e) => e.data.category))].sort(
+  (a, b) => (CATEGORY_ORDER.indexOf(a) + 1 || 99) - (CATEGORY_ORDER.indexOf(b) + 1 || 99),
+);
+const rendered = await Promise.all(
+  entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+---
+
+<Base title="Glossary" description="와인 용어사전 — 등급·산지·양조·당도·시음 용어를 초보자 눈높이로 설명">
+  <p class="label label--muted page-title">Glossary</p>
+  <h1 class="serif title">와인 용어사전</h1>
+  <p class="intro">라벨과 테크시트에 자주 나오는 말들. 와인 상세 페이지의 밑줄 친 용어를 누르면 여기로 옵니다.</p>
+
+  <nav class="toc">
+    {
+      categories.map((c) => (
+        <div class="toc-group">
+          <span class="label label--muted">{c}</span>
+          <div class="toc-links">
+            {entries
+              .filter((e) => e.data.category === c)
+              .map((e) => (
+                <a href={`#${e.id}`}>{e.data.term}</a>
+              ))}
+          </div>
+        </div>
+      ))
+    }
+  </nav>
+
+  {
+    categories.map((c) => (
+      <section class="cat">
+        <h2 class="label cat-title">{c}</h2>
+        {rendered
+          .filter(({ entry }) => entry.data.category === c)
+          .map(({ entry, Content }) => (
+            <article id={entry.id} class="entry">
+              <h3 class="term-title">{entry.data.term}</h3>
+              {entry.data.termEn && <p class="label label--muted term-en">{entry.data.termEn}</p>}
+              <div class="prose">
+                <Content />
+              </div>
+            </article>
+          ))}
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .title {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 6px 0 10px;
+  }
+
+  .intro {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 26px;
+  }
+
+  .toc {
+    display: grid;
+    gap: 12px;
+    padding: 16px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 34px;
+  }
+
+  .toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 4px;
+    font-size: 12.5px;
+  }
+
+  .toc-links a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--hairline);
+  }
+
+  .cat {
+    margin-bottom: 36px;
+  }
+
+  .cat-title {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 8px;
+  }
+
+  .entry {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--hairline);
+    scroll-margin-top: 16px;
+  }
+
+  .term-title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .term-en {
+    margin-bottom: 12px;
+  }
+
+  .prose {
+    font-size: 13.5px;
+    color: #35322e;
+    display: grid;
+    gap: 10px;
+  }
+
+  .prose :global(ul) {
+    list-style: disc;
+    padding-left: 18px;
+    display: grid;
+    gap: 6px;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .prose :global(th),
+  .prose :global(td) {
+    text-align: left;
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: top;
+  }
+
+  .prose :global(th) {
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+</style>

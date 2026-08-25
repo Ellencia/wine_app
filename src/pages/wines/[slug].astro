@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import ScaleDots from '../../components/ScaleDots.astro';
 import Badges from '../../components/Badges.astro';
 import { url, TYPE_LABELS } from '../../consts';
+import { buildTermIndex, linkTerms } from '../../lib/glossary';
 
 export async function getStaticPaths() {
   const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
@@ -42,6 +43,11 @@ const rows = [
 
 const cocktails = (await getCollection('cocktails')).filter((c) => c.data.wineId === wine.id);
 const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
+
+// 용어사전 자동 링크: 이름·테크시트·소개문에 나오는 용어를 /glossary#id 로 연결
+const termIndex = buildTermIndex(await getCollection('glossary'));
+const G = (text: string) => linkTerms(text, termIndex, (id) => url(`/glossary/#${id}`));
+const profileVerified = d.profileStatus === 'verified';
 ---
 
 <Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${d.varieties}, ${d.region}`} ogImage={url(d.image)}>
@@ -51,17 +57,28 @@ const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
   <div class="head">
     <Badges badges={d.badges} />
     <div class="split-row">
-      <h1 class="name-ko">{d.nameKo}</h1>
+      <h1 class="name-ko" set:html={G(d.nameKo)} />
       <span class="label label--muted type">{TYPE_LABELS[d.type]}</span>
     </div>
-    <p class="label name-en">{d.name}</p>
+    <p class="label name-en" set:html={G(d.name)} />
     <div class="split-row label label--muted">
-      <span>{d.region}, {d.country}</span>
-      <span>{d.vintage}</span>
+      <span set:html={G(`${d.region}, ${d.country}`)} />
+      <span set:html={G(d.vintage)} />
     </div>
+    {
+      d.varietyTags.length > 0 && (
+        <ul class="tags">
+          {d.varietyTags.map((t) => (
+            <li>
+              <a class="tag" href={url(`/?variety=${encodeURIComponent(t)}`)}>{t}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </div>
 
-  {d.note && <p class="desc">{d.note}</p>}
+  {d.note && <p class="desc" set:html={G(d.note)} />}
 
   <div class="vivino">
     {d.vivino != null && (
@@ -80,7 +97,7 @@ const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
         rows.map(([k, v]) => (
           <div class="row">
             <dt>{k}</dt>
-            <dd>{v}</dd>
+            <dd set:html={G(String(v))} />
           </div>
         ))
       }
@@ -102,7 +119,12 @@ const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
   </section>
 
   <section class="profile-box">
-    <h2 class="label label--muted">Style Profile</h2>
+    <div class="split-row">
+      <h2 class="label label--muted">Style Profile</h2>
+      <span class:list={['label', 'status', { 'status--verified': profileVerified }]}>
+        {profileVerified ? '시음 검수 완료' : '추정치 · 검수 전'}
+      </span>
+    </div>
     <div class="profile">
       <ScaleDots label="바디" value={d.body} />
       <ScaleDots label="당도" value={d.sweetness} />
@@ -183,6 +205,37 @@ const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
     margin: 22px 0 6px;
     font-size: 13.5px;
     color: #35322e;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--hairline);
+    color: var(--muted);
+  }
+
+  .status {
+    font-size: 9.5px;
+    color: var(--muted);
+  }
+
+  .status--verified {
+    color: var(--ink);
+  }
+
+  /* 용어사전 링크: 점선 밑줄 */
+  :global(a.term) {
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    text-decoration-color: #b9b0a2;
   }
 
   .vivino {

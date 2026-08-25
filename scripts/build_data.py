@@ -4,12 +4,17 @@
 import json, os, sys, urllib.parse
 from openpyxl import load_workbook
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from wine_utils import variety_tags
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 XLSX = os.path.join(ROOT, "data", "wines.xlsx")
 OUT = os.path.join(ROOT, "src", "data")
 TYPES = {"red", "white", "rose", "sparkling", "fortified", "sweet", "nonalcoholic"}
+STATUSES = {"estimated", "verified"}
 WINE_KEYS = ["id", "order", "catalogPage", "producer", "nameKo", "name", "vintage", "type", "typeLabel", "country", "region",
-             "varieties", "volume", "abv", "vivino", "scores", "awards", "badges", "note", "body", "sweetness", "acidity", "tannin", "vivinoUrl"]
+             "varieties", "volume", "abv", "vivino", "scores", "awards", "badges", "note", "body", "sweetness", "acidity", "tannin", "vivinoUrl",
+             "profileStatus", "varietyTags"]
 PROD_KEYS = ["id", "name", "nameKo", "country", "region", "story"]
 
 wb = load_workbook(XLSX, read_only=True, data_only=True)
@@ -52,6 +57,8 @@ for w in wines:
             errors.append(f"wines {r}행: {k} 값 '{v}' 는 1~5 정수여야 함")
     for k in ("nameKo", "name", "vintage", "country", "region", "varieties"):
         if not w[k]: errors.append(f"wines {r}행: '{k}' 비어 있음")
+    if w["profileStatus"] not in (None, "") and w["profileStatus"] not in STATUSES:
+        errors.append(f"wines {r}행: 프로필 상태 '{w['profileStatus']}' 는 estimated 또는 verified 여야 함")
     img = os.path.join(ROOT, "public", "images", "wines", f"{w['id']}.png")
     if not os.path.exists(img): errors.append(f"wines {r}행: 이미지 없음 public/images/wines/{w['id']}.png")
 if errors:
@@ -76,6 +83,8 @@ for w in sorted(wines, key=lambda x: (x["order"] or 0)):
         "scores": w["scores"] or "", "awards": split_lines(w["awards"]), "badges": split_comma(w["badges"]), "note": w["note"] or "",
         "body": int(w["body"]), "sweetness": int(w["sweetness"]), "acidity": int(w["acidity"]), "tannin": int(w["tannin"]),
         "image": f"/images/wines/{w['id']}.png", "vivinoUrl": w["vivinoUrl"] or vivino_search(w),
+        "profileStatus": w["profileStatus"] or "estimated",
+        "varietyTags": split_comma(w["varietyTags"]) or variety_tags(w["varieties"]),
     })
 out_p = [{k: (p[k] or "") for k in PROD_KEYS} for p in producers]
 for p in out_p: p["wineCount"] = sum(1 for w in out_w if w["producer"] == p["id"])

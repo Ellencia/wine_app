@@ -5,6 +5,9 @@ import json, glob, os, re, shutil, sys, unicodedata
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from wine_utils import variety_tags
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 batch_dir, crops_dir = sys.argv[1], sys.argv[2]
 
@@ -78,6 +81,7 @@ for i, w in enumerate(wines, 1):
         "country": w["country"], "region": w["region"], "varieties": w["varieties"], "volume": w["volume"], "abv": w["abv"],
         "vivino": w["vivino"], "scores": w["scores"], "awards": w["awards"], "badges": w["badges"], "note": w["note"],
         "body": b, "sweetness": s, "acidity": a, "tannin": tn, "vivinoUrl": "",
+        "profileStatus": "estimated", "varietyTags": ", ".join(variety_tags(w["varieties"])),
     })
     src = os.path.join(crops_dir, f"p{w['page']:02d}-s{w['slot']}.png")
     dst = os.path.join(ROOT, "public", "images", "wines", f"{slug}.png")
@@ -94,6 +98,7 @@ WINE_COLS = [
     ("country", "국가"), ("region", "지역"), ("varieties", "품종"), ("volume", "용량"), ("abv", "도수(%)"),
     ("vivino", "Vivino 점수"), ("scores", "평론가 점수"), ("awards", "수상 (줄바꿈 구분)"), ("badges", "뱃지 (쉼표 구분)"), ("note", "한 줄 소개"),
     ("body", "바디 1-5"), ("sweetness", "당도 1-5"), ("acidity", "산도 1-5"), ("tannin", "타닌 1-5"), ("vivinoUrl", "Vivino URL (비우면 자동 검색링크)"),
+    ("profileStatus", "프로필 상태 (estimated=추정 / verified=시음 검수)"), ("varietyTags", "품종 태그 (쉼표 구분, 비우면 품종 컬럼에서 자동 생성)"),
 ]
 PROD_COLS = [("id", "id (수정 금지)"), ("name", "생산자(원어)"), ("nameKo", "생산자(한글)"), ("country", "국가"), ("region", "지역"), ("story", "소개")]
 
@@ -125,6 +130,8 @@ for line in [
     "- 바디/당도/산도/타닌 1-5: 취향 찾기 퀴즈의 근거. 초기값은 종류·품종·도수 규칙으로 자동 산출한 것이므로 시음 판단으로 조정할 것.",
     "- 타입코드: red / white / rose / sparkling / fortified / sweet / nonalcoholic",
     "- 뱃지: BEST, 추천, NEW, BIO, EXCLUSIVE, LIMITED, SOLD OUT, COMING SOON 등 쉼표로 구분.",
+    "- 프로필 상태: estimated(규칙으로 산출한 추정치, 앱에 '검수 전' 표시) / verified(시음 검수 완료). 검수한 와인만 verified로 바꿀 것.",
+    "- 품종 태그: 비워두면 품종 컬럼에서 자동 생성됨. 필터에 쓰이므로 표기를 통일할 것 (예: 피노 누아, 토우리가 나시오날).",
     "- 보틀 이미지: public/images/wines/<id>.png. 실제 제품 사진으로 교체할 때 같은 파일명으로 덮어쓰면 됨.",
     "- 수정 후: python scripts/build_data.py 실행 -> src/data/*.json 갱신 -> git push 하면 자동 배포.",
 ]: ws3.append([line])

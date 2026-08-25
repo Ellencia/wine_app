@@ -8,6 +8,14 @@ const countries = [...new Set(wines.map((w) => w.data.country))].sort(
   (a, b) => (COUNTRY_ORDER.indexOf(a) + 1 || 99) - (COUNTRY_ORDER.indexOf(b) + 1 || 99),
 );
 const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.type === t));
+
+// 품종 칩: 2종 이상에 쓰인 태그를 빈도순으로 (나머지는 상세 페이지의 태그 링크로 접근)
+const tagCounts = new Map<string, number>();
+for (const w of wines) for (const t of w.data.varietyTags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+const varieties = [...tagCounts.entries()]
+  .filter(([, n]) => n >= 2)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ko'))
+  .map(([t]) => t);
 ---
 
 <Base>
@@ -16,9 +24,19 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
     <p class="label label--muted" data-count>{wines.length} wines</p>
   </div>
 
-  <div class="chips" data-chips>
-    <button class="chip on" data-type="all">전체</button>
-    {types.map((t) => <button class="chip" data-type={t}>{TYPE_LABELS[t]}</button>)}
+  <div class="filter">
+    <span class="label label--muted filter-label">타입</span>
+    <div class="chips" data-chips="type">
+      <button class="chip on" data-value="all">전체</button>
+      {types.map((t) => <button class="chip" data-value={t}>{TYPE_LABELS[t]}</button>)}
+    </div>
+  </div>
+  <div class="filter">
+    <span class="label label--muted filter-label">품종</span>
+    <div class="chips" data-chips="variety">
+      <button class="chip on" data-value="all">전체</button>
+      {varieties.map((v) => <button class="chip" data-value={v}>{v}</button>)}
+    </div>
   </div>
 
   {
@@ -32,7 +50,7 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
           {wines
             .filter((w) => w.data.country === country)
             .map((w) => (
-              <li data-type={w.data.type}>
+              <li data-type={w.data.type} data-tags={w.data.varietyTags.join('|')}>
                 <a href={url(`/wines/${w.id}`)}>
                   <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
                   <span class="name">{w.data.nameKo}</span>
@@ -46,19 +64,25 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
       </section>
     ))
   }
+  <p class="empty label label--muted" data-empty hidden>조건에 맞는 와인이 없습니다.</p>
 </Base>
 
 <script>
-  // 타입 칩 필터: 선택한 타입만 남기고, 비어버린 국가 섹션은 숨김
-  const chips = document.querySelectorAll<HTMLButtonElement>('[data-chips] .chip');
+  // 타입 x 품종 칩 필터 (AND). 선택 상태는 URL(?type=&variety=)에 실려 공유·복원됨
+  const groups = document.querySelectorAll<HTMLElement>('[data-chips]');
   const items = document.querySelectorAll<HTMLLIElement>('.wine-grid li');
   const sections = document.querySelectorAll<HTMLElement>('[data-country]');
   const total = document.querySelector<HTMLElement>('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+  const state: Record<string, string> = { type: 'all', variety: 'all' };
 
-  function apply(type: string) {
+  function apply() {
     let shown = 0;
     items.forEach((li) => {
-      const on = type === 'all' || li.dataset.type === type;
+      const typeOk = state.type === 'all' || li.dataset.type === state.type;
+      const tags = (li.dataset.tags || '').split('|');
+      const varietyOk = state.variety === 'all' || tags.includes(state.variety);
+      const on = typeOk && varietyOk;
       li.hidden = !on;
       if (on) shown += 1;
     });
@@ -69,15 +93,44 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
       if (c) c.textContent = ` ${n}`;
     });
     if (total) total.textContent = `${shown} wines`;
+    if (empty) empty.hidden = shown > 0;
+    const params = new URLSearchParams();
+    if (state.type !== 'all') params.set('type', state.type);
+    if (state.variety !== 'all') params.set('variety', state.variety);
+    const qs = params.toString();
+    history.replaceState(null, '', location.pathname + (qs ? `?${qs}` : ''));
   }
 
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      chips.forEach((c) => c.classList.toggle('on', c === chip));
-      apply(chip.dataset.type || 'all');
+  function select(group: HTMLElement, value: string) {
+    const key = group.dataset.chips || '';
+    let chip = group.querySelector<HTMLButtonElement>(`.chip[data-value="${CSS.escape(value)}"]`);
+    // 칩 목록에 없는 품종(상세 페이지 태그에서 진입)은 칩을 즉석에서 추가
+    if (!chip && key === 'variety' && value !== 'all') {
+      chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.dataset.value = value;
+      chip.textContent = value;
+      group.appendChild(chip);
+      chip.addEventListener('click', () => select(group, value));
+    }
+    state[key] = chip ? value : 'all';
+    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => c.classList.toggle('on', c.dataset.value === state[key]));
+    apply();
+  }
+
+  groups.forEach((group) => {
+    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => select(group, chip.dataset.value || 'all'));
     });
   });
-  apply('all');
+
+  const initial = new URLSearchParams(location.search);
+  groups.forEach((group) => {
+    const key = group.dataset.chips || '';
+    const v = initial.get(key);
+    if (v) select(group, v);
+  });
+  apply();
 </script>
 
 <style>
@@ -87,13 +140,29 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
     margin-bottom: 14px;
   }
 
+  .filter {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .filter:last-of-type {
+    margin-bottom: 26px;
+  }
+
+  .filter-label {
+    font-size: 9.5px;
+  }
+
   .chips {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding-bottom: 6px;
-    margin-bottom: 26px;
+    padding-bottom: 4px;
     scrollbar-width: none;
+    min-width: 0;
   }
 
   .chips::-webkit-scrollbar {
@@ -154,5 +223,10 @@ const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.ty
     display: block;
     font-size: 9px;
     margin-top: 2px;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 40px 0;
   }
 </style>

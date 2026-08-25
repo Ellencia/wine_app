@@ -34,6 +34,21 @@ const wines = defineCollection({
     tannin: z.number().int().min(1).max(5),
     image: z.string(),
     vivinoUrl: z.string(),
+    // estimated = 규칙으로 산출한 추정 프로필, verified = 시음 검수 완료
+    profileStatus: z.enum(['estimated', 'verified']),
+    varietyTags: z.array(z.string()),
+  }),
+});
+
+// 와인 용어사전: 와인 1용어 = md 파일 1개. aliases 에 적힌 표기가 테크시트 텍스트에 나오면 자동 링크됨
+const glossary = defineCollection({
+  loader: glob({ base: './src/content/glossary', pattern: '**/*.md' }),
+  schema: z.object({
+    term: z.string(),
+    termEn: z.string().optional(),
+    aliases: z.array(z.string()).default([]),
+    category: z.string(),
+    order: z.number().default(99),
   }),
 });
 
@@ -61,4 +76,4 @@ const cocktails = defineCollection({
   }),
 });
 
-export const collections = { wines, producers, cocktails };
+export const collections = { wines, producers, cocktails, glossary };

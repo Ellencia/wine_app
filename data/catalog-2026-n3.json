@@ -269,7 +269,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽, 메를로"
   },
   {
    "id": "mondot",
@@ -297,7 +299,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "메를로"
   },
   {
    "id": "bernard-lonclas-selection-brut",
@@ -326,7 +330,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아, 피노 뫼니에"
   },
   {
    "id": "bernard-lonclas-blanc-de-blanc-brut",
@@ -358,7 +364,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이"
   },
   {
    "id": "bernard-lonclas-cuvee-prestige-extra-dry",
@@ -384,7 +392,9 @@
    "sweetness": 2,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아, 피노 뫼니에"
   },
   {
    "id": "bernard-lonclas-blanc-de-blanc-grand-brut",
@@ -418,7 +428,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이"
   },
   {
    "id": "bernard-lonclas-millesime-2012-brut",
@@ -446,7 +458,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 뫼니에"
   },
   {
    "id": "bernard-lonclas-rose-brut",
@@ -474,7 +488,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아, 샤도네이, 피노 뫼니에"
   },
   {
    "id": "chateau-de-la-jaubertie-cuvee-mirabelle-blanc",
@@ -506,7 +522,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "소비뇽 블랑, 세미용"
   },
   {
    "id": "chateau-de-la-jaubertie-cuvee-mirabelle-rouge",
@@ -537,7 +555,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽, 메를로, 카베르네 프랑"
   },
   {
    "id": "joe-bertie-pet-nat",
@@ -567,7 +587,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "소비뇽 블랑, 세미용, 슈냉 블랑"
   },
   {
    "id": "chateau-de-la-jaubertie-cuvee-mirabelle-monbazillac",
@@ -597,7 +619,9 @@
    "sweetness": 5,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "세미용, 소비뇽 블랑, 뮈스카델"
   },
   {
    "id": "chateau-de-la-jaubertie-cuvee-tradition-blanc",
@@ -626,7 +650,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "소비뇽 블랑, 세미용"
   },
   {
    "id": "chateau-de-la-jaubertie-cuvee-tradition-rouge",
@@ -655,7 +681,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "메를로, 말벡"
   },
   {
    "id": "la-colombine",
@@ -684,7 +712,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "소비뇽 그리, 뮈스카델"
   },
   {
    "id": "ch-les-graves-de-viaud-cuvee-prestige",
@@ -717,7 +747,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "메를로, 카베르네 소비뇽, 카베르네 프랑"
   },
   {
    "id": "grand-coutale",
@@ -748,7 +780,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "말벡, 메를로, 타나"
   },
   {
    "id": "cairanne-la-bete-a-bon-dieu",
@@ -779,7 +813,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "가르나차, 시라, 까리냥"
   },
   {
    "id": "cairanne-grande-reserve",
@@ -808,7 +844,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "가르나차, 무르베드르, 시라"
   },
   {
    "id": "baron-de-baussac-colombard-sauvignon",
@@ -834,7 +872,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "콜롬바드, 소비뇽 블랑"
   },
   {
    "id": "baron-de-baussac-carignan-vieilles-vignes",
@@ -863,7 +903,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "까리냥"
   },
   {
    "id": "baron-de-baussac-merlot",
@@ -893,7 +935,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "메를로"
   },
   {
    "id": "berlucchi-61-extra-brut",
@@ -926,7 +970,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아"
   },
   {
    "id": "berlucchi-61-nature-brut-dosage-zero",
@@ -959,7 +1005,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아"
   },
   {
    "id": "berlucchi-61-nature-saten-blanc-de-blanc",
@@ -990,7 +1038,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이"
   },
   {
    "id": "berlucchi-61-brut",
@@ -1019,7 +1069,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아"
   },
   {
    "id": "berlucchi-61-rose",
@@ -1049,7 +1101,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아, 샤도네이"
   },
   {
    "id": "berlucchi-61-saten-blanc-de-blanc",
@@ -1080,7 +1134,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이"
   },
   {
    "id": "berlucchi-61-nature-rose",
@@ -1110,7 +1166,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아"
   },
   {
    "id": "berlucchi-palazzo-lana-extreme",
@@ -1138,7 +1196,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아"
   },
   {
    "id": "berlucchi-palazzo-lana-saten-blanc-de-blanc",
@@ -1164,7 +1224,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이"
   },
   {
    "id": "valle-calda-vino-spumante-brut",
@@ -1190,7 +1252,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아"
   },
   {
    "id": "valle-calda-vino-spumante-dolce",
@@ -1216,7 +1280,9 @@
    "sweetness": 5,
    "acidity": 3,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 피노 누아"
   },
   {
    "id": "dianella-sereno-e-nuvole-vermentino",
@@ -1247,7 +1313,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "베르멘티노"
   },
   {
    "id": "dianella-orpicchio",
@@ -1278,7 +1346,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "오르피키오"
   },
   {
    "id": "dianella-chianti-docg",
@@ -1310,7 +1380,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "산지오베제, 콜로리노"
   },
   {
    "id": "dianella-le-veglie-di-neri-igt",
@@ -1341,7 +1413,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "산지오베제, 카베르네 소비뇽"
   },
   {
    "id": "dianella-chianti-riserva-docg",
@@ -1373,7 +1447,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "산지오베제, 콜로리노"
   },
   {
    "id": "il-matto-delle-giuncaie-igt",
@@ -1401,7 +1477,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "산지오베제"
   },
   {
    "id": "gigino-toscana-bianco-g80-white",
@@ -1433,7 +1511,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "베르멘티노, 트레비아노, 말바시아, 소비뇽 블랑"
   },
   {
    "id": "gigino-toscana-rosso-g80-red",
@@ -1465,7 +1545,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "메를로, 시라, 쁘띠 베르도, 산지오베제"
   },
   {
    "id": "gigino-grande-toscana-rosso-g80-black",
@@ -1496,7 +1578,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽, 메를로, 산지오베제"
   },
   {
    "id": "duca-di-saragnano-toscana-bianco",
@@ -1526,7 +1610,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "트레비아노"
   },
   {
    "id": "duca-di-saragnano-toscana-rosso",
@@ -1556,7 +1642,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "산지오베제"
   },
   {
    "id": "duca-di-saragnano-terre-siciliane",
@@ -1587,7 +1675,9 @@
    "sweetness": 2,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시라, 메를로, 카베르네 소비뇽"
   },
   {
    "id": "duca-di-saragnano-passone",
@@ -1616,7 +1706,9 @@
    "sweetness": 2,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "프리미티보, 네그로아마로"
   },
   {
    "id": "never-die",
@@ -1646,7 +1738,9 @@
    "sweetness": 2,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "프리미티보, 네그로아마로"
   },
   {
    "id": "fontezoppa-vardi",
@@ -1674,7 +1768,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "베르디키오"
   },
   {
    "id": "fontezoppa-pepato",
@@ -1705,7 +1801,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "베르나차 네라"
   },
   {
    "id": "fontezoppa-vardo-riserva",
@@ -1735,7 +1833,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽, 산지오베제, 메를로"
   },
   {
    "id": "thaulero-trebbiano-d-abruzzo",
@@ -1767,7 +1867,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "트레비아노"
   },
   {
    "id": "thaulero-montepulciano-d-abruzzo",
@@ -1799,7 +1901,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "몬테풀치아노"
   },
   {
    "id": "thale-montepulciano-d-abruzzo",
@@ -1832,7 +1936,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "몬테풀치아노"
   },
   {
    "id": "masso-antico-primitivo",
@@ -1863,7 +1969,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "프리미티보"
   },
   {
    "id": "masso-antico-il-potere",
@@ -1896,7 +2004,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "프리미티보, 네그로아마로"
   },
   {
    "id": "sanvigilio-moscato-dolce",
@@ -1927,7 +2037,9 @@
    "sweetness": 5,
    "acidity": 3,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카토"
   },
   {
    "id": "bottega-vinai-pinot-grigio",
@@ -1958,7 +2070,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 그리지오"
   },
   {
    "id": "aveleda-fonte-vinho-verde",
@@ -1989,7 +2103,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "루레이로, 아린토, 트라자두라, 페르낭 피레스"
   },
   {
    "id": "aveleda-fonte-vinho-verde-rose",
@@ -2018,7 +2134,9 @@
    "sweetness": 2,
    "acidity": 5,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아잘, 토우리가 나시오날, 에스파데이로"
   },
   {
    "id": "aveleda-loureiro-alvarinho",
@@ -2050,7 +2168,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "루레이로, 알바리뇨"
   },
   {
    "id": "aveleda-loureiro",
@@ -2080,7 +2200,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "루레이로"
   },
   {
    "id": "aveleda-alvarinho",
@@ -2112,7 +2234,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "알바리뇨"
   },
   {
    "id": "aveleda-white-sparkling-brut",
@@ -2138,7 +2262,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아린토, 루레이로"
   },
   {
    "id": "aveleda-solos-de-xisto-alvarinho",
@@ -2169,7 +2295,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "알바리뇨"
   },
   {
    "id": "aveleda-solos-de-granito-alvarinho",
@@ -2195,7 +2323,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "알바리뇨"
   },
   {
    "id": "aveleda-parcela-do-roseiral",
@@ -2225,7 +2355,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "알바리뇨"
   },
   {
    "id": "aveleda-parcela-do-convento",
@@ -2253,7 +2385,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "루레이로"
   },
   {
    "id": "aveleda-special-edition-set",
@@ -2281,7 +2415,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "루레이로"
   },
   {
    "id": "mandriola-de-lisboa-branco",
@@ -2309,7 +2445,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "페르낭 피레스, 모스카텔"
   },
   {
    "id": "mandriola-de-lisboa-tinto",
@@ -2341,7 +2479,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시라, 알리칸테 부셰, 토우리가 나시오날"
   },
   {
    "id": "periquita-white",
@@ -2367,7 +2507,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "소비뇽 블랑, 비오시뉴, 베르데호, 비오니에"
   },
   {
    "id": "periquita-original",
@@ -2399,7 +2541,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카스텔라오, 트린카데이라, 템프라니요"
   },
   {
    "id": "periquita-reserva-white",
@@ -2429,7 +2573,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "비오니에, 아린토"
   },
   {
    "id": "periquita-reserva",
@@ -2460,7 +2606,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카스텔라오, 토우리가 나시오날, 토우리가 프랑카"
   },
   {
    "id": "periquita-classico",
@@ -2488,7 +2636,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카스텔라오"
   },
   {
    "id": "periquita-superyor",
@@ -2514,7 +2664,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카스텔라오, 카베르네 소비뇽, 틴타 프란시스카"
   },
   {
    "id": "joao-pires",
@@ -2545,7 +2697,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "joao-pires-sparkling",
@@ -2574,7 +2728,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "joao-pires-moscatel-de-setubal-10-years",
@@ -2604,7 +2760,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "lancers-white",
@@ -2635,7 +2793,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": ""
   },
   {
    "id": "lancers-rose",
@@ -2665,7 +2825,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요, 시라, 토우리가 나시오날, 카스텔라오"
   },
   {
    "id": "alambre-moscatel-de-setubal",
@@ -2698,7 +2860,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "alambre-moscatel-roxo-de-setubal-5-years",
@@ -2729,7 +2893,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "privada-moscatel-de-setubal-almagnac",
@@ -2762,7 +2928,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "privada-moscatel-de-setubal-cognac",
@@ -2795,7 +2963,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "alambre-20-years",
@@ -2826,7 +2996,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "alambre-40-years",
@@ -2854,7 +3026,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "trilogia",
@@ -2880,7 +3054,9 @@
    "sweetness": 5,
    "acidity": 2,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "fonseca-0-riginal-white",
@@ -2910,7 +3086,9 @@
    "sweetness": 2,
    "acidity": 3,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "모스카텔"
   },
   {
    "id": "fonseca-0-riginal-red",
@@ -2938,7 +3116,9 @@
    "sweetness": 2,
    "acidity": 3,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시라"
   },
   {
    "id": "jose-de-sousa-dona-julieta-reserva",
@@ -2968,7 +3148,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요, 트린카데이라, 시라, 알리칸테 부셰"
   },
   {
    "id": "jose-de-sousa",
@@ -2998,7 +3180,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "그랑 누아, 트린카데이라, 템프라니요"
   },
   {
    "id": "jose-de-sousa-mayor",
@@ -3026,7 +3210,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "그랑 누아, 트린카데이라, 템프라니요"
   },
   {
    "id": "todos-blanc-de-blanc-brut",
@@ -3054,7 +3240,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아린토, 비칼, 마리아 고메스, 세르시알"
   },
   {
    "id": "todos-blanc-de-noir-brut",
@@ -3082,7 +3270,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "바가"
   },
   {
    "id": "todos-arinto-reserva",
@@ -3113,7 +3303,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아린토"
   },
   {
    "id": "todos-baga-reserva",
@@ -3143,7 +3335,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "바가"
   },
   {
    "id": "casal-amado-vinho-verde-d-o-c-white-original",
@@ -3171,7 +3365,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아잘, 트라자두라, 루레이로, 아린토"
   },
   {
    "id": "casal-amado-alvarinho-branco",
@@ -3199,7 +3395,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "알바리뇨"
   },
   {
    "id": "terra-reserva-branco",
@@ -3227,7 +3425,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "엔크루자도"
   },
   {
    "id": "terra-reserva-tinto",
@@ -3255,7 +3455,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "토우리가 나시오날"
   },
   {
    "id": "miss-vitis-bal-da-madre-branco",
@@ -3284,7 +3486,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시리아, 폰테칼"
   },
   {
    "id": "miss-vitis-bal-da-madre-rose",
@@ -3313,7 +3517,9 @@
    "sweetness": 2,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시리아, 폰테칼"
   },
   {
    "id": "miss-vitis-bal-da-madre-tinto",
@@ -3342,7 +3548,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 3,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요, 루페테"
   },
   {
    "id": "quinta-do-valdoeiro-branco",
@@ -3371,7 +3579,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "아린토, 비칼, 샤도네이"
   },
   {
    "id": "quinta-do-valdoeiro-tinto",
@@ -3400,7 +3610,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "시라, 바가, 토우리가 나시오날, 카베르네 소비뇽"
   },
   {
    "id": "quinta-de-chocapalha-white-reserva",
@@ -3429,7 +3641,9 @@
    "sweetness": 1,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 아린토"
   },
   {
    "id": "quinta-de-chocapalha-tinto",
@@ -3458,7 +3672,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "토우리가 나시오날, 토우리가 프랑카, 템프라니요, 카스텔라오, 알리칸테 부셰"
   },
   {
    "id": "casal-garcia-sparkling",
@@ -3486,7 +3702,9 @@
    "sweetness": 5,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": ""
   },
   {
    "id": "casal-garcia-tinto",
@@ -3514,7 +3732,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "토우리가 나시오날, 템프라니요"
   },
   {
    "id": "coloma-cuvee-tinto",
@@ -3542,7 +3762,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "가르나차, 시라, 피노 누아"
   },
   {
    "id": "coloma-evandria",
@@ -3570,7 +3792,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아, 시라"
   },
   {
    "id": "bodegas-matarromera-reserva",
@@ -3600,7 +3824,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요"
   },
   {
    "id": "bodegas-de-avila-salcedo-portento-crianza",
@@ -3630,7 +3856,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요, 카베르네 소비뇽"
   },
   {
    "id": "bodegas-medrano-irazu-crianza",
@@ -3656,7 +3884,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "템프라니요"
   },
   {
    "id": "thomas-schmitt-private-collection-spatlese",
@@ -3685,7 +3915,9 @@
    "sweetness": 3,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "리슬링"
   },
   {
    "id": "thomas-schmitt-private-collection-auslese",
@@ -3711,7 +3943,9 @@
    "sweetness": 5,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "리슬링"
   },
   {
    "id": "rheinhessen-beerenauslese",
@@ -3739,7 +3973,9 @@
    "sweetness": 5,
    "acidity": 5,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "리슬링"
   },
   {
    "id": "rheinhessen-eiswein-ice-wine",
@@ -3767,7 +4003,9 @@
    "sweetness": 5,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "오르테가, 옵티마"
   },
   {
    "id": "dr-schmitt-pinot-noir",
@@ -3793,7 +4031,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아"
   },
   {
    "id": "thomas-schmitt-private-collection-pinot-noir-qba",
@@ -3819,7 +4059,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 2,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "피노 누아"
   },
   {
    "id": "don-pascual-chardonnay-viognier-crianza-en-roble",
@@ -3845,7 +4087,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 비오니에"
   },
   {
    "id": "don-pascual-tannat-crianza-en-roble",
@@ -3877,7 +4121,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "타나"
   },
   {
    "id": "don-pascual-cabernet-sauvignon-crianza-en-roble",
@@ -3905,7 +4151,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽"
   },
   {
    "id": "don-pascual-petit-verdot-crianza-en-roble",
@@ -3933,7 +4181,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "쁘띠 베르도"
   },
   {
    "id": "familia-deicas-preludio-white",
@@ -3963,7 +4213,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 비오니에"
   },
   {
    "id": "familia-deicas-preludio-red",
@@ -3995,7 +4247,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "타나, 카베르네 소비뇽, 카베르네 프랑, 메를로, 쁘띠 베르도·마쎌란"
   },
   {
    "id": "oveja-negra-cabernet-sauvignon-grand-reserva",
@@ -4023,7 +4277,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 소비뇽, 메를로, 말벡"
   },
   {
    "id": "oveja-negra-chardonnay-viognier-reserva-genrang-white",
@@ -4053,7 +4309,9 @@
    "sweetness": 1,
    "acidity": 4,
    "tannin": 1,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "샤도네이, 비오니에"
   },
   {
    "id": "oveja-negra-cabernet-franc-carmenere-reserva-genrang-red",
@@ -4083,7 +4341,9 @@
    "sweetness": 1,
    "acidity": 3,
    "tannin": 4,
-   "vivinoUrl": ""
+   "vivinoUrl": "",
+   "profileStatus": "estimated",
+   "varietyTags": "카베르네 프랑, 카르메네르"
   }
  ]
 }

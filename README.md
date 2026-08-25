@@ -1,6 +1,7 @@
 # 올빈와인 앱 (wine_app)
 
 (주)올빈와인 브랜드 와인 카탈로그 앱. 모바일 우선 정적 웹앱이며 GitHub Pages에 배포됨.
+여러 사람·에이전트가 번갈아 작업하므로 **협업 규칙은 [AGENTS.md](AGENTS.md)** 를 따른다.
 
 - 라이브: <https://ellencia.github.io/wine_app/>
 - 기능: 와인 컬렉션(국가별·타입 필터) / 와인별 테크니컬 시트 + 스타일 프로필 / 생산자 소개 /
@@ -60,6 +61,26 @@ GitHub Pages 자동 배포
 취향 퀴즈의 근거 데이터. 초기값은 종류·품종·도수·산지 규칙으로 자동 산출한 것이므로
 시음 판단으로 엑셀에서 조정하면 됨. 척도는 WSET 5단계와 같음.
 
+- **`프로필 상태` 컬럼**: `estimated`(기본, 상세 화면에 "추정치 · 검수 전" 표시) / `verified`(시음 검수 완료).
+  검수한 와인만 verified 로 바꿀 것. 퀴즈는 거리가 같을 때 verified 와인을 먼저 보여줌.
+- 검수 권장 절차: 주력 20종부터, 와인 경험자 3명이 개별 채점 → 중앙값 채택, 세미 블라인드, 온도·잔 통일.
+
+### 품종 태그
+
+- **`품종 태그` 컬럼**을 비워두면 `품종` 컬럼에서 자동 생성됨 (비율·괄호 제거, 표기 통일).
+  통일 사전은 `scripts/wine_utils.py` 의 `SYNONYMS` — 예: 피노누아/피노네로 → 피노 누아,
+  또우리가 나씨오날 → 토우리가 나시오날, 아라고네즈/틴타 로리즈 → 템프라니요(같은 품종).
+- 직접 넣으면 그 값이 우선. 홈의 품종 칩(2종 이상 쓰인 품종만 노출)과 상세 페이지 태그 링크에 쓰임.
+- 상황·페어링·대상 태그(occasion/pairing/audience)는 데이터에서 유도할 수 없어 아직 컬럼이 없음.
+  클라이언트가 채울 준비가 되면 같은 방식으로 추가.
+
+### 용어사전
+
+- `src/content/glossary/*.md` — 용어 1개 = 파일 1개 (term, termEn, aliases, category, order + 본문).
+- `aliases` 에 적은 표기가 와인 이름·테크시트(종류·빈티지·산지)·한 줄 소개에 나오면 자동으로
+  `/glossary#id` 링크가 붙음 (점선 밑줄). 용어를 추가하면 링크도 자동.
+- 카테고리: 기본 / 등급 / 산지 / 양조 / 당도 / 시음 / 재배
+
 ### Vivino
 
 - `Vivino 점수` 컬럼 값이 상세 페이지에 표시됨 (카탈로그 기준)
@@ -76,8 +97,10 @@ src/
   content.config.ts     # 데이터 스키마
   data/                 # 생성된 JSON (직접 편집 금지)
   content/cocktails/    # 칵테일 1개 = md 1개 (youtubeId 채우면 영상 임베드)
+  content/glossary/     # 와인 용어 1개 = md 1개
+  lib/glossary.ts       # 용어 자동 링크
   layouts/, components/ # 공통 뼈대, 헤더/푸터, 뱃지, 점수 점, 유튜브
-  pages/                # 홈(컬렉션), wines/[slug], producers/, cocktails/, quiz, 404
+  pages/                # 홈(컬렉션), wines/[slug], producers/, glossary, cocktails/, quiz, 404
   styles/global.css     # 디자인 토큰 — 색·폰트·여백은 :root 에서 조정
 public/images/wines/    # 보틀 이미지 (<id>.png)
 ```

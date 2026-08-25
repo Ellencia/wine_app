@@ -26,7 +26,12 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/amiral-de-beychevelle.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Amiral%20de%20Beychevelle%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Amiral%20de%20Beychevelle%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽",
+   "메를로"
+  ]
  },
  {
   "id": "mondot",
@@ -55,7 +60,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/mondot.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mondot%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mondot%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "메를로"
+  ]
  },
  {
   "id": "bernard-lonclas-selection-brut",
@@ -85,7 +94,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-selection-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Selection%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Selection%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아",
+   "피노 뫼니에"
+  ]
  },
  {
   "id": "bernard-lonclas-blanc-de-blanc-brut",
@@ -118,7 +133,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-blanc-de-blanc-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Blanc%20de%20Blanc%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Blanc%20de%20Blanc%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이"
+  ]
  },
  {
   "id": "bernard-lonclas-cuvee-prestige-extra-dry",
@@ -145,7 +164,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-cuvee-prestige-extra-dry.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Cuv%C3%A9e%20Prestige%20Extra%20Dry"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Cuv%C3%A9e%20Prestige%20Extra%20Dry",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아",
+   "피노 뫼니에"
+  ]
  },
  {
   "id": "bernard-lonclas-blanc-de-blanc-grand-brut",
@@ -180,7 +205,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-blanc-de-blanc-grand-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Blanc%20de%20Blanc%20Grand%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Blanc%20de%20Blanc%20Grand%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이"
+  ]
  },
  {
   "id": "bernard-lonclas-millesime-2012-brut",
@@ -209,7 +238,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-millesime-2012-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Millesime%202012%20Brut%202012"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Millesime%202012%20Brut%202012",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 뫼니에"
+  ]
  },
  {
   "id": "bernard-lonclas-rose-brut",
@@ -238,7 +272,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/bernard-lonclas-rose-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Rose%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bernard%20Lonclas%20Rose%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아",
+   "샤도네이",
+   "피노 뫼니에"
+  ]
  },
  {
   "id": "chateau-de-la-jaubertie-cuvee-mirabelle-blanc",
@@ -271,7 +311,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/chateau-de-la-jaubertie-cuvee-mirabelle-blanc.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Blanc%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Blanc%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "소비뇽 블랑",
+   "세미용"
+  ]
  },
  {
   "id": "chateau-de-la-jaubertie-cuvee-mirabelle-rouge",
@@ -303,7 +348,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/chateau-de-la-jaubertie-cuvee-mirabelle-rouge.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Rouge%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Rouge%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽",
+   "메를로",
+   "카베르네 프랑"
+  ]
  },
  {
   "id": "joe-bertie-pet-nat",
@@ -334,7 +385,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/joe-bertie-pet-nat.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Joe%20%26%20Bertie%20Pet%27Nat%27"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Joe%20%26%20Bertie%20Pet%27Nat%27",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "소비뇽 블랑",
+   "세미용",
+   "슈냉 블랑"
+  ]
  },
  {
   "id": "chateau-de-la-jaubertie-cuvee-mirabelle-monbazillac",
@@ -365,7 +422,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/chateau-de-la-jaubertie-cuvee-mirabelle-monbazillac.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Monbazillac%202018"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Mirabelle%20Monbazillac%202018",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "세미용",
+   "소비뇽 블랑",
+   "뮈스카델"
+  ]
  },
  {
   "id": "chateau-de-la-jaubertie-cuvee-tradition-blanc",
@@ -395,7 +458,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/chateau-de-la-jaubertie-cuvee-tradition-blanc.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Tradition%20Blanc%202025"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Tradition%20Blanc%202025",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "소비뇽 블랑",
+   "세미용"
+  ]
  },
  {
   "id": "chateau-de-la-jaubertie-cuvee-tradition-rouge",
@@ -425,7 +493,12 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/chateau-de-la-jaubertie-cuvee-tradition-rouge.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Tradition%20Rouge%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch%C3%A2teau%20de%20la%20Jaubertie%20Cuv%C3%A9e%20Tradition%20Rouge%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "메를로",
+   "말벡"
+  ]
  },
  {
   "id": "la-colombine",
@@ -455,7 +528,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/la-colombine.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=La%20Colombine%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=La%20Colombine%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "소비뇽 그리",
+   "뮈스카델"
+  ]
  },
  {
   "id": "ch-les-graves-de-viaud-cuvee-prestige",
@@ -489,7 +567,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/ch-les-graves-de-viaud-cuvee-prestige.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch.%20Les%20Graves%20de%20Viaud%20Cuv%C3%A9e%20Prestige%202019"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Ch.%20Les%20Graves%20de%20Viaud%20Cuv%C3%A9e%20Prestige%202019",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "메를로",
+   "카베르네 소비뇽",
+   "카베르네 프랑"
+  ]
  },
  {
   "id": "grand-coutale",
@@ -521,7 +605,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/grand-coutale.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Grand%20Coutale%202018"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Grand%20Coutale%202018",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "말벡",
+   "메를로",
+   "타나"
+  ]
  },
  {
   "id": "cairanne-la-bete-a-bon-dieu",
@@ -553,7 +643,13 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/cairanne-la-bete-a-bon-dieu.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Cairanne%20La%20B%C3%AAte%20%C3%A0%20bon%20Dieu%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Cairanne%20La%20B%C3%AAte%20%C3%A0%20bon%20Dieu%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "가르나차",
+   "시라",
+   "까리냥"
+  ]
  },
  {
   "id": "cairanne-grande-reserve",
@@ -583,7 +679,13 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/cairanne-grande-reserve.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Cairanne%20Grande%20Reserve%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Cairanne%20Grande%20Reserve%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "가르나차",
+   "무르베드르",
+   "시라"
+  ]
  },
  {
   "id": "baron-de-baussac-colombard-sauvignon",
@@ -610,7 +712,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/baron-de-baussac-colombard-sauvignon.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Colombard%20Sauvignon%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Colombard%20Sauvignon%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "콜롬바드",
+   "소비뇽 블랑"
+  ]
  },
  {
   "id": "baron-de-baussac-carignan-vieilles-vignes",
@@ -640,7 +747,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/baron-de-baussac-carignan-vieilles-vignes.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Carignan%20Vieilles%20Vignes%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Carignan%20Vieilles%20Vignes%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "까리냥"
+  ]
  },
  {
   "id": "baron-de-baussac-merlot",
@@ -671,7 +782,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/baron-de-baussac-merlot.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Merlot%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Baron%20de%20Baussac%20Merlot%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "메를로"
+  ]
  },
  {
   "id": "berlucchi-61-extra-brut",
@@ -705,7 +820,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-extra-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Extra%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Extra%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아"
+  ]
  },
  {
   "id": "berlucchi-61-nature-brut-dosage-zero",
@@ -739,7 +859,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-nature-brut-dosage-zero.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Brut%20%28Dosage%20zero%29%202014"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Brut%20%28Dosage%20zero%29%202014",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아"
+  ]
  },
  {
   "id": "berlucchi-61-nature-saten-blanc-de-blanc",
@@ -771,7 +896,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-nature-saten-blanc-de-blanc.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29%202016"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29%202016",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이"
+  ]
  },
  {
   "id": "berlucchi-61-brut",
@@ -801,7 +930,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아"
+  ]
  },
  {
   "id": "berlucchi-61-rose",
@@ -832,7 +966,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-rose.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Ros%C3%A9"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Ros%C3%A9",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아",
+   "샤도네이"
+  ]
  },
  {
   "id": "berlucchi-61-saten-blanc-de-blanc",
@@ -864,7 +1003,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-saten-blanc-de-blanc.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이"
+  ]
  },
  {
   "id": "berlucchi-61-nature-rose",
@@ -895,7 +1038,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-61-nature-rose.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Ros%C3%A9%202012"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20%2761%20Nature%20Ros%C3%A9%202012",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아"
+  ]
  },
  {
   "id": "berlucchi-palazzo-lana-extreme",
@@ -924,7 +1071,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-palazzo-lana-extreme.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20Palazzo%20Lana%20Extreme%202008"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20Palazzo%20Lana%20Extreme%202008",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아"
+  ]
  },
  {
   "id": "berlucchi-palazzo-lana-saten-blanc-de-blanc",
@@ -951,7 +1102,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/berlucchi-palazzo-lana-saten-blanc-de-blanc.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20Palazzo%20Lana%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29%202008"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Berlucchi%20Palazzo%20Lana%20Sat%C3%A8n%20%28Blanc%20de%20Blanc%29%202008",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이"
+  ]
  },
  {
   "id": "valle-calda-vino-spumante-brut",
@@ -978,7 +1133,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/valle-calda-vino-spumante-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Valle%20Calda%20Vino%20Spumante%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Valle%20Calda%20Vino%20Spumante%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아"
+  ]
  },
  {
   "id": "valle-calda-vino-spumante-dolce",
@@ -1005,7 +1165,12 @@
   "acidity": 3,
   "tannin": 1,
   "image": "/images/wines/valle-calda-vino-spumante-dolce.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Valle%20Calda%20Vino%20Spumante%20Dolce"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Valle%20Calda%20Vino%20Spumante%20Dolce",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "피노 누아"
+  ]
  },
  {
   "id": "dianella-sereno-e-nuvole-vermentino",
@@ -1037,7 +1202,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/dianella-sereno-e-nuvole-vermentino.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Sereno%20e%20Nuvole%20Vermentino%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Sereno%20e%20Nuvole%20Vermentino%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "베르멘티노"
+  ]
  },
  {
   "id": "dianella-orpicchio",
@@ -1069,7 +1238,11 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/dianella-orpicchio.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Orpicchio%202019"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Orpicchio%202019",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "오르피키오"
+  ]
  },
  {
   "id": "dianella-chianti-docg",
@@ -1102,7 +1275,12 @@
   "acidity": 4,
   "tannin": 3,
   "image": "/images/wines/dianella-chianti-docg.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Chianti%20DOCG%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Chianti%20DOCG%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "산지오베제",
+   "콜로리노"
+  ]
  },
  {
   "id": "dianella-le-veglie-di-neri-igt",
@@ -1134,7 +1312,12 @@
   "acidity": 4,
   "tannin": 4,
   "image": "/images/wines/dianella-le-veglie-di-neri-igt.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Le%20Veglie%20di%20Neri%20IGT%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Le%20Veglie%20di%20Neri%20IGT%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "산지오베제",
+   "카베르네 소비뇽"
+  ]
  },
  {
   "id": "dianella-chianti-riserva-docg",
@@ -1167,7 +1350,12 @@
   "acidity": 4,
   "tannin": 3,
   "image": "/images/wines/dianella-chianti-riserva-docg.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Chianti%20Riserva%20DOCG%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dianella%20Chianti%20Riserva%20DOCG%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "산지오베제",
+   "콜로리노"
+  ]
  },
  {
   "id": "il-matto-delle-giuncaie-igt",
@@ -1196,7 +1384,11 @@
   "acidity": 4,
   "tannin": 3,
   "image": "/images/wines/il-matto-delle-giuncaie-igt.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Il%20Matto%20delle%20Giuncaie%20IGT%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Il%20Matto%20delle%20Giuncaie%20IGT%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "산지오베제"
+  ]
  },
  {
   "id": "gigino-toscana-bianco-g80-white",
@@ -1229,7 +1421,14 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/gigino-toscana-bianco-g80-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Toscana%20Bianco%20%28G80%20White%29%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Toscana%20Bianco%20%28G80%20White%29%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "베르멘티노",
+   "트레비아노",
+   "말바시아",
+   "소비뇽 블랑"
+  ]
  },
  {
   "id": "gigino-toscana-rosso-g80-red",
@@ -1262,7 +1461,14 @@
   "acidity": 4,
   "tannin": 4,
   "image": "/images/wines/gigino-toscana-rosso-g80-red.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Toscana%20Rosso%20%28G80%20Red%29%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Toscana%20Rosso%20%28G80%20Red%29%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "메를로",
+   "시라",
+   "쁘띠 베르도",
+   "산지오베제"
+  ]
  },
  {
   "id": "gigino-grande-toscana-rosso-g80-black",
@@ -1294,7 +1500,13 @@
   "acidity": 4,
   "tannin": 4,
   "image": "/images/wines/gigino-grande-toscana-rosso-g80-black.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Grande%20Toscana%20Rosso%20%28G80%20Black%29%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Gigino%20Grande%20Toscana%20Rosso%20%28G80%20Black%29%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽",
+   "메를로",
+   "산지오베제"
+  ]
  },
  {
   "id": "duca-di-saragnano-toscana-bianco",
@@ -1325,7 +1537,11 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/duca-di-saragnano-toscana-bianco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Toscana%20Bianco%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Toscana%20Bianco%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "트레비아노"
+  ]
  },
  {
   "id": "duca-di-saragnano-toscana-rosso",
@@ -1356,7 +1572,11 @@
   "acidity": 4,
   "tannin": 3,
   "image": "/images/wines/duca-di-saragnano-toscana-rosso.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Toscana%20Rosso%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Toscana%20Rosso%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "산지오베제"
+  ]
  },
  {
   "id": "duca-di-saragnano-terre-siciliane",
@@ -1388,7 +1608,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/duca-di-saragnano-terre-siciliane.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Terre%20Siciliane%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Terre%20Siciliane%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시라",
+   "메를로",
+   "카베르네 소비뇽"
+  ]
  },
  {
   "id": "duca-di-saragnano-passone",
@@ -1418,7 +1644,12 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/duca-di-saragnano-passone.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Passone%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Duca%20di%20Saragnano%20Passone%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "프리미티보",
+   "네그로아마로"
+  ]
  },
  {
   "id": "never-die",
@@ -1449,7 +1680,12 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/never-die.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Never%20Die%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Never%20Die%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "프리미티보",
+   "네그로아마로"
+  ]
  },
  {
   "id": "fontezoppa-vardi",
@@ -1478,7 +1714,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/fontezoppa-vardi.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Vard%C3%AC%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Vard%C3%AC%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "베르디키오"
+  ]
  },
  {
   "id": "fontezoppa-pepato",
@@ -1510,7 +1750,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/fontezoppa-pepato.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Pepato%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Pepato%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "베르나차 네라"
+  ]
  },
  {
   "id": "fontezoppa-vardo-riserva",
@@ -1541,7 +1785,13 @@
   "acidity": 4,
   "tannin": 4,
   "image": "/images/wines/fontezoppa-vardo-riserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Vard%C3%B2%20Riserva%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fontezoppa%20Vard%C3%B2%20Riserva%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽",
+   "산지오베제",
+   "메를로"
+  ]
  },
  {
   "id": "thaulero-trebbiano-d-abruzzo",
@@ -1574,7 +1824,11 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/thaulero-trebbiano-d-abruzzo.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thaulero%20Trebbiano%20d%27Abruzzo%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thaulero%20Trebbiano%20d%27Abruzzo%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "트레비아노"
+  ]
  },
  {
   "id": "thaulero-montepulciano-d-abruzzo",
@@ -1607,7 +1861,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/thaulero-montepulciano-d-abruzzo.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thaulero%20Montepulciano%20d%27Abruzzo%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thaulero%20Montepulciano%20d%27Abruzzo%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "몬테풀치아노"
+  ]
  },
  {
   "id": "thale-montepulciano-d-abruzzo",
@@ -1641,7 +1899,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/thale-montepulciano-d-abruzzo.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thale%20Montepulciano%20d%27Abruzzo%202015"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thale%20Montepulciano%20d%27Abruzzo%202015",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "몬테풀치아노"
+  ]
  },
  {
   "id": "masso-antico-primitivo",
@@ -1673,7 +1935,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/masso-antico-primitivo.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Masso%20Antico%20Primitivo%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Masso%20Antico%20Primitivo%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "프리미티보"
+  ]
  },
  {
   "id": "masso-antico-il-potere",
@@ -1707,7 +1973,12 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/masso-antico-il-potere.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Masso%20Antico%20Il%20Potere%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Masso%20Antico%20Il%20Potere%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "프리미티보",
+   "네그로아마로"
+  ]
  },
  {
   "id": "sanvigilio-moscato-dolce",
@@ -1739,7 +2010,11 @@
   "acidity": 3,
   "tannin": 1,
   "image": "/images/wines/sanvigilio-moscato-dolce.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Sanvigilio%20Moscato%20Dolce"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Sanvigilio%20Moscato%20Dolce",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카토"
+  ]
  },
  {
   "id": "bottega-vinai-pinot-grigio",
@@ -1771,7 +2046,11 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/bottega-vinai-pinot-grigio.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bottega%20Vinai%20Pinot%20Grigio%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bottega%20Vinai%20Pinot%20Grigio%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 그리지오"
+  ]
  },
  {
   "id": "aveleda-fonte-vinho-verde",
@@ -1803,7 +2082,14 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-fonte-vinho-verde.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Fonte%20Vinho%20Verde%202025"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Fonte%20Vinho%20Verde%202025",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "루레이로",
+   "아린토",
+   "트라자두라",
+   "페르낭 피레스"
+  ]
  },
  {
   "id": "aveleda-fonte-vinho-verde-rose",
@@ -1833,7 +2119,13 @@
   "acidity": 5,
   "tannin": 2,
   "image": "/images/wines/aveleda-fonte-vinho-verde-rose.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Fonte%20Vinho%20Verde%20Rose%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Fonte%20Vinho%20Verde%20Rose%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아잘",
+   "토우리가 나시오날",
+   "에스파데이로"
+  ]
  },
  {
   "id": "aveleda-loureiro-alvarinho",
@@ -1866,7 +2158,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-loureiro-alvarinho.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Loureiro%20%26%20Alvarinho%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Loureiro%20%26%20Alvarinho%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "루레이로",
+   "알바리뇨"
+  ]
  },
  {
   "id": "aveleda-loureiro",
@@ -1897,7 +2194,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-loureiro.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Loureiro%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Loureiro%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "루레이로"
+  ]
  },
  {
   "id": "aveleda-alvarinho",
@@ -1930,7 +2231,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-alvarinho.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Alvarinho%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Alvarinho%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "알바리뇨"
+  ]
  },
  {
   "id": "aveleda-white-sparkling-brut",
@@ -1957,7 +2262,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-white-sparkling-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20White%20Sparkling%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20White%20Sparkling%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아린토",
+   "루레이로"
+  ]
  },
  {
   "id": "aveleda-solos-de-xisto-alvarinho",
@@ -1989,7 +2299,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-solos-de-xisto-alvarinho.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Solos%20de%20Xisto%20Alvarinho%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Solos%20de%20Xisto%20Alvarinho%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "알바리뇨"
+  ]
  },
  {
   "id": "aveleda-solos-de-granito-alvarinho",
@@ -2016,7 +2330,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-solos-de-granito-alvarinho.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Solos%20de%20Granito%20Alvarinho%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Solos%20de%20Granito%20Alvarinho%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "알바리뇨"
+  ]
  },
  {
   "id": "aveleda-parcela-do-roseiral",
@@ -2047,7 +2365,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-parcela-do-roseiral.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Parcela%20do%20Roseiral%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Parcela%20do%20Roseiral%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "알바리뇨"
+  ]
  },
  {
   "id": "aveleda-parcela-do-convento",
@@ -2076,7 +2398,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-parcela-do-convento.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Parcela%20do%20Convento%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Parcela%20do%20Convento%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "루레이로"
+  ]
  },
  {
   "id": "aveleda-special-edition-set",
@@ -2105,7 +2431,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/aveleda-special-edition-set.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Special%20Edition%20Set%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Aveleda%20Special%20Edition%20Set%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "루레이로"
+  ]
  },
  {
   "id": "mandriola-de-lisboa-branco",
@@ -2134,7 +2464,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/mandriola-de-lisboa-branco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mandriola%20de%20Lisboa%20Branco%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mandriola%20de%20Lisboa%20Branco%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "페르낭 피레스",
+   "모스카텔"
+  ]
  },
  {
   "id": "mandriola-de-lisboa-tinto",
@@ -2167,7 +2502,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/mandriola-de-lisboa-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mandriola%20de%20Lisboa%20Tinto%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Mandriola%20de%20Lisboa%20Tinto%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시라",
+   "알리칸테 부셰",
+   "토우리가 나시오날"
+  ]
  },
  {
   "id": "periquita-white",
@@ -2194,7 +2535,14 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/periquita-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20White%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20White%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "소비뇽 블랑",
+   "비오시뉴",
+   "베르데호",
+   "비오니에"
+  ]
  },
  {
   "id": "periquita-original",
@@ -2227,7 +2575,13 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/periquita-original.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Original%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Original%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카스텔라오",
+   "트린카데이라",
+   "템프라니요"
+  ]
  },
  {
   "id": "periquita-reserva-white",
@@ -2258,7 +2612,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/periquita-reserva-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Reserva%20White%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Reserva%20White%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "비오니에",
+   "아린토"
+  ]
  },
  {
   "id": "periquita-reserva",
@@ -2290,7 +2649,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/periquita-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Reserva%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Reserva%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카스텔라오",
+   "토우리가 나시오날",
+   "토우리가 프랑카"
+  ]
  },
  {
   "id": "periquita-classico",
@@ -2319,7 +2684,11 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/periquita-classico.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Classico%202014"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Classico%202014",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카스텔라오"
+  ]
  },
  {
   "id": "periquita-superyor",
@@ -2346,7 +2715,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/periquita-superyor.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Superyor%202017"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Periquita%20Superyor%202017",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카스텔라오",
+   "카베르네 소비뇽",
+   "틴타 프란시스카"
+  ]
  },
  {
   "id": "joao-pires",
@@ -2378,7 +2753,11 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/joao-pires.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "joao-pires-sparkling",
@@ -2408,7 +2787,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/joao-pires-sparkling.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%20Sparkling"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%20Sparkling",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "joao-pires-moscatel-de-setubal-10-years",
@@ -2439,7 +2822,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/joao-pires-moscatel-de-setubal-10-years.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%20Moscatel%20de%20Setubal%2010%20years"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jo%C3%A3o%20Pires%20Moscatel%20de%20Setubal%2010%20years",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "lancers-white",
@@ -2471,7 +2858,9 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/lancers-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Lancers%20White"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Lancers%20White",
+  "profileStatus": "estimated",
+  "varietyTags": []
  },
  {
   "id": "lancers-rose",
@@ -2502,7 +2891,14 @@
   "acidity": 4,
   "tannin": 2,
   "image": "/images/wines/lancers-rose.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Lancers%20Rose"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Lancers%20Rose",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요",
+   "시라",
+   "토우리가 나시오날",
+   "카스텔라오"
+  ]
  },
  {
   "id": "alambre-moscatel-de-setubal",
@@ -2536,7 +2932,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/alambre-moscatel-de-setubal.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%20Moscatel%20de%20Setubal%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%20Moscatel%20de%20Setubal%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "alambre-moscatel-roxo-de-setubal-5-years",
@@ -2568,7 +2968,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/alambre-moscatel-roxo-de-setubal-5-years.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%20Moscatel%20Roxo%20de%20Setubal%205%20years"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%20Moscatel%20Roxo%20de%20Setubal%205%20years",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "privada-moscatel-de-setubal-almagnac",
@@ -2602,7 +3006,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/privada-moscatel-de-setubal-almagnac.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Privada%20Moscatel%20de%20Setubal%20Almagnac%202007"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Privada%20Moscatel%20de%20Setubal%20Almagnac%202007",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "privada-moscatel-de-setubal-cognac",
@@ -2636,7 +3044,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/privada-moscatel-de-setubal-cognac.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Privada%20Moscatel%20de%20Setubal%20Cognac%201998"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Privada%20Moscatel%20de%20Setubal%20Cognac%201998",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "alambre-20-years",
@@ -2668,7 +3080,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/alambre-20-years.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%2020%20years"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%2020%20years",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "alambre-40-years",
@@ -2697,7 +3113,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/alambre-40-years.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%2040%20years"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Alambre%2040%20years",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "trilogia",
@@ -2724,7 +3144,11 @@
   "acidity": 2,
   "tannin": 1,
   "image": "/images/wines/trilogia.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Trilogia"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Trilogia",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "fonseca-0-riginal-white",
@@ -2755,7 +3179,11 @@
   "acidity": 3,
   "tannin": 1,
   "image": "/images/wines/fonseca-0-riginal-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fonseca%200%25riginal%20White%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fonseca%200%25riginal%20White%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "모스카텔"
+  ]
  },
  {
   "id": "fonseca-0-riginal-red",
@@ -2784,7 +3212,11 @@
   "acidity": 3,
   "tannin": 2,
   "image": "/images/wines/fonseca-0-riginal-red.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fonseca%200%25riginal%20Red%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Fonseca%200%25riginal%20Red%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시라"
+  ]
  },
  {
   "id": "jose-de-sousa-dona-julieta-reserva",
@@ -2815,7 +3247,14 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/jose-de-sousa-dona-julieta-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%20Dona%20Julieta%20Reserva%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%20Dona%20Julieta%20Reserva%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요",
+   "트린카데이라",
+   "시라",
+   "알리칸테 부셰"
+  ]
  },
  {
   "id": "jose-de-sousa",
@@ -2846,7 +3285,13 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/jose-de-sousa.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%202018"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%202018",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "그랑 누아",
+   "트린카데이라",
+   "템프라니요"
+  ]
  },
  {
   "id": "jose-de-sousa-mayor",
@@ -2875,7 +3320,13 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/jose-de-sousa-mayor.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%20Mayor%202016"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Jose%20de%20Sousa%20Mayor%202016",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "그랑 누아",
+   "트린카데이라",
+   "템프라니요"
+  ]
  },
  {
   "id": "todos-blanc-de-blanc-brut",
@@ -2904,7 +3355,14 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/todos-blanc-de-blanc-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Blanc%20de%20Blanc%20Brut"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Blanc%20de%20Blanc%20Brut",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아린토",
+   "비칼",
+   "마리아 고메스",
+   "세르시알"
+  ]
  },
  {
   "id": "todos-blanc-de-noir-brut",
@@ -2933,7 +3391,11 @@
   "acidity": 5,
   "tannin": 2,
   "image": "/images/wines/todos-blanc-de-noir-brut.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Blanc%20de%20Noir%20Brut%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Blanc%20de%20Noir%20Brut%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "바가"
+  ]
  },
  {
   "id": "todos-arinto-reserva",
@@ -2965,7 +3427,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/todos-arinto-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Arinto%20Reserva%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Arinto%20Reserva%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아린토"
+  ]
  },
  {
   "id": "todos-baga-reserva",
@@ -2996,7 +3462,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/todos-baga-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Baga%20Reserva%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Todos%20Baga%20Reserva%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "바가"
+  ]
  },
  {
   "id": "casal-amado-vinho-verde-d-o-c-white-original",
@@ -3025,7 +3495,14 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/casal-amado-vinho-verde-d-o-c-white-original.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Amado%20Vinho%20Verde%20D.O.C%20White%20Original"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Amado%20Vinho%20Verde%20D.O.C%20White%20Original",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아잘",
+   "트라자두라",
+   "루레이로",
+   "아린토"
+  ]
  },
  {
   "id": "casal-amado-alvarinho-branco",
@@ -3054,7 +3531,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/casal-amado-alvarinho-branco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Amado%20Alvarinho%20Branco%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Amado%20Alvarinho%20Branco%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "알바리뇨"
+  ]
  },
  {
   "id": "terra-reserva-branco",
@@ -3083,7 +3564,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/terra-reserva-branco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Terra%20Reserva%20Branco%202024"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Terra%20Reserva%20Branco%202024",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "엔크루자도"
+  ]
  },
  {
   "id": "terra-reserva-tinto",
@@ -3112,7 +3597,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/terra-reserva-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Terra%20Reserva%20Tinto%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Terra%20Reserva%20Tinto%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "토우리가 나시오날"
+  ]
  },
  {
   "id": "miss-vitis-bal-da-madre-branco",
@@ -3142,7 +3631,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/miss-vitis-bal-da-madre-branco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Branco%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Branco%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시리아",
+   "폰테칼"
+  ]
  },
  {
   "id": "miss-vitis-bal-da-madre-rose",
@@ -3172,7 +3666,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/miss-vitis-bal-da-madre-rose.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Rose%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Rose%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시리아",
+   "폰테칼"
+  ]
  },
  {
   "id": "miss-vitis-bal-da-madre-tinto",
@@ -3202,7 +3701,12 @@
   "acidity": 3,
   "tannin": 3,
   "image": "/images/wines/miss-vitis-bal-da-madre-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Tinto%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Miss%20Vitis%2C%20Bal%20da%20Madre%20Tinto%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요",
+   "루페테"
+  ]
  },
  {
   "id": "quinta-do-valdoeiro-branco",
@@ -3232,7 +3736,13 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/quinta-do-valdoeiro-branco.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20do%20Valdoeiro%20Branco%202019"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20do%20Valdoeiro%20Branco%202019",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "아린토",
+   "비칼",
+   "샤도네이"
+  ]
  },
  {
   "id": "quinta-do-valdoeiro-tinto",
@@ -3262,7 +3772,14 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/quinta-do-valdoeiro-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20do%20Valdoeiro%20Tinto%202016"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20do%20Valdoeiro%20Tinto%202016",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "시라",
+   "바가",
+   "토우리가 나시오날",
+   "카베르네 소비뇽"
+  ]
  },
  {
   "id": "quinta-de-chocapalha-white-reserva",
@@ -3292,7 +3809,12 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/quinta-de-chocapalha-white-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20de%20Chocapalha%20White%20Reserva%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20de%20Chocapalha%20White%20Reserva%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "아린토"
+  ]
  },
  {
   "id": "quinta-de-chocapalha-tinto",
@@ -3322,7 +3844,15 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/quinta-de-chocapalha-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20de%20Chocapalha%20Tinto%202015"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Quinta%20de%20Chocapalha%20Tinto%202015",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "토우리가 나시오날",
+   "토우리가 프랑카",
+   "템프라니요",
+   "카스텔라오",
+   "알리칸테 부셰"
+  ]
  },
  {
   "id": "casal-garcia-sparkling",
@@ -3351,7 +3881,9 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/casal-garcia-sparkling.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Garcia%20Sparkling"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Garcia%20Sparkling",
+  "profileStatus": "estimated",
+  "varietyTags": []
  },
  {
   "id": "casal-garcia-tinto",
@@ -3380,7 +3912,12 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/casal-garcia-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Garcia%20Tinto%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Casal%20Garcia%20Tinto%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "토우리가 나시오날",
+   "템프라니요"
+  ]
  },
  {
   "id": "coloma-cuvee-tinto",
@@ -3409,7 +3946,13 @@
   "acidity": 3,
   "tannin": 2,
   "image": "/images/wines/coloma-cuvee-tinto.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Coloma%20Cuv%C3%A9e%20Tinto%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Coloma%20Cuv%C3%A9e%20Tinto%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "가르나차",
+   "시라",
+   "피노 누아"
+  ]
  },
  {
   "id": "coloma-evandria",
@@ -3438,7 +3981,12 @@
   "acidity": 3,
   "tannin": 2,
   "image": "/images/wines/coloma-evandria.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Coloma%20Evandria%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Coloma%20Evandria%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아",
+   "시라"
+  ]
  },
  {
   "id": "bodegas-matarromera-reserva",
@@ -3469,7 +4017,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/bodegas-matarromera-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20Matarromera%20Reserva%202014"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20Matarromera%20Reserva%202014",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요"
+  ]
  },
  {
   "id": "bodegas-de-avila-salcedo-portento-crianza",
@@ -3500,7 +4052,12 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/bodegas-de-avila-salcedo-portento-crianza.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20de%20%C3%81vila%20Salcedo%20Portento%20Crianza%202015"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20de%20%C3%81vila%20Salcedo%20Portento%20Crianza%202015",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요",
+   "카베르네 소비뇽"
+  ]
  },
  {
   "id": "bodegas-medrano-irazu-crianza",
@@ -3527,7 +4084,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/bodegas-medrano-irazu-crianza.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20Medrano%20Irazu%20Crianza%202018"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Bodegas%20Medrano%20Irazu%20Crianza%202018",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "템프라니요"
+  ]
  },
  {
   "id": "thomas-schmitt-private-collection-spatlese",
@@ -3557,7 +4118,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/thomas-schmitt-private-collection-spatlese.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Sp%C3%A4tlese%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Sp%C3%A4tlese%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "리슬링"
+  ]
  },
  {
   "id": "thomas-schmitt-private-collection-auslese",
@@ -3584,7 +4149,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/thomas-schmitt-private-collection-auslese.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Auslese%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Auslese%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "리슬링"
+  ]
  },
  {
   "id": "rheinhessen-beerenauslese",
@@ -3613,7 +4182,11 @@
   "acidity": 5,
   "tannin": 1,
   "image": "/images/wines/rheinhessen-beerenauslese.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Rheinhessen%20Beerenauslese%202015"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Rheinhessen%20Beerenauslese%202015",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "리슬링"
+  ]
  },
  {
   "id": "rheinhessen-eiswein-ice-wine",
@@ -3642,7 +4215,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/rheinhessen-eiswein-ice-wine.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Rheinhessen%20Eiswein%20%28Ice%20Wine%29%202016"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Rheinhessen%20Eiswein%20%28Ice%20Wine%29%202016",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "오르테가",
+   "옵티마"
+  ]
  },
  {
   "id": "dr-schmitt-pinot-noir",
@@ -3669,7 +4247,11 @@
   "acidity": 3,
   "tannin": 2,
   "image": "/images/wines/dr-schmitt-pinot-noir.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dr.%20Schmitt%20Pinot%20Noir%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Dr.%20Schmitt%20Pinot%20Noir%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아"
+  ]
  },
  {
   "id": "thomas-schmitt-private-collection-pinot-noir-qba",
@@ -3696,7 +4278,11 @@
   "acidity": 3,
   "tannin": 2,
   "image": "/images/wines/thomas-schmitt-private-collection-pinot-noir-qba.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Pinot%20Noir%20QbA%202019"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Thomas%20Schmitt%20Private%20Collection%20Pinot%20Noir%20QbA%202019",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "피노 누아"
+  ]
  },
  {
   "id": "don-pascual-chardonnay-viognier-crianza-en-roble",
@@ -3723,7 +4309,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/don-pascual-chardonnay-viognier-crianza-en-roble.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Chardonnay%20Viognier%20Crianza%20En%20Roble%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Chardonnay%20Viognier%20Crianza%20En%20Roble%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "비오니에"
+  ]
  },
  {
   "id": "don-pascual-tannat-crianza-en-roble",
@@ -3756,7 +4347,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/don-pascual-tannat-crianza-en-roble.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Tannat%20Crianza%20En%20Roble%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Tannat%20Crianza%20En%20Roble%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "타나"
+  ]
  },
  {
   "id": "don-pascual-cabernet-sauvignon-crianza-en-roble",
@@ -3785,7 +4380,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/don-pascual-cabernet-sauvignon-crianza-en-roble.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Cabernet%20Sauvignon%20Crianza%20En%20Roble%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Cabernet%20Sauvignon%20Crianza%20En%20Roble%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽"
+  ]
  },
  {
   "id": "don-pascual-petit-verdot-crianza-en-roble",
@@ -3814,7 +4413,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/don-pascual-petit-verdot-crianza-en-roble.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Petit%20Verdot%20Crianza%20En%20Roble%202020"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Don%20Pascual%20Petit%20Verdot%20Crianza%20En%20Roble%202020",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "쁘띠 베르도"
+  ]
  },
  {
   "id": "familia-deicas-preludio-white",
@@ -3845,7 +4448,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/familia-deicas-preludio-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Familia%20Deicas%20Preludio%20White%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Familia%20Deicas%20Preludio%20White%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "비오니에"
+  ]
  },
  {
   "id": "familia-deicas-preludio-red",
@@ -3878,7 +4486,15 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/familia-deicas-preludio-red.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Familia%20Deicas%20Preludio%20Red%202016"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Familia%20Deicas%20Preludio%20Red%202016",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "타나",
+   "카베르네 소비뇽",
+   "카베르네 프랑",
+   "메를로",
+   "쁘띠 베르도·마쎌란"
+  ]
  },
  {
   "id": "oveja-negra-cabernet-sauvignon-grand-reserva",
@@ -3907,7 +4523,13 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/oveja-negra-cabernet-sauvignon-grand-reserva.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Cabernet%20Sauvignon%20Grand%20Reserva%202021"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Cabernet%20Sauvignon%20Grand%20Reserva%202021",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 소비뇽",
+   "메를로",
+   "말벡"
+  ]
  },
  {
   "id": "oveja-negra-chardonnay-viognier-reserva-genrang-white",
@@ -3938,7 +4560,12 @@
   "acidity": 4,
   "tannin": 1,
   "image": "/images/wines/oveja-negra-chardonnay-viognier-reserva-genrang-white.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Chardonnay%20Viognier%20Reserva%20%28GENRANG%20White%29%202023"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Chardonnay%20Viognier%20Reserva%20%28GENRANG%20White%29%202023",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "샤도네이",
+   "비오니에"
+  ]
  },
  {
   "id": "oveja-negra-cabernet-franc-carmenere-reserva-genrang-red",
@@ -3969,6 +4596,11 @@
   "acidity": 3,
   "tannin": 4,
   "image": "/images/wines/oveja-negra-cabernet-franc-carmenere-reserva-genrang-red.png",
-  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Cabernet%20Franc%20Carmenere%20Reserva%20%28GENRANG%20Red%29%202022"
+  "vivinoUrl": "https://www.vivino.com/search/wines?q=Oveja%20Negra%20Cabernet%20Franc%20Carmenere%20Reserva%20%28GENRANG%20Red%29%202022",
+  "profileStatus": "estimated",
+  "varietyTags": [
+   "카베르네 프랑",
+   "카르메네르"
+  ]
  }
 ]
