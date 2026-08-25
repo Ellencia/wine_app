@@ -29,6 +29,14 @@ def read_sheet(name, keys):
 
 producers = read_sheet("producers", PROD_KEYS)
 wines = read_sheet("wines", WINE_KEYS)
+
+seen_producers = set()
+for p in producers:
+    r = p["_row"]
+    if p["id"] in seen_producers:
+        errors.append(f"producers {r}행: id 중복 '{p['id']}'")
+    seen_producers.add(p["id"])
+
 pids = {p["id"] for p in producers}
 seen = set()
 for w in wines:
@@ -39,7 +47,9 @@ for w in wines:
     if w["type"] not in TYPES: errors.append(f"wines {r}행: 타입코드 '{w['type']}' 는 {sorted(TYPES)} 중 하나여야 함")
     for k in ("body", "sweetness", "acidity", "tannin"):
         v = w[k]
-        if not isinstance(v, (int, float)) or not 1 <= v <= 5: errors.append(f"wines {r}행: {k} 값 '{v}' 는 1~5 정수여야 함")
+        is_integer = isinstance(v, (int, float)) and not isinstance(v, bool) and float(v).is_integer()
+        if not is_integer or not 1 <= v <= 5:
+            errors.append(f"wines {r}행: {k} 값 '{v}' 는 1~5 정수여야 함")
     for k in ("nameKo", "name", "vintage", "country", "region", "varieties"):
         if not w[k]: errors.append(f"wines {r}행: '{k}' 비어 있음")
     img = os.path.join(ROOT, "public", "images", "wines", f"{w['id']}.png")

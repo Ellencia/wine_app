@@ -10,9 +10,11 @@
 ## 실행 방법
 
 ```text
-npm run dev       # 개발 서버 (http://localhost:4321) — 저장하면 즉시 반영
-npm run build     # dist/ 에 정적 파일 생성. 데이터 오류가 있으면 여기서 에러로 잡힘
-npm run preview   # 빌드 결과 미리보기
+npm install                                  # Node 의존성 설치
+python -m pip install -r requirements.txt    # 엑셀 변환 도구 설치
+npm run dev                                  # 개발 서버 (http://localhost:4321)
+npm run build                                # 정적 빌드 및 데이터 스키마 검증
+npm run preview                              # 빌드 결과 미리보기
 ```
 
 ## 데이터 흐름 (핵심)
@@ -30,8 +32,11 @@ GitHub Pages 자동 배포
 - **`data/wines.xlsx`** 가 유일한 원본. `wines` 시트(와인 1행 = 앱 1개)와 `producers` 시트, `안내` 시트로 구성.
   공급가·소비자가 컬럼은 의도적으로 없음.
 - **`scripts/build_data.py`** 는 엑셀을 읽기만 하고(절대 다시 저장하지 않음) JSON을 만든다.
-  id 중복, 생산자 id 불일치, 타입코드 오류, 1~5 범위 밖 점수, 이미지 파일 누락을 한국어 메시지로 잡아 중단함.
+  와인·생산자 id 중복, 생산자 id 불일치, 타입코드 오류, 정수가 아닌 값 또는 1~5 범위 밖 점수,
+  이미지 파일 누락을 한국어 메시지로 잡아 중단함.
 - **`src/content.config.ts`** 의 Zod 스키마가 JSON의 최종 검문소.
+- **GitHub Actions** 는 배포 전에 엑셀에서 JSON을 다시 생성하고 커밋된 JSON과 비교한다.
+  두 파일이 다르면 JSON 갱신 누락으로 보고 배포를 중단한다.
 - `data/catalog-2026-n3.json` 은 카탈로그(와인리스트 2026 N°3) 전사 원본 기록(공급가 제외). 참고용.
 - `templates/와인데이터_입력템플릿.xlsx` 는 초기 스키마(md 파일 시절) 기준의 입력 양식. 컬럼이 현재
   마스터와 다르므로 데이터 입력은 `data/wines.xlsx` 에 직접 할 것. 단, 이 파일의 `작성 가이드` 시트에 있는
