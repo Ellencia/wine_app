@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url, COUNTRY_ORDER } from '../../consts';
+
+const producers = await getCollection('producers');
+const countries = [...new Set(producers.map((p) => p.data.country))].sort(
+  (a, b) => (COUNTRY_ORDER.indexOf(a) + 1 || 99) - (COUNTRY_ORDER.indexOf(b) + 1 || 99),
+);
+---
+
+<Base title="Producers" description="올빈와인이 수입하는 생산자 소개">
+  <p class="label label--muted page-title">Producers</p>
+  {
+    countries.map((country) => (
+      <section class="country">
+        <h2 class="label country-title">{country}</h2>
+        <ul>
+          {producers
+            .filter((p) => p.data.country === country)
+            .map((p) => (
+              <li>
+                <a class="producer split-row" href={url(`/producers/${p.id}`)}>
+                  <span>
+                    <span class="name-ko">{p.data.nameKo}</span>
+                    <span class="label label--muted name-en">{p.data.name}</span>
+                  </span>
+                  <span class="label label--muted meta">
+                    {p.data.region}
+                    <br />
+                    {p.data.wineCount} wines
+                  </span>
+                </a>
+              </li>
+            ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .country {
+    margin-bottom: 30px;
+  }
+
+  .country-title {
+    margin-bottom: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .producer {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: flex-start;
+  }
+
+  .name-ko {
+    display: block;
+    font-size: 13.5px;
+  }
+
+  .name-en {
+    display: block;
+    font-size: 9.5px;
+  }
+
+  .meta {
+    font-size: 9.5px;
+    line-height: 1.6;
+    flex: 0 0 auto;
+  }
+</style>

@@ -9,14 +9,15 @@ import { SITE_NAME, url } from '../consts';
     </svg>
   </button>
   <a class="logo serif" href={url('/')}>{SITE_NAME}</a>
-  <span class="bag" aria-hidden="true">
-    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.2">
-      <path d="M1.5 5.5h13l-1 11h-11z"></path>
-      <path d="M5 5.5V4a3 3 0 0 1 6 0v1.5"></path>
+  <a class="finder" href={url('/quiz')} aria-label="내 와인 취향 찾기">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M4 1.5h10l-1 6.5a4 4 0 0 1-8 0z"></path>
+      <path d="M9 12v4.5M5.5 16.5h7"></path>
     </svg>
-  </span>
+  </a>
   <nav class="nav" data-nav>
     <a href={url('/')}>Collection<span>와인 컬렉션</span></a>
+    <a href={url('/producers')}>Producers<span>생산자 소개</span></a>
     <a href={url('/cocktails')}>Cocktail Recipes<span>칵테일 레시피</span></a>
     <a href={url('/quiz')}>Taste Finder<span>내 와인 취향 찾기</span></a>
   </nav>
@@ -46,9 +47,10 @@ import { SITE_NAME, url } from '../consts';
     white-space: nowrap;
   }
 
-  .bag {
+  .finder {
     justify-self: end;
     display: flex;
+    padding: 6px 0 6px 8px;
   }
 
   .nav {

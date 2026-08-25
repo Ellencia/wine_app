@@ -1,12 +1,12 @@
 ---
 name: "New York Sour"
 nameKo: "뉴욕 사워"
-wineId: "malbec-primero"
+wineId: "periquita-original"
 ingredients:
   - "버번 위스키 45ml"
   - "레몬 주스 25ml"
   - "심플 시럽 20ml"
-  - "레드 와인 플로트 15ml"
+  - "레드 와인 플로트 15ml (페리퀴타 오리지널)"
 order: 1
 ---
 

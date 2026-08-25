@@ -1,35 +1,135 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { url } from '../consts';
+import { url, TYPE_LABELS, COUNTRY_ORDER } from '../consts';
 
 const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
+const countries = [...new Set(wines.map((w) => w.data.country))].sort(
+  (a, b) => (COUNTRY_ORDER.indexOf(a) + 1 || 99) - (COUNTRY_ORDER.indexOf(b) + 1 || 99),
+);
+const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.type === t));
 ---
 
 <Base>
-  <p class="label label--muted page-title">Collection</p>
-  <ul class="wine-grid">
-    {
-      wines.map((w) => (
-        <li>
-          <a href={url(`/wines/${w.id}`)}>
-            <img src={url(w.data.image)} alt={`${w.data.name} 보틀`} loading="lazy" />
-            <span class="label name">{w.data.name}</span>
-            <span class="label label--muted sub">
-              {w.data.region}, {w.data.country} {w.data.vintage}
-            </span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="collection-head">
+    <p class="label label--muted">Collection</p>
+    <p class="label label--muted" data-count>{wines.length} wines</p>
+  </div>
+
+  <div class="chips" data-chips>
+    <button class="chip on" data-type="all">전체</button>
+    {types.map((t) => <button class="chip" data-type={t}>{TYPE_LABELS[t]}</button>)}
+  </div>
+
+  {
+    countries.map((country) => (
+      <section class="country" data-country>
+        <h2 class="label country-title">
+          {country}
+          <span class="label--muted" data-country-count></span>
+        </h2>
+        <ul class="wine-grid">
+          {wines
+            .filter((w) => w.data.country === country)
+            .map((w) => (
+              <li data-type={w.data.type}>
+                <a href={url(`/wines/${w.id}`)}>
+                  <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
+                  <span class="name">{w.data.nameKo}</span>
+                  <span class="label label--muted sub">
+                    {TYPE_LABELS[w.data.type]} · {w.data.vintage}
+                  </span>
+                </a>
+              </li>
+            ))}
+        </ul>
+      </section>
+    ))
+  }
 </Base>
 
+<script>
+  // 타입 칩 필터: 선택한 타입만 남기고, 비어버린 국가 섹션은 숨김
+  const chips = document.querySelectorAll<HTMLButtonElement>('[data-chips] .chip');
+  const items = document.querySelectorAll<HTMLLIElement>('.wine-grid li');
+  const sections = document.querySelectorAll<HTMLElement>('[data-country]');
+  const total = document.querySelector<HTMLElement>('[data-count]');
+
+  function apply(type: string) {
+    let shown = 0;
+    items.forEach((li) => {
+      const on = type === 'all' || li.dataset.type === type;
+      li.hidden = !on;
+      if (on) shown += 1;
+    });
+    sections.forEach((sec) => {
+      const n = sec.querySelectorAll('li:not([hidden])').length;
+      sec.hidden = n === 0;
+      const c = sec.querySelector<HTMLElement>('[data-country-count]');
+      if (c) c.textContent = ` ${n}`;
+    });
+    if (total) total.textContent = `${shown} wines`;
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.toggle('on', c === chip));
+      apply(chip.dataset.type || 'all');
+    });
+  });
+  apply('all');
+</script>
+
 <style>
+  .collection-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 26px;
+    scrollbar-width: none;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    border: 1px solid var(--hairline);
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .chip.on {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .country {
+    margin-bottom: 36px;
+  }
+
+  .country-title {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
   .wine-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 12px;
   }
 
   .wine-grid a {
@@ -38,17 +138,21 @@ const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.dat
   }
 
   .wine-grid img {
-    height: 200px;
-    margin: 0 auto 16px;
+    height: 150px;
+    margin: 0 auto 12px;
     object-fit: contain;
   }
 
-  .wine-grid .name {
+  .name {
     display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    word-break: keep-all;
   }
 
-  .wine-grid .sub {
+  .sub {
     display: block;
-    font-size: 9.5px;
+    font-size: 9px;
+    margin-top: 2px;
   }
 </style>

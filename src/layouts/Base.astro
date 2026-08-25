@@ -2,14 +2,10 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_NAME, url } from '../consts';
+import { SITE_NAME, SITE_DESCRIPTION, url } from '../consts';
 
 type Props = { title?: string; description?: string; ogImage?: string };
-const {
-  title,
-  description = '보유 와인 카탈로그, 테크니컬 시트, 칵테일 레시피, 취향 찾기',
-  ogImage,
-} = Astro.props;
+const { title, description = SITE_DESCRIPTION, ogImage } = Astro.props;
 const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
 // 공유 미리보기용 절대 URL (og:image는 절대 경로여야 카톡·SNS가 읽음)
 const siteOrigin = Astro.site ?? Astro.url;

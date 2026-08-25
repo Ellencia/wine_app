@@ -1,36 +1,51 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// 와인 1병 = src/content/wines/ 의 md 파일 1개.
-// 필수 필드가 빠지거나 값 범위가 어긋나면 빌드가 에러로 멈춰서 실수를 즉시 잡아줌.
+// 와인·생산자 데이터는 data/wines.xlsx(마스터) -> scripts/build_data.py -> src/data/*.json 으로 생성됨.
+// 여기 스키마는 JSON의 최종 검문소: 필드가 빠지거나 값이 어긋나면 빌드가 멈춤.
+export const WINE_TYPES = ['red', 'white', 'rose', 'sparkling', 'fortified', 'sweet', 'nonalcoholic'] as const;
+
 const wines = defineCollection({
-  loader: glob({ base: './src/content/wines', pattern: '**/*.md' }),
+  loader: file('./src/data/wines.json'),
   schema: z.object({
-    name: z.string(),
-    nameKo: z.string().optional(),
+    order: z.number(),
+    catalogPage: z.number(),
     producer: z.string(),
-    varieties: z.string(),
-    vintage: z.string(), // NV 스파클링 대응을 위해 문자열
+    nameKo: z.string(),
+    name: z.string(),
+    vintage: z.string(),
+    type: z.enum(WINE_TYPES),
+    typeLabel: z.string(),
     country: z.string(),
     region: z.string(),
-    appellation: z.string().optional(),
-    abv: z.number(),
-    vinification: z.string().optional(),
-    aging: z.string().optional(),
-    rs: z.number().optional(), // 잔당 g/L
-    ta: z.number().optional(), // 총산 g/L
-    ph: z.number().optional(),
-    pairing: z.string().optional(),
-    servingTemp: z.string().optional(),
-    type: z.enum(['red', 'white', 'rose', 'orange', 'sparkling']),
-    // 취향 퀴즈 매칭용 4축 프로필 (1~5)
+    varieties: z.string(),
+    volume: z.string(),
+    abv: z.number().nullable(),
+    vivino: z.number().nullable(),
+    scores: z.string(),
+    awards: z.array(z.string()),
+    badges: z.array(z.string()),
+    note: z.string(),
+    // 취향 퀴즈 4축 (1~5)
     body: z.number().int().min(1).max(5),
     sweetness: z.number().int().min(1).max(5),
     acidity: z.number().int().min(1).max(5),
     tannin: z.number().int().min(1).max(5),
     image: z.string(),
-    order: z.number().default(99),
+    vivinoUrl: z.string(),
+  }),
+});
+
+const producers = defineCollection({
+  loader: file('./src/data/producers.json'),
+  schema: z.object({
+    name: z.string(),
+    nameKo: z.string(),
+    country: z.string(),
+    region: z.string(),
+    story: z.string(),
+    wineCount: z.number(),
   }),
 });
 
@@ -39,11 +54,11 @@ const cocktails = defineCollection({
   schema: z.object({
     name: z.string(),
     nameKo: z.string().optional(),
-    wineId: z.string().optional(), // 연결할 와인 파일명(확장자 제외)
+    wineId: z.string().optional(), // 연결할 와인 id (src/data/wines.json 의 id)
     youtubeId: z.string().optional(), // 채우면 상세 페이지에 영상 임베드
     ingredients: z.array(z.string()),
     order: z.number().default(99),
   }),
 });
 
-export const collections = { wines, cocktails };
+export const collections = { wines, producers, cocktails };

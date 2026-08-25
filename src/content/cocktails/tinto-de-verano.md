@@ -1,9 +1,9 @@
 ---
 name: "Tinto de Verano"
 nameKo: "틴토 데 베라노"
-wineId: "tinto-de-los-sauces"
+wineId: "casal-garcia-tinto"
 ingredients:
-  - "레드 와인 100ml"
+  - "레드 와인 100ml (까잘 가르시아 틴토)"
   - "레몬 탄산음료 100ml"
   - "레몬 슬라이스 1개"
   - "얼음"

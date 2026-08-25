@@ -1,11 +1,11 @@
-# 와인 브랜드 앱 (wine_app)
+# 올빈와인 앱 (wine_app)
 
-IGNEA wine club 풍의 모바일 우선 정적 웹앱 프로토타입.
-기능 4개: 와인 카탈로그 / 테크니컬 시트 / 칵테일 레시피(영상) / 내 와인 취향 찾기 퀴즈.
+(주)올빈와인 브랜드 와인 카탈로그 앱. 모바일 우선 정적 웹앱이며 GitHub Pages에 배포됨.
 
-- 프레임워크: Astro 7 (정적 빌드, 서버 없음)
-- 데이터: 마크다운 파일 (와인 1병 = 파일 1개), Zod 스키마로 빌드 시 검증
-- 배포 목표: GitHub + Cloudflare Pages (무료)
+- 라이브: <https://ellencia.github.io/wine_app/>
+- 기능: 와인 컬렉션(국가별·타입 필터) / 와인별 테크니컬 시트 + 스타일 프로필 / 생산자 소개 /
+  Vivino 점수·링크 / 내 와인 취향 찾기 퀴즈 / 칵테일 레시피(영상) / PWA 홈 화면 설치
+- 프레임워크: Astro 7 (정적 빌드, 서버 없음). 가격은 어떤 것도 표시하지 않음.
 
 ## 실행 방법
 
@@ -15,107 +15,74 @@ npm run build     # dist/ 에 정적 파일 생성. 데이터 오류가 있으�
 npm run preview   # 빌드 결과 미리보기
 ```
 
-같은 와이파이의 휴대폰에서 보려면: `npm run dev -- --host` 실행 후
-PC의 IP로 접속 (예: `http://192.168.x.x:4321`).
+## 데이터 흐름 (핵심)
+
+```text
+data/wines.xlsx  (마스터 — 사람이 편집)
+      │  python scripts/build_data.py   (검증 + 변환)
+      ▼
+src/data/wines.json, producers.json  (앱이 읽는 파일 — 커밋 대상)
+      │  npm run build / git push
+      ▼
+GitHub Pages 자동 배포
+```
+
+- **`data/wines.xlsx`** 가 유일한 원본. `wines` 시트(와인 1행 = 앱 1개)와 `producers` 시트, `안내` 시트로 구성.
+  공급가·소비자가 컬럼은 의도적으로 없음.
+- **`scripts/build_data.py`** 는 엑셀을 읽기만 하고(절대 다시 저장하지 않음) JSON을 만든다.
+  id 중복, 생산자 id 불일치, 타입코드 오류, 1~5 범위 밖 점수, 이미지 파일 누락을 한국어 메시지로 잡아 중단함.
+- **`src/content.config.ts`** 의 Zod 스키마가 JSON의 최종 검문소.
+- `data/catalog-2026-n3.json` 은 카탈로그(와인리스트 2026 N°3) 전사 원본 기록(공급가 제외). 참고용.
+- `scripts/bootstrap_catalog.py` 는 전사 JSON에서 엑셀·이미지를 처음 만들 때 쓴 일회성 스크립트.
+
+### 와인 추가·수정
+
+1. `data/wines.xlsx` 의 `wines` 시트에 행 추가/수정 (id 는 영문 소문자·하이픈, 한 번 정하면 바꾸지 말 것)
+2. 보틀 이미지를 `public/images/wines/<id>.png` 로 저장 (배경 투명 PNG 권장, 없어도 흰 배경 PNG 가능)
+3. `python scripts/build_data.py` → 오류 없으면 `src/data/*.json` 갱신
+4. `npm run build` 로 확인 후 `git add -A && git commit && git push`
+
+### 타입코드
+
+`red` 레드 / `white` 화이트 / `rose` 로제 / `sparkling` 스파클링 / `fortified` 주정강화 /
+`sweet` 스위트(귀부·아이스바인·아우스레제 등) / `nonalcoholic` 논알코올
+
+### 스타일 프로필 (바디·당도·산도·타닌 1~5)
+
+취향 퀴즈의 근거 데이터. 초기값은 종류·품종·도수·산지 규칙으로 자동 산출한 것이므로
+시음 판단으로 엑셀에서 조정하면 됨. 척도는 WSET 5단계와 같음.
+
+### Vivino
+
+- `Vivino 점수` 컬럼 값이 상세 페이지에 표시됨 (카탈로그 기준)
+- `Vivino URL` 컬럼을 비우면 와인명+빈티지 검색 링크가 자동 생성되고, 정확한 Vivino 페이지 주소를
+  넣으면 그 주소로 연결됨. Vivino는 공개 API·임베드가 없어 링크가 최대치임
 
 ## 폴더 구조
 
 ```text
+data/                   # 마스터 엑셀 + 카탈로그 전사 원본
+scripts/                # build_data.py(엑셀→JSON), bootstrap_catalog.py(일회성), generate-assets.mjs(아이콘·OG)
 src/
-  consts.ts               # 브랜드명·도메인 — 실제 브랜드 정해지면 여기만 수정
-  content.config.ts       # 데이터 스키마 (필드 추가/수정은 여기부터)
-  content/
-    wines/*.md            # 와인 1병 = 파일 1개 (본문 = 테이스팅 노트)
-    cocktails/*.md        # 칵테일 1개 = 파일 1개 (본문 = 만드는 법)
-  layouts/Base.astro      # 공통 뼈대 (헤더·푸터·폰트)
-  components/             # 헤더, 푸터, 점수 점, 유튜브 임베드
-  pages/                  # 홈(컬렉션), wines/[slug], cocktails/, quiz
-  styles/global.css       # 디자인 토큰 — 색·폰트·여백은 맨 위 :root 에서 조정
-public/images/wines/      # 보틀 이미지 (현재 SVG 플레이스홀더)
+  consts.ts             # 브랜드명·도메인·타입 라벨·국가 순서·url() 헬퍼
+  content.config.ts     # 데이터 스키마
+  data/                 # 생성된 JSON (직접 편집 금지)
+  content/cocktails/    # 칵테일 1개 = md 1개 (youtubeId 채우면 영상 임베드)
+  layouts/, components/ # 공통 뼈대, 헤더/푸터, 뱃지, 점수 점, 유튜브
+  pages/                # 홈(컬렉션), wines/[slug], producers/, cocktails/, quiz, 404
+  styles/global.css     # 디자인 토큰 — 색·폰트·여백은 :root 에서 조정
+public/images/wines/    # 보틀 이미지 (<id>.png)
 ```
-
-## 와인 추가하는 법
-
-`src/content/wines/` 에 새 md 파일을 만들면 끝. 목록·상세·퀴즈에 자동 반영됨.
-
-```markdown
----
-name: "와인 이름 (라벨 원어)"
-producer: "생산자"
-varieties: "Malbec 100%"
-vintage: "2022"            # NV 도 가능
-country: "Argentina"
-region: "Mendoza"
-abv: 13.5
-pairing: "어울리는 음식"
-servingTemp: "16-18°C"
-type: "red"                # red | white | rose | orange | sparkling
-body: 3                    # 아래 4개는 취향 퀴즈용 1~5 점수
-sweetness: 1
-acidity: 3
-tannin: 3
-image: "/images/wines/파일명.svg"
-order: 4                   # 목록 정렬 순서
----
-
-테이스팅 노트 본문. 상세 페이지 설명 문단으로 표시됨.
-```
-
-필수 필드가 빠지거나 점수가 1~5를 벗어나면 빌드가 에러로 멈춰서 알려줌.
-선택 필드: nameKo, appellation, vinification, aging, rs, ta, ph.
-
-## 칵테일 영상 연결
-
-1. 제작해둔 영상을 YouTube에 "일부공개(unlisted)"로 업로드
-2. 영상 주소의 ID (예: youtube.com/watch?v=`abc123`) 를
-   `src/content/cocktails/*.md` 의 frontmatter에 추가:
-
-```yaml
-youtubeId: "abc123"
-```
-
-ID가 없으면 "Video Coming Soon" 자리표시가 뜨고, 넣으면 임베드로 바뀜.
-
-## 취향 퀴즈
-
-- 질문·가점 정의: `src/pages/quiz.astro` 상단의 `questions` 배열, 축 가중치는 `weights`
-- 로직: 4축(바디·당도·산도·타닌)이 모두 3(중간)에서 시작하고 답변마다 ±로 움직임.
-  `add: {}`인 중립 답은 그 축을 비교에서 제외함(낮음으로 오해하지 않음).
-  최종 점수와 각 와인의 4축 점수 사이의 **가중 맨해튼 거리**
-  (가중치 x 절대차의 합, 당도 1.5 · 타닌 1.3 · 바디 1.0 · 산도 1.0)가
-  가장 작은 와인을 추천. 척도는 WSET 5단계, 질문 방식은 Vinotype 계열
-- 결과 화면에 취향 요약 문장과 4축 프로필이 표시되고, 공유 URL(`?r=...&p=...`)에
-  함께 실려 복원됨
-- 와인 쪽 점수는 각 md의 body/sweetness/acidity/tannin 값 — 와인을 추가하면
-  퀴즈에도 자동 포함됨
 
 ## 부가 기능
 
-- **홈 화면 설치(PWA)**: 폰 브라우저에서 "홈 화면에 추가"하면 주소창 없는
-  독립 앱처럼 실행됨. 아이콘 원본은 `scripts/icon.svg` — 수정했으면
-  `node scripts/generate-assets.mjs` 로 PNG 재생성 후 커밋
-- **퀴즈 결과 공유**: 결과 화면의 "결과 공유하기" 버튼. 결과가 URL(`?r=...`)에
-  실려 있어서 링크를 받은 사람도 같은 결과 화면을 봄
-- **테크시트 인쇄**: 와인 상세 페이지에서 브라우저 인쇄(Ctrl+P)하면
-  탐색 요소가 빠진 A4 테크니컬 시트로 나옴 — 거래처 배포용
-- **공유 미리보기(OG)**: 지금은 기본 이미지(`public/images/og-default.png`).
-  와인의 image를 실제 사진(jpg/png)으로 바꾸면 그 와인 페이지는 공유 시
-  해당 사진이 미리보기로 자동 사용됨 (SVG는 SNS가 못 읽어 기본 이미지 사용)
-- **데이터 검증**: 칵테일의 wineId가 존재하지 않는 와인을 가리키면 빌드가
-  한국어 에러로 멈춤
+- **홈 화면 설치(PWA)**: 폰 브라우저에서 "홈 화면에 추가". 아이콘 원본 `scripts/icon.svg`,
+  수정 후 `node scripts/generate-assets.mjs` 로 재생성
+- **퀴즈 결과 공유**: 결과가 URL(`?r=...&p=...`)에 실려 링크 받은 사람도 같은 화면을 봄
+- **테크시트 인쇄**: 와인 상세에서 Ctrl+P 하면 탐색 요소가 빠진 A4 시트로 출력
+- **공유 미리보기(OG)**: 와인 페이지는 보틀 이미지, 그 외는 `public/images/og-default.png`
 
-## 지금 들어있는 샘플 데이터 (교체 필요)
+## 이미지 참고
 
-- 와인 10종 중 3종은 디자인 목업(IGNEA) 기준 전사, 7종은 같은 결(아르헨티나
-  내추럴/저개입)의 실존 와인을 웹 공개 자료로 확인해 넣은 것. 확인 안 된 값은
-  "(샘플 값)" 표시하거나 비워뒀고, Torrontés Brutal 도수(12.5%)는 근사치임.
-  실제 보유 와인으로 교체할 것
-- 보틀 이미지는 SVG 일러스트 플레이스홀더. 실제 누끼(또는 균일 배경) 사진을
-  `public/images/wines/` 에 넣고 image 경로만 바꾸면 됨 — 최종 인상의 절반은 사진임
-- 브랜드명 "Wine Club" 과 도메인은 `src/consts.ts` 에서 수정
-
-## 다음 단계 (배포)
-
-1. GitHub에 새 repo 생성 (LICENSE 포함해서 만들기) 후 이 폴더 연결
-2. Cloudflare Pages 에서 repo 연결 — 빌드 명령 `npm run build`, 출력 `dist`
-3. 이후 push 할 때마다 1~2분 내 자동 재배포
+현재 보틀 이미지는 카탈로그 PDF(스캔)에서 잘라낸 것이라 일부에 NEW/BEST 스티커가 남아 있음.
+생산자 원본 제품 사진을 받으면 같은 파일명으로 덮어쓰면 됨.

@@ -1,9 +1,9 @@
 ---
-import { SITE_DOMAIN } from '../consts';
+import { SITE_DOMAIN, SITE_URL } from '../consts';
 ---
 
 <footer class="site-footer">
-  <span class="label label--muted">{SITE_DOMAIN}</span>
+  <a class="label label--muted" href={SITE_URL} target="_blank" rel="noopener">{SITE_DOMAIN}</a>
   <span class="bar" aria-hidden="true"></span>
 </footer>
 

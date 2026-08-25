@@ -23,15 +23,14 @@ await sharp({ create: { width: 512, height: 512, channels: 4, background: CREAM 
   .png()
   .toFile(p('public/icons/icon-512-maskable.png'));
 
-// OG 기본 이미지 (1200x630): 크림 배경에 보틀 3개
-const bottles = ['tinto-de-los-sauces', 'kung-fu-pet-nat', 'malbec-primero'];
+// OG 기본 이미지 (1200x630): 크림 배경에 대표 보틀 3개 (public/images/wines/*.png 크롭 사용)
+const bottles = ['bernard-lonclas-blanc-de-blanc-grand-brut', 'gigino-grande-toscana-rosso-g80-black', 'alambre-20-years'];
 const composites = [];
+const H = 440;
 for (let i = 0; i < bottles.length; i++) {
-  const buf = await sharp(await readFile(p(`public/images/wines/${bottles[i]}.svg`)))
-    .resize({ height: 420 })
-    .png()
-    .toBuffer();
-  composites.push({ input: buf, left: 330 + i * 200, top: 105 });
+  const buf = await sharp(p(`public/images/wines/${bottles[i]}.png`)).resize({ height: H }).png().toBuffer();
+  const meta = await sharp(buf).metadata();
+  composites.push({ input: buf, left: Math.round(300 + i * 220 - (meta.width ?? 0) / 2 + 80), top: Math.round((630 - H) / 2) });
 }
 await sharp({ create: { width: 1200, height: 630, channels: 4, background: CREAM } })
   .composite(composites)

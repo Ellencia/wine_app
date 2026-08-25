@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url, TYPE_LABELS } from '../../consts';
+
+export async function getStaticPaths() {
+  const producers = await getCollection('producers');
+  return producers.map((producer) => ({ params: { id: producer.id }, props: { producer } }));
+}
+
+type Props = { producer: CollectionEntry<'producers'> };
+const { producer } = Astro.props;
+const d = producer.data;
+const wines = (await getCollection('wines'))
+  .filter((w) => w.data.producer === producer.id)
+  .sort((a, b) => a.data.order - b.data.order);
+const paragraphs = d.story.split(/(?<=\.)\s+(?=[가-힣A-Z'"“])/).filter(Boolean);
+---
+
+<Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${d.region}, ${d.country}`}>
+  <a class="label label--muted back-link" href={url('/producers')}>Back to Producers</a>
+
+  <div class="head">
+    <h1 class="name-ko">{d.nameKo}</h1>
+    <p class="label name-en">{d.name}</p>
+    <p class="label label--muted">{d.region}, {d.country}</p>
+  </div>
+
+  <div class="story">
+    {paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+
+  <section class="wines">
+    <h2 class="label label--muted">Wines <span>{wines.length}</span></h2>
+    <ul class="wine-grid">
+      {
+        wines.map((w) => (
+          <li>
+            <a href={url(`/wines/${w.id}`)}>
+              <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
+              <span class="name">{w.data.nameKo}</span>
+              <span class="label label--muted sub">
+                {TYPE_LABELS[w.data.type]} · {w.data.vintage}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .head {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+
+  .name-ko {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--serif);
+  }
+
+  .story {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 36px;
+    font-size: 13.5px;
+    color: #35322e;
+  }
+
+  .wines h2 {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .wine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 12px;
+  }
+
+  .wine-grid a {
+    display: block;
+    text-align: center;
+  }
+
+  .wine-grid img {
+    height: 150px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+  }
+
+  .name {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+
+  .sub {
+    display: block;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+</style>
