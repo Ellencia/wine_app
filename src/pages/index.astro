@@ -9,13 +9,15 @@ const countries = [...new Set(wines.map((w) => w.data.country))].sort(
 );
 const types = Object.keys(TYPE_LABELS).filter((t) => wines.some((w) => w.data.type === t));
 
-// 품종 칩: 2종 이상에 쓰인 태그를 빈도순으로 (나머지는 상세 페이지의 태그 링크로 접근)
+// 품종: 빈도순. 상위 몇 개만 칩으로 보이고 나머지는 "품종 더보기" 패널에서 고름 (모바일에서 가로로 길어지지 않게)
+const TOP_VARIETIES = 6;
 const tagCounts = new Map<string, number>();
 for (const w of wines) for (const t of w.data.varietyTags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
 const varieties = [...tagCounts.entries()]
   .filter(([, n]) => n >= 2)
-  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ko'))
-  .map(([t]) => t);
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ko'));
+const topVarieties = varieties.slice(0, TOP_VARIETIES);
+const moreCount = varieties.length - topVarieties.length;
 ---
 
 <Base>
@@ -35,7 +37,25 @@ const varieties = [...tagCounts.entries()]
     <span class="label label--muted filter-label">품종</span>
     <div class="chips" data-chips="variety">
       <button class="chip on" data-value="all">전체</button>
-      {varieties.map((v) => <button class="chip" data-value={v}>{v}</button>)}
+      {topVarieties.map(([v]) => <button class="chip" data-value={v}>{v}</button>)}
+      {moreCount > 0 && <button class="chip chip--more" data-more aria-expanded="false">품종 더보기 ({moreCount})</button>}
+    </div>
+  </div>
+
+  <div class="variety-panel" data-variety-panel hidden>
+    <div class="variety-panel-head">
+      <span class="label label--muted">품종 전체 (2종 이상)</span>
+      <button class="label label--muted" data-close>닫기</button>
+    </div>
+    <div class="variety-all">
+      {
+        varieties.map(([v, n]) => (
+          <button class="chip chip--panel" data-panel-value={v}>
+            {v}
+            <span class="count">{n}</span>
+          </button>
+        ))
+      }
     </div>
   </div>
 
@@ -70,10 +90,13 @@ const varieties = [...tagCounts.entries()]
 <script>
   // 타입 x 품종 칩 필터 (AND). 선택 상태는 URL(?type=&variety=)에 실려 공유·복원됨
   const groups = document.querySelectorAll<HTMLElement>('[data-chips]');
+  const varietyGroup = document.querySelector<HTMLElement>('[data-chips="variety"]');
   const items = document.querySelectorAll<HTMLLIElement>('.wine-grid li');
   const sections = document.querySelectorAll<HTMLElement>('[data-country]');
   const total = document.querySelector<HTMLElement>('[data-count]');
   const empty = document.querySelector<HTMLElement>('[data-empty]');
+  const panel = document.querySelector<HTMLElement>('[data-variety-panel]');
+  const moreBtn = document.querySelector<HTMLButtonElement>('[data-more]');
   const state: Record<string, string> = { type: 'all', variety: 'all' };
 
   function apply() {
@@ -101,27 +124,44 @@ const varieties = [...tagCounts.entries()]
     history.replaceState(null, '', location.pathname + (qs ? `?${qs}` : ''));
   }
 
+  function togglePanel(open: boolean) {
+    if (!panel || !moreBtn) return;
+    panel.hidden = !open;
+    moreBtn.setAttribute('aria-expanded', String(open));
+  }
+
   function select(group: HTMLElement, value: string) {
     const key = group.dataset.chips || '';
     let chip = group.querySelector<HTMLButtonElement>(`.chip[data-value="${CSS.escape(value)}"]`);
-    // 칩 목록에 없는 품종(상세 페이지 태그에서 진입)은 칩을 즉석에서 추가
+    // 상위 칩에 없는 품종(더보기 패널·상세 페이지 태그에서 진입)은 "선택 칩" 한 칸에만 표시
+    const dynamic = group.querySelector<HTMLButtonElement>('.chip--dynamic');
     if (!chip && key === 'variety' && value !== 'all') {
-      chip = document.createElement('button');
-      chip.className = 'chip';
+      chip = dynamic ?? document.createElement('button');
+      chip.className = 'chip chip--dynamic';
       chip.dataset.value = value;
       chip.textContent = value;
-      group.appendChild(chip);
-      chip.addEventListener('click', () => select(group, value));
+      if (!dynamic) {
+        group.insertBefore(chip, moreBtn);
+        chip.addEventListener('click', () => select(group, chip!.dataset.value || 'all'));
+      }
+    } else if (dynamic && dynamic !== chip) {
+      dynamic.remove();
     }
     state[key] = chip ? value : 'all';
     group.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => c.classList.toggle('on', c.dataset.value === state[key]));
+    if (key === 'variety') togglePanel(false);
     apply();
   }
 
   groups.forEach((group) => {
-    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+    group.querySelectorAll<HTMLButtonElement>('.chip:not([data-more])').forEach((chip) => {
       chip.addEventListener('click', () => select(group, chip.dataset.value || 'all'));
     });
+  });
+  moreBtn?.addEventListener('click', () => togglePanel(panel?.hidden ?? true));
+  panel?.querySelector('[data-close]')?.addEventListener('click', () => togglePanel(false));
+  panel?.querySelectorAll<HTMLButtonElement>('[data-panel-value]').forEach((b) => {
+    b.addEventListener('click', () => varietyGroup && select(varietyGroup, b.dataset.panelValue || 'all'));
   });
 
   const initial = new URLSearchParams(location.search);
@@ -143,34 +183,25 @@ const varieties = [...tagCounts.entries()]
   .filter {
     display: grid;
     grid-template-columns: 34px 1fr;
-    align-items: center;
+    align-items: start;
     gap: 8px;
     margin-bottom: 10px;
   }
 
-  .filter:last-of-type {
-    margin-bottom: 26px;
-  }
-
   .filter-label {
     font-size: 9.5px;
+    padding-top: 8px;
   }
 
+  /* 가로 스크롤 대신 줄바꿈 — 모바일에서 손가락으로 훑지 않아도 전부 보이게 */
   .chips {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
     min-width: 0;
   }
 
-  .chips::-webkit-scrollbar {
-    display: none;
-  }
-
   .chip {
-    flex: 0 0 auto;
     border: 1px solid var(--hairline);
     padding: 7px 12px;
     font-size: 11px;
@@ -185,7 +216,43 @@ const varieties = [...tagCounts.entries()]
     border-color: var(--ink);
   }
 
+  .chip--more {
+    border-style: dashed;
+    color: var(--muted);
+  }
+
+  .variety-panel {
+    margin: 4px 0 20px;
+    padding: 14px 0 16px;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .variety-panel-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .variety-panel-head button {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .variety-all {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip--panel .count {
+    margin-left: 5px;
+    color: var(--muted);
+    font-size: 9.5px;
+  }
+
   .country {
+    margin-top: 26px;
     margin-bottom: 36px;
   }
 
