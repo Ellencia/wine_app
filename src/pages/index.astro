@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import WineCard from '../components/WineCard.astro';
 import { url, TYPE_LABELS, COUNTRY_ORDER } from '../consts';
 
 const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
@@ -23,6 +24,7 @@ const moreCount = varieties.length - topVarieties.length;
 ---
 
 <Base>
+  <h1 class="visually-hidden">올빈와인 와인 컬렉션</h1>
   <div class="collection-head">
     <p class="label label--muted">Collection</p>
     <p class="label label--muted" data-count aria-live="polite">{wines.length} wines</p>
@@ -48,21 +50,27 @@ const moreCount = varieties.length - topVarieties.length;
 
   <div class="filter">
     <span class="label label--muted filter-label">타입</span>
-    <div class="chips" data-chips="type">
-      <button class="chip on" data-value="all">전체</button>
-      {types.map((t) => <button class="chip" data-value={t}>{TYPE_LABELS[t]}</button>)}
+    <div class="chips" data-chips="type" role="group" aria-label="타입 필터">
+      <button class="chip on" data-value="all" aria-pressed="true">전체</button>
+      {types.map((t) => <button class="chip" data-value={t} aria-pressed="false">{TYPE_LABELS[t]}</button>)}
     </div>
   </div>
   <div class="filter">
     <span class="label label--muted filter-label">품종</span>
-    <div class="chips" data-chips="variety">
-      <button class="chip on" data-value="all">전체</button>
-      {topVarieties.map(([v]) => <button class="chip" data-value={v}>{v}</button>)}
+    <div class="chips" data-chips="variety" role="group" aria-label="품종 필터">
+      <button class="chip on" data-value="all" aria-pressed="true">전체</button>
+      {topVarieties.map(([v]) => <button class="chip" data-value={v} aria-pressed="false">{v}</button>)}
     </div>
-    {moreCount > 0 && <button class="chip chip--more" data-more aria-expanded="false">더보기 +{moreCount}</button>}
+    {
+      moreCount > 0 && (
+        <button class="chip chip--more" data-more aria-expanded="false" aria-controls="variety-panel">
+          더보기 +{moreCount}
+        </button>
+      )
+    }
   </div>
 
-  <div class="variety-panel" data-variety-panel hidden>
+  <div class="variety-panel" id="variety-panel" data-variety-panel hidden>
     <div class="variety-panel-head">
       <span class="label label--muted">품종 전체 (2종 이상)</span>
       <button class="label label--muted" data-close>닫기</button>
@@ -90,7 +98,8 @@ const moreCount = varieties.length - topVarieties.length;
           {wines
             .filter((w) => w.data.country === country)
             .map((w) => (
-              <li
+              <WineCard
+                wine={w}
                 data-type={w.data.type}
                 data-tags={w.data.varietyTags.join('|')}
                 data-search={[
@@ -104,15 +113,7 @@ const moreCount = varieties.length - topVarieties.length;
                   w.data.vintage,
                   w.data.note,
                 ].join(' ')}
-              >
-                <a href={url(`/wines/${w.id}`)}>
-                  <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
-                  <span class="name">{w.data.nameKo}</span>
-                  <span class="label label--muted sub">
-                    {TYPE_LABELS[w.data.type]} · {w.data.vintage}
-                  </span>
-                </a>
-              </li>
+              />
             ))}
         </ul>
       </section>
@@ -199,7 +200,11 @@ const moreCount = varieties.length - topVarieties.length;
       dynamic.remove();
     }
     state[key] = chip ? value : 'all';
-    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => c.classList.toggle('on', c.dataset.value === state[key]));
+    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
+      const on = c.dataset.value === state[key];
+      c.classList.toggle('on', on);
+      c.setAttribute('aria-pressed', String(on)); // 스크린리더에 선택 상태 전달
+    });
     chip?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
     if (key === 'variety') togglePanel(false);
     apply();
@@ -465,34 +470,11 @@ const moreCount = varieties.length - topVarieties.length;
     border-bottom: 1px solid var(--hairline);
   }
 
+  /* 카드 내부 마크업·스타일은 WineCard.astro 소유 */
   .wine-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px 12px;
-  }
-
-  .wine-grid a {
-    display: block;
-    text-align: center;
-  }
-
-  .wine-grid img {
-    height: 150px;
-    margin: 0 auto 12px;
-    object-fit: contain;
-  }
-
-  .name {
-    display: block;
-    font-size: 11px;
-    line-height: 1.4;
-    word-break: keep-all;
-  }
-
-  .sub {
-    display: block;
-    font-size: 9px;
-    margin-top: 2px;
   }
 
   .empty {

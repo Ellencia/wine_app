@@ -8,8 +8,8 @@ const wines = await getCollection('wines');
 const wineName = (id?: string) => wines.find((w) => w.id === id)?.data.name;
 ---
 
-<Base title="Cocktail Recipes">
-  <p class="label label--muted page-title">Cocktail Recipes</p>
+<Base title="Cocktail Recipes" description="올빈와인 와인을 베이스로 만드는 칵테일 레시피와 제조 영상">
+  <h1 class="label label--muted page-title">Cocktail Recipes</h1>
   <ul>
     {
       cocktails.map((c) => (

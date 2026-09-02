@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "images": "node scripts/generate-webp.mjs",
     "astro": "astro"
   },
   "dependencies": {

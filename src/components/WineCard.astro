@@ -1,0 +1,55 @@
+---
+// 와인 그리드 카드 한 장 (홈·생산자 상세 공용) — li 에 걸 데이터 속성은 그대로 전달됨
+import type { CollectionEntry } from 'astro:content';
+import { url, TYPE_LABELS, webp } from '../consts';
+import dims from '../data/wine-image-dims.json';
+
+type Props = { wine: CollectionEntry<'wines'> } & Record<string, unknown>;
+const { wine, ...rest } = Astro.props;
+const d = wine.data;
+const dim = (dims as Record<string, { w: number; h: number }>)[wine.id];
+---
+
+<li {...rest}>
+  <a href={url(`/wines/${wine.id}`)}>
+    <img
+      src={url(webp(d.image))}
+      alt={`${d.nameKo} 보틀`}
+      loading="lazy"
+      decoding="async"
+      width={dim?.w}
+      height={dim?.h}
+    />
+    <span class="name">{d.nameKo}</span>
+    <span class="label label--muted sub">
+      {TYPE_LABELS[d.type]} · {d.vintage}
+    </span>
+  </a>
+</li>
+
+<style>
+  a {
+    display: block;
+    text-align: center;
+  }
+
+  img {
+    height: 150px;
+    width: auto;
+    margin: 0 auto 12px;
+    object-fit: contain;
+  }
+
+  .name {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+
+  .sub {
+    display: block;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+</style>

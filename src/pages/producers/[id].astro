@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { url, TYPE_LABELS } from '../../consts';
+import WineCard from '../../components/WineCard.astro';
+import { url, regionLabel } from '../../consts';
 
 export async function getStaticPaths() {
   const producers = await getCollection('producers');
@@ -16,15 +17,26 @@ const wines = (await getCollection('wines'))
   .filter((w) => w.data.producer === producer.id)
   .sort((a, b) => a.data.order - b.data.order);
 const paragraphs = d.story.split(/(?<=\.)\s+(?=[가-힣A-Z'"“])/).filter(Boolean);
+
+// 검색엔진용 구조화 데이터 — 생산자는 Organization 엔티티
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: d.name,
+  alternateName: d.nameKo,
+  description: paragraphs[0],
+  address: { '@type': 'PostalAddress', addressCountry: d.country, addressRegion: d.region },
+};
 ---
 
-<Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${d.region}, ${d.country}`}>
+<Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${regionLabel(d.region, d.country)}`}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   <a class="label label--muted back-link" href={url('/producers')}>Back to Producers</a>
 
   <div class="head">
     <h1 class="name-ko">{d.nameKo}</h1>
     <p class="label name-en">{d.name}</p>
-    <p class="label label--muted">{d.region}, {d.country}</p>
+    <p class="label label--muted">{regionLabel(d.region, d.country)}</p>
   </div>
 
   <div class="story">
@@ -34,19 +46,7 @@ const paragraphs = d.story.split(/(?<=\.)\s+(?=[가-힣A-Z'"“])/).filter(Boole
   <section class="wines">
     <h2 class="label label--muted">Wines <span>{wines.length}</span></h2>
     <ul class="wine-grid">
-      {
-        wines.map((w) => (
-          <li>
-            <a href={url(`/wines/${w.id}`)}>
-              <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
-              <span class="name">{w.data.nameKo}</span>
-              <span class="label label--muted sub">
-                {TYPE_LABELS[w.data.type]} · {w.data.vintage}
-              </span>
-            </a>
-          </li>
-        ))
-      }
+      {wines.map((w) => <WineCard wine={w} />)}
     </ul>
   </section>
 </Base>
@@ -78,33 +78,10 @@ const paragraphs = d.story.split(/(?<=\.)\s+(?=[가-힣A-Z'"“])/).filter(Boole
     border-bottom: 1px solid var(--hairline);
   }
 
+  /* 카드 내부 마크업·스타일은 WineCard.astro 소유 */
   .wine-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px 12px;
-  }
-
-  .wine-grid a {
-    display: block;
-    text-align: center;
-  }
-
-  .wine-grid img {
-    height: 150px;
-    margin: 0 auto 12px;
-    object-fit: contain;
-  }
-
-  .name {
-    display: block;
-    font-size: 11px;
-    line-height: 1.4;
-    word-break: keep-all;
-  }
-
-  .sub {
-    display: block;
-    font-size: 9px;
-    margin-top: 2px;
   }
 </style>

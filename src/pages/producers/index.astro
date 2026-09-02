@@ -10,7 +10,7 @@ const countries = [...new Set(producers.map((p) => p.data.country))].sort(
 ---
 
 <Base title="Producers" description="올빈와인이 수입하는 생산자 소개">
-  <p class="label label--muted page-title">Producers</p>
+  <h1 class="label label--muted page-title">Producers</h1>
   {
     countries.map((country) => (
       <section class="country">

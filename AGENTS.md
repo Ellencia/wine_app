@@ -19,7 +19,7 @@
 1. 와인·생산자 데이터의 원본은 `data/wines.xlsx` 하나다. 수정 후 반드시 `python scripts/build_data.py` 를 실행해 `src/data/*.json` 을 갱신하고 함께 커밋한다. CI 가 엑셀에서 JSON 을 다시 만들어 비교하므로, 빠뜨리면 배포가 중단된다.
 2. `src/data/*.json` 을 직접 편집하지 않는다.
 3. **공급가·소비자가·재고·거래처 정보·직원 이름은 어떤 파일에도 넣지 않는다** (공개 repo). 카카오톡으로 받은 원본 PDF/xlsx 는 커밋하지 않는다.
-4. 보틀 이미지는 `public/images/wines/<id>.png` (id 는 엑셀의 id 와 동일). 실제 제품 사진을 받으면 같은 파일명으로 덮어쓴다.
+4. 보틀 이미지는 `public/images/wines/<id>.png` (id 는 엑셀의 id 와 동일). 실제 제품 사진을 받으면 같은 파일명으로 덮어쓴다. PNG 를 추가·교체한 뒤에는 반드시 `npm run images` 를 실행해 표시용 WebP 와 `src/data/wine-image-dims.json` 을 재생성하고 함께 커밋한다 (페이지 `<img>` 는 WebP 를 쓰고, PNG 는 OG 이미지용으로 유지. build_data.py 가 WebP 누락을 잡아냄).
 5. 스타일 프로필을 시음으로 검수했으면 엑셀의 `프로필 상태` 를 `verified` 로 바꾼다. 검수 전 와인은 `estimated` 로 둔다.
 
 ## 문서

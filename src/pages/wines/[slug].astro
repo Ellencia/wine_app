@@ -4,8 +4,9 @@ import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ScaleDots from '../../components/ScaleDots.astro';
 import Badges from '../../components/Badges.astro';
-import { url, TYPE_LABELS } from '../../consts';
+import { url, TYPE_LABELS, regionLabel, webp } from '../../consts';
 import { buildTermIndex, linkTerms } from '../../lib/glossary';
+import dims from '../../data/wine-image-dims.json';
 
 export async function getStaticPaths() {
   const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
@@ -31,12 +32,13 @@ const producer = await getEntry('producers', d.producer);
 if (!producer) throw new Error(`[wines/${wine.id}] 생산자 '${d.producer}' 를 찾을 수 없음`);
 
 const ratings = [d.vivino != null ? `Vivino ${d.vivino.toFixed(1)}` : null, d.scores || null].filter(Boolean).join(' / ');
+const origin = regionLabel(d.region, d.country);
 const rows = [
   ['생산자', producer.data.nameKo],
   ['종류', d.typeLabel || TYPE_LABELS[d.type]],
   ['품종', d.varieties],
   ['빈티지', d.vintage],
-  ['산지', `${d.region}, ${d.country}`],
+  ['산지', origin],
   ['용량 · 도수', `${d.volume}${d.abv != null ? `, ${d.abv}%` : ''}`],
   ['평점', ratings || undefined],
 ].filter((row) => row[1]);
@@ -48,21 +50,49 @@ const storyExcerpt = producer.data.story.split(/(?<=\.)\s/)[0];
 const termIndex = buildTermIndex(await getCollection('glossary'));
 const G = (text: string) => linkTerms(text, termIndex, (id) => url(`/glossary/#${id}`));
 const profileVerified = d.profileStatus === 'verified';
+const dim = (dims as Record<string, { w: number; h: number }>)[wine.id];
+
+// 검색엔진 리치 결과용 구조화 데이터 — 가격(offers)은 정책상 절대 넣지 않음
+const siteOrigin = Astro.site ?? Astro.url;
+const abs = (path: string) => new URL(path, siteOrigin).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Product',
+      name: d.nameKo,
+      alternateName: d.name,
+      image: abs(url(d.image)),
+      description: d.note || `${d.varieties} — ${origin}`,
+      brand: { '@type': 'Organization', name: producer.data.name },
+      countryOfOrigin: d.country,
+      url: abs(url(`/wines/${wine.id}`)),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Collection', item: abs(url('/')) },
+        { '@type': 'ListItem', position: 2, name: d.nameKo },
+      ],
+    },
+  ],
+};
 ---
 
 <Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${d.varieties}, ${d.region}`} ogImage={url(d.image)}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   <a class="label label--muted back-link" href={url('/')}>Back to Collection</a>
-  <img class="bottle" src={url(d.image)} alt={`${d.nameKo} 보틀`} />
+  <img class="bottle" src={url(webp(d.image))} alt={`${d.nameKo} 보틀`} width={dim?.w} height={dim?.h} />
 
   <div class="head">
     <Badges badges={d.badges} />
     <div class="split-row">
       <h1 class="name-ko" set:html={G(d.nameKo)} />
-      <span class="label label--muted type">{TYPE_LABELS[d.type]}</span>
+      <span class="label label--muted type">{d.typeLabel || TYPE_LABELS[d.type]}</span>
     </div>
     <p class="label name-en" set:html={G(d.name)} />
     <div class="split-row label label--muted">
-      <span set:html={G(`${d.region}, ${d.country}`)} />
+      <span set:html={G(origin)} />
       <span set:html={G(d.vintage)} />
     </div>
     {
@@ -176,6 +206,7 @@ const profileVerified = d.profileStatus === 'verified';
 <style>
   .bottle {
     height: 300px;
+    width: auto;
     margin: 4px auto 28px;
     object-fit: contain;
   }

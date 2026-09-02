@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ellencia.github.io/wine_app/sitemap-index.xml

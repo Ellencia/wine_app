@@ -24,3 +24,13 @@ export function url(path: string): string {
   const base = import.meta.env.BASE_URL;
   return (base.endsWith('/') ? base.slice(0, -1) : base) + path;
 }
+
+// 세부 산지가 국가와 같으면 국가만 표기 ("프랑스, 프랑스" 방지)
+export function regionLabel(region: string, country: string): string {
+  return region === country ? country : `${region}, ${country}`;
+}
+
+// 보틀 PNG 경로 -> 표시용 WebP 경로 (PNG 원본은 OG 이미지·외부 호환용으로 유지)
+export function webp(image: string): string {
+  return image.replace(/\.png$/, '.webp');
+}
