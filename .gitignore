@@ -23,5 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# python
+__pycache__/
+
 # 카탈로그에서 추출한 원본 보틀 이미지 (대용량, 커밋 안 함)
 raw_bottles/
