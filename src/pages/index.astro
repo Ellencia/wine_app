@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import { url, TYPE_LABELS, COUNTRY_ORDER } from '../consts';
 
 const wines = (await getCollection('wines')).sort((a, b) => a.data.order - b.data.order);
+const producers = await getCollection('producers');
+const producerNames = new Map(producers.map((p) => [p.id, `${p.data.nameKo} ${p.data.name}`]));
 const countries = [...new Set(wines.map((w) => w.data.country))].sort(
   (a, b) => (COUNTRY_ORDER.indexOf(a) + 1 || 99) - (COUNTRY_ORDER.indexOf(b) + 1 || 99),
 );
@@ -23,7 +25,25 @@ const moreCount = varieties.length - topVarieties.length;
 <Base>
   <div class="collection-head">
     <p class="label label--muted">Collection</p>
-    <p class="label label--muted" data-count>{wines.length} wines</p>
+    <p class="label label--muted" data-count aria-live="polite">{wines.length} wines</p>
+  </div>
+
+  <div class="wine-search" role="search">
+    <svg class="search-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+      <circle cx="6.5" cy="6.5" r="4.5"></circle>
+      <path d="m10 10 3.5 3.5"></path>
+    </svg>
+    <label class="visually-hidden" for="wine-search">와인 검색</label>
+    <input
+      class="search-input"
+      id="wine-search"
+      type="search"
+      placeholder="와인명 · 생산자 · 산지 검색"
+      autocomplete="off"
+      spellcheck="false"
+      data-search-input
+    />
+    <button class="search-clear" type="button" aria-label="검색어 지우기" data-search-clear hidden>×</button>
   </div>
 
   <div class="filter">
@@ -70,7 +90,21 @@ const moreCount = varieties.length - topVarieties.length;
           {wines
             .filter((w) => w.data.country === country)
             .map((w) => (
-              <li data-type={w.data.type} data-tags={w.data.varietyTags.join('|')}>
+              <li
+                data-type={w.data.type}
+                data-tags={w.data.varietyTags.join('|')}
+                data-search={[
+                  w.data.nameKo,
+                  w.data.name,
+                  producerNames.get(w.data.producer),
+                  w.data.country,
+                  w.data.region,
+                  w.data.varieties,
+                  w.data.typeLabel,
+                  w.data.vintage,
+                  w.data.note,
+                ].join(' ')}
+              >
                 <a href={url(`/wines/${w.id}`)}>
                   <img src={url(w.data.image)} alt={`${w.data.nameKo} 보틀`} loading="lazy" />
                   <span class="name">{w.data.nameKo}</span>
@@ -88,7 +122,7 @@ const moreCount = varieties.length - topVarieties.length;
 </Base>
 
 <script>
-  // 타입 x 품종 칩 필터 (AND). 선택 상태는 URL(?type=&variety=)에 실려 공유·복원됨
+  // 검색 x 타입 x 품종 필터 (AND). 선택 상태는 URL(?q=&type=&variety=)에 실려 공유·복원됨
   const groups = document.querySelectorAll<HTMLElement>('[data-chips]');
   const varietyGroup = document.querySelector<HTMLElement>('[data-chips="variety"]');
   const items = document.querySelectorAll<HTMLLIElement>('.wine-grid li');
@@ -97,15 +131,29 @@ const moreCount = varieties.length - topVarieties.length;
   const empty = document.querySelector<HTMLElement>('[data-empty]');
   const panel = document.querySelector<HTMLElement>('[data-variety-panel]');
   const moreBtn = document.querySelector<HTMLButtonElement>('[data-more]');
+  const searchInput = document.querySelector<HTMLInputElement>('[data-search-input]');
+  const searchClear = document.querySelector<HTMLButtonElement>('[data-search-clear]');
   const state: Record<string, string> = { type: 'all', variety: 'all' };
+
+  function normalizeSearch(value: string) {
+    return value
+      .normalize('NFKD')
+      .replace(/\p{M}/gu, '')
+      .toLocaleLowerCase('ko')
+      .trim();
+  }
 
   function apply() {
     let shown = 0;
+    const query = normalizeSearch(searchInput?.value ?? '');
+    const queryWords = query.split(/\s+/).filter(Boolean);
     items.forEach((li) => {
       const typeOk = state.type === 'all' || li.dataset.type === state.type;
       const tags = (li.dataset.tags || '').split('|');
       const varietyOk = state.variety === 'all' || tags.includes(state.variety);
-      const on = typeOk && varietyOk;
+      const searchText = normalizeSearch(li.dataset.search ?? '');
+      const searchOk = queryWords.every((word) => searchText.includes(word));
+      const on = typeOk && varietyOk && searchOk;
       li.hidden = !on;
       if (on) shown += 1;
     });
@@ -118,6 +166,7 @@ const moreCount = varieties.length - topVarieties.length;
     if (total) total.textContent = `${shown} wines`;
     if (empty) empty.hidden = shown > 0;
     const params = new URLSearchParams();
+    if (query) params.set('q', searchInput?.value.trim() ?? '');
     if (state.type !== 'all') params.set('type', state.type);
     if (state.variety !== 'all') params.set('variety', state.variety);
     const qs = params.toString();
@@ -230,7 +279,27 @@ const moreCount = varieties.length - topVarieties.length;
     b.addEventListener('click', () => varietyGroup && select(varietyGroup, b.dataset.panelValue || 'all'));
   });
 
+  function updateSearch() {
+    if (searchClear) searchClear.hidden = !searchInput?.value;
+    apply();
+  }
+
+  searchInput?.addEventListener('input', updateSearch);
+  searchInput?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !searchInput.value) return;
+    searchInput.value = '';
+    updateSearch();
+  });
+  searchClear?.addEventListener('click', () => {
+    if (!searchInput) return;
+    searchInput.value = '';
+    searchInput.focus();
+    updateSearch();
+  });
+
   const initial = new URLSearchParams(location.search);
+  if (searchInput) searchInput.value = initial.get('q') ?? '';
+  if (searchClear) searchClear.hidden = !searchInput?.value;
   groups.forEach((group) => {
     const key = group.dataset.chips || '';
     const v = initial.get(key);
@@ -244,6 +313,57 @@ const moreCount = varieties.length - topVarieties.length;
     display: flex;
     justify-content: space-between;
     margin-bottom: 14px;
+  }
+
+  .wine-search {
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 11px;
+    color: var(--muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .search-input {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px 38px 10px 35px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .search-input::placeholder {
+    color: var(--muted);
+  }
+
+  .search-input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  .search-clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 38px;
+    height: 100%;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .search-clear[hidden] {
+    display: none;
   }
 
   /* 필터 행은 항상 한 줄: [라벨][가로 스크롤 칩][더보기] */
