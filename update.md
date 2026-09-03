@@ -1,6 +1,7 @@
 # 변경 이력
 
 ## 2026-09-03
+- CI에 타입 검사(astro check) 단계 추가 — 기존 타입 오류 1건(hidden 속성 boolean 좁히기) 수정, 퀴즈 define:vars 스크립트에 is:inline 명시, 배포 동시 실행 방지 concurrency 설정
 - 데이터 파이프라인 2차 강화(build_data.py): 가격·재고류 컬럼이 엑셀에 유입되면 빌드 즉시 중단, 컬럼을 위치가 아닌 헤더명으로 매핑(순서 변경·삽입에 안전), id 공백 행을 조용히 건너뛰지 않고 오류 처리, 도수(0~25)·Vivino(0~5)·정렬 중복·id 슬러그·뱃지 화이트리스트 검증 추가
 - 보틀 이미지 WebP 서빙: 페이지 img를 WebP로 전환(전송량 15MB -> 1.9MB, PNG는 OG 이미지용 유지), npm run images 스크립트 + wine-image-dims.json으로 width/height 부여(레이아웃 밀림 방지), 홈·생산자 카드 중복을 WineCard 공용 컴포넌트로 통합
 - SEO 기본기: 전 페이지 canonical 태그, robots.txt, 홈·생산자·칵테일 h1 추가, 퀴즈·칵테일 페이지별 description, 와인 상세 Product(가격 미포함)·생산자 Organization 구조화 데이터(JSON-LD)

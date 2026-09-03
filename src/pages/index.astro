@@ -278,7 +278,8 @@ const moreCount = varieties.length - topVarieties.length;
       { passive: false },
     );
   });
-  moreBtn?.addEventListener('click', () => togglePanel(panel?.hidden ?? true));
+  // hidden 은 DOM 타입상 boolean|string ("until-found" 지원) — 불리언으로 좁혀서 전달
+  moreBtn?.addEventListener('click', () => togglePanel(Boolean(panel?.hidden ?? true)));
   panel?.querySelector('[data-close]')?.addEventListener('click', () => togglePanel(false));
   panel?.querySelectorAll<HTMLButtonElement>('[data-panel-value]').forEach((b) => {
     b.addEventListener('click', () => varietyGroup && select(varietyGroup, b.dataset.panelValue || 'all'));

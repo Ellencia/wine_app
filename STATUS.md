@@ -23,6 +23,7 @@
 - [x] 보틀 이미지 WebP 서빙(15MB -> 1.9MB) + width/height, WineCard 공용 컴포넌트
 - [x] SEO 기본기 — canonical·robots.txt·h1·페이지별 설명·구조화 데이터(JSON-LD)
 - [x] 퀴즈 접근성 — 문항 포커스 이동·aria-live·이전 질문 버튼, 필터 칩 aria-pressed
+- [x] CI 타입 검사(astro check) + 배포 concurrency
 - [ ] 스타일 프로필 점수 검수 — 주력 20종부터 3인 중앙값, 검수분은 verified 로 표시
 - [ ] 상황·페어링·대상 태그 (클라이언트 입력 후 홈 "상황별 탐색")
 - [ ] 생산자 원본 제품 사진으로 보틀 이미지 교체 (스티커 제거)
