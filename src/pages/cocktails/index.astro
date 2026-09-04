@@ -9,8 +9,14 @@ const wineName = (id?: string) => wines.find((w) => w.id === id)?.data.name;
 ---
 
 <Base title="Cocktail Recipes" description="올빈와인 와인을 베이스로 만드는 칵테일 레시피와 제조 영상">
-  <h1 class="label label--muted page-title">Cocktail Recipes</h1>
-  <ul>
+  <div class="head">
+    <div>
+      <p class="label label--muted">Cocktail Recipes</p>
+      <h1 class="serif title">와인 칵테일 레시피</h1>
+    </div>
+    <span class="label label--muted count">{cocktails.length} recipes</span>
+  </div>
+  <ul class="cards">
     {
       cocktails.map((c) => (
         <li class="card">
@@ -41,6 +47,22 @@ const wineName = (id?: string) => wines.find((w) => w.id === id)?.data.name;
 </Base>
 
 <style>
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 10px;
+    margin-bottom: 26px;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
   .card {
     margin-bottom: 34px;
   }
@@ -65,5 +87,30 @@ const wineName = (id?: string) => wines.find((w) => w.id === id)?.data.name;
     display: block;
     font-size: 9.5px;
     margin-top: 2px;
+  }
+
+  /* PC: 2열 카드 그리드 (디자인 캔버스 "Cocktail Recipes") */
+  @media (min-width: 1100px) {
+    .head {
+      margin-bottom: 40px;
+    }
+
+    .title {
+      font-size: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px;
+    }
+
+    .card {
+      margin-bottom: 0;
+    }
+
+    .thumb {
+      margin-bottom: 20px;
+    }
   }
 </style>

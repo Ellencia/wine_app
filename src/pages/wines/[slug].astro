@@ -82,7 +82,12 @@ const jsonLd = {
 <Base title={d.nameKo} description={`${d.nameKo} (${d.name}) — ${d.varieties}, ${d.region}`} ogImage={url(d.image)}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   <a class="label label--muted back-link" href={url('/')}>Back to Collection</a>
-  <img class="bottle" src={url(webp(d.image))} alt={`${d.nameKo} 보틀`} width={dim?.w} height={dim?.h} />
+  <div class="detail-grid">
+  <figure class="bottle-panel">
+    <img class="bottle" src={url(webp(d.image))} alt={`${d.nameKo} 보틀`} width={dim?.w} height={dim?.h} />
+    <figcaption class="label label--muted bottle-caption">{d.volume}{d.abv != null && ` · ${d.abv}%`}</figcaption>
+  </figure>
+  <div class="detail-body">
 
   <div class="head">
     <Badges badges={d.badges} />
@@ -120,6 +125,7 @@ const jsonLd = {
     <a class="btn" href={d.vivinoUrl} target="_blank" rel="noopener">Vivino에서 보기</a>
   </div>
 
+  <div class="cols">
   <section class="sheet">
     <h2 class="label label--muted">Technical Sheet</h2>
     <dl>
@@ -148,6 +154,7 @@ const jsonLd = {
     </dl>
   </section>
 
+  <div class="col-right">
   <section class="profile-box">
     <div class="split-row">
       <h2 class="label label--muted">Style Profile</h2>
@@ -172,6 +179,8 @@ const jsonLd = {
     <p class="story">{storyExcerpt}</p>
     <a class="label label--muted more" href={url(`/producers/${producer.id}`)}>생산자 소개 전체 보기</a>
   </section>
+  </div>
+  </div>
 
   {
     cocktails.length > 0 && (
@@ -201,6 +210,8 @@ const jsonLd = {
       </nav>
     )
   }
+  </div>
+  </div>
 </Base>
 
 <style>
@@ -209,6 +220,10 @@ const jsonLd = {
     width: auto;
     margin: 4px auto 28px;
     object-fit: contain;
+  }
+
+  .bottle-caption {
+    display: none; /* 용량·도수 캡션은 PC 보틀 패널 전용 */
   }
 
   .head {
@@ -385,6 +400,92 @@ const jsonLd = {
   .pager-name {
     font-size: 11.5px;
     word-break: keep-all;
+  }
+
+  /* PC: 정보 좌 · 보틀 우(고정), 테크시트/스타일 프로필 2열 (디자인 캔버스 "Wine Detail") */
+  @media (min-width: 1100px) {
+    .back-link {
+      max-width: none;
+      margin-bottom: 24px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 440px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .detail-body {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+    }
+
+    .bottle-panel {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 0;
+      background: var(--bg-canvas);
+    }
+
+    .bottle {
+      height: 560px;
+      margin: 0;
+    }
+
+    .bottle-caption {
+      display: block;
+    }
+
+    .head {
+      gap: 12px;
+    }
+
+    .name-ko {
+      font-family: var(--serif);
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 1.2;
+      max-width: none;
+    }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .vivino-score strong {
+      font-size: 30px;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+
+    .cols .sheet {
+      margin-bottom: 0;
+    }
+
+    .col-right {
+      display: grid;
+      gap: 36px;
+    }
+
+    .col-right .profile-box,
+    .col-right .producer {
+      margin-bottom: 0;
+    }
   }
 
   /* 인쇄 시 테크시트만 남기고 탐색 요소 제거 */

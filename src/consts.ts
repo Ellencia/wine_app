@@ -1,5 +1,7 @@
 // 브랜드 상수
 export const SITE_NAME = 'Allvin Wine';
+export const COMPANY = '(주)올빈와인';
+export const EDITION = '와인리스트 2026 N°3'; // PC 푸터 우측 표기 — 카탈로그 개정 시 갱신
 export const SITE_DOMAIN = 'allvintage.co.kr';
 export const SITE_URL = 'https://www.allvintage.co.kr';
 export const SITE_DESCRIPTION = '올빈와인 브랜드 와인 카탈로그 — 테크니컬 시트, 생산자 소개, 내 와인 취향 찾기';

@@ -1,9 +1,12 @@
 ---
-import { SITE_DOMAIN, SITE_URL } from '../consts';
+import { COMPANY, EDITION, SITE_DOMAIN, SITE_URL } from '../consts';
 ---
 
 <footer class="site-footer">
-  <a class="label label--muted" href={SITE_URL} target="_blank" rel="noopener">{SITE_DOMAIN}</a>
+  <a class="label label--muted" href={SITE_URL} target="_blank" rel="noopener"
+    ><span class="company">{COMPANY} · </span>{SITE_DOMAIN}</a
+  >
+  <span class="label label--muted edition">{EDITION}</span>
   <span class="bar" aria-hidden="true"></span>
 </footer>
 
@@ -17,10 +20,37 @@ import { SITE_DOMAIN, SITE_URL } from '../consts';
     border-top: 1px solid var(--hairline);
   }
 
+  .company,
+  .edition {
+    display: none;
+  }
+
   .bar {
     width: 128px;
     height: 4px;
     border-radius: 2px;
     background: var(--ink);
+  }
+
+  /* PC: 회사·도메인 좌 / 카탈로그 판 우 (디자인 캔버스 푸터) */
+  @media (min-width: 1100px) {
+    .site-footer {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 22px 56px;
+    }
+
+    .company {
+      display: inline;
+    }
+
+    .edition {
+      display: block;
+    }
+
+    .bar {
+      display: none;
+    }
   }
 </style>

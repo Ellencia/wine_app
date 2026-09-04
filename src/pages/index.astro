@@ -25,6 +25,8 @@ const moreCount = varieties.length - topVarieties.length;
 
 <Base>
   <h1 class="visually-hidden">올빈와인 와인 컬렉션</h1>
+  <div class="collection-layout">
+  <aside class="side">
   <div class="collection-head">
     <p class="label label--muted">Collection</p>
     <p class="label label--muted" data-count aria-live="polite">{wines.length} wines</p>
@@ -87,12 +89,31 @@ const moreCount = varieties.length - topVarieties.length;
     </div>
   </div>
 
+  <!-- PC 사이드바 전용: 국가별 바로가기 + 취향 찾기 CTA (모바일에선 숨김) -->
+  <nav class="country-nav" aria-label="국가별 바로가기">
+    <span class="label label--muted">국가</span>
+    {
+      countries.map((country, i) => (
+        <a href={`#country-${i}`}>
+          <span>{country}</span>
+          <span class="n">{wines.filter((w) => w.data.country === country).length}</span>
+        </a>
+      ))
+    }
+  </nav>
+  <a class="finder-cta" href={url('/quiz')}>
+    <span class="label">Taste Finder</span>
+    <span class="hint">내 취향 찾기 →</span>
+  </a>
+  </aside>
+
+  <div class="content">
   {
-    countries.map((country) => (
-      <section class="country" data-country>
-        <h2 class="label country-title">
-          {country}
-          <span class="label--muted" data-country-count></span>
+    countries.map((country, i) => (
+      <section class="country" id={`country-${i}`} data-country>
+        <h2 class="country-title">
+          <span class="country-name">{country}</span>
+          <span class="label label--muted" data-country-count></span>
         </h2>
         <ul class="wine-grid">
           {wines
@@ -120,6 +141,8 @@ const moreCount = varieties.length - topVarieties.length;
     ))
   }
   <p class="empty label label--muted" data-empty hidden>조건에 맞는 와인이 없습니다.</p>
+  </div>
+  </div>
 </Base>
 
 <script>
@@ -303,8 +326,20 @@ const moreCount = varieties.length - topVarieties.length;
     updateSearch();
   });
 
+  // PC 헤더 검색: 다른 페이지에선 홈으로 GET 이동하지만, 홈에서는 실시간 필터로 가로챔
+  const headerForm = document.querySelector<HTMLFormElement>('[data-header-search]');
+  const headerInput = headerForm?.querySelector<HTMLInputElement>('input[name="q"]');
+  if (headerForm && headerInput && searchInput) {
+    headerForm.addEventListener('submit', (e) => e.preventDefault());
+    headerInput.addEventListener('input', () => {
+      searchInput.value = headerInput.value;
+      updateSearch();
+    });
+  }
+
   const initial = new URLSearchParams(location.search);
   if (searchInput) searchInput.value = initial.get('q') ?? '';
+  if (headerInput) headerInput.value = searchInput?.value ?? '';
   if (searchClear) searchClear.hidden = !searchInput?.value;
   groups.forEach((group) => {
     const key = group.dataset.chips || '';
@@ -460,6 +495,12 @@ const moreCount = varieties.length - topVarieties.length;
     font-size: 9.5px;
   }
 
+  /* PC 사이드바 전용 요소는 모바일에서 숨김 */
+  .country-nav,
+  .finder-cta {
+    display: none;
+  }
+
   .country {
     margin-top: 26px;
     margin-bottom: 36px;
@@ -469,6 +510,13 @@ const moreCount = varieties.length - topVarieties.length;
     margin-bottom: 14px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--hairline);
+  }
+
+  .country-name {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.7;
   }
 
   /* 카드 내부 마크업·스타일은 WineCard.astro 소유 */
@@ -481,5 +529,152 @@ const moreCount = varieties.length - topVarieties.length;
   .empty {
     text-align: center;
     padding: 40px 0;
+  }
+
+  /* PC: 좌측 고정 필터 사이드바 + 국가별 4열 그리드 (디자인 캔버스 "PC Home") */
+  @media (min-width: 1100px) {
+    .collection-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .side {
+      position: sticky;
+      top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    /* 디자인 순서: 국가 → 타입 → 품종 → CTA (DOM은 모바일 순서 우선) */
+    .side > .country-nav {
+      order: 1;
+    }
+
+    .side > .filter {
+      order: 2;
+    }
+
+    .side > .variety-panel {
+      order: 3;
+    }
+
+    .side > .finder-cta {
+      order: 4;
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .collection-head {
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 10px;
+      margin-bottom: 0;
+    }
+
+    /* 검색은 PC에선 헤더가 담당 */
+    .wine-search {
+      display: none;
+    }
+
+    .filter {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .filter-label {
+      font-size: 10.5px;
+    }
+
+    .chips {
+      flex-wrap: wrap;
+      overflow: visible;
+      cursor: default;
+    }
+
+    .variety-panel {
+      margin: 0;
+    }
+
+    .country-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .country-nav > .label {
+      margin-bottom: 10px;
+    }
+
+    .country-nav a {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 12px;
+    }
+
+    .country-nav .n {
+      color: var(--muted);
+    }
+
+    .finder-cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--ink);
+      padding: 14px 18px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .finder-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .finder-cta .hint {
+      font-size: 11px;
+    }
+
+    .country {
+      margin-top: 0;
+      margin-bottom: 56px;
+      scroll-margin-top: 24px;
+    }
+
+    .country-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+    }
+
+    .country-name {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      line-height: 1.3;
+    }
+
+    .wine-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 44px 28px;
+    }
+
+    .empty {
+      padding: 80px 0;
+    }
   }
 </style>

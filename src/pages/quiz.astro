@@ -103,14 +103,18 @@ const weights = { body: 1.0, sweetness: 1.5, acidity: 1.0, tannin: 1.3 };
     </div>
 
     <div data-screen="result" tabindex="-1" hidden>
-      <p class="label label--muted" data-taste-label>Your Taste</p>
-      <p class="summary serif" data-summary></p>
-      <div class="profile" data-profile></div>
-      <p class="label label--muted wine-label">Your Wine</p>
-      <div data-top></div>
-      <p class="label label--muted also-label" data-also-label hidden>Also Try</p>
-      <div class="also" data-also></div>
-      <p class="note" data-note hidden></p>
+      <div class="result-taste">
+        <p class="label label--muted" data-taste-label>Your Taste</p>
+        <p class="summary serif" data-summary></p>
+        <div class="profile" data-profile></div>
+      </div>
+      <div class="result-wines">
+        <p class="label label--muted wine-label">Your Wine</p>
+        <div data-top></div>
+        <p class="label label--muted also-label" data-also-label hidden>Also Try</p>
+        <div class="also" data-also></div>
+        <p class="note" data-note hidden></p>
+      </div>
       <div class="result-actions">
         <button class="btn" data-share>결과 공유하기</button>
         <button class="btn" data-restart>다시 하기</button>
@@ -514,5 +518,113 @@ const weights = { body: 1.0, sweetness: 1.5, acidity: 1.0, tannin: 1.3 };
 
   .result-actions .btn {
     margin-top: 28px;
+  }
+
+  /* PC: 질문 좌 · 선택지 우, 결과는 크림 패널 2열 (디자인 캔버스 "Taste Finder") */
+  @media (min-width: 1100px) {
+    .quiz {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .quiz > [data-screen='intro'] {
+      padding: 90px 0;
+    }
+
+    .intro-title {
+      font-size: 40px;
+    }
+
+    .quiz > [data-screen='question']:not([hidden]) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        'progress options'
+        'title options'
+        'back options';
+      grid-template-rows: auto auto auto;
+      gap: 0 80px;
+      align-content: center;
+      min-height: 440px;
+      text-align: left;
+    }
+
+    [data-progress] {
+      grid-area: progress;
+    }
+
+    .q-title {
+      grid-area: title;
+      font-size: 42px;
+      line-height: 1.25;
+      justify-content: flex-start;
+      text-align: left;
+      margin: 14px 0 0;
+      min-height: 0;
+      align-items: flex-start;
+    }
+
+    .options {
+      grid-area: options;
+      align-self: center;
+    }
+
+    .q-back {
+      grid-area: back;
+      justify-self: start;
+      align-self: start;
+      margin-top: 28px;
+    }
+
+    .quiz :global(.option) {
+      padding: 20px 24px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .quiz > [data-screen='result']:not([hidden]) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 24px 80px;
+      padding: 56px;
+      background: var(--bg-canvas);
+      align-items: start;
+    }
+
+    .result-taste {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: left;
+    }
+
+    .result-wines {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .result-actions {
+      grid-column: 1;
+      grid-row: 2;
+      justify-content: flex-start;
+    }
+
+    .summary {
+      font-size: 32px;
+      line-height: 1.3;
+      margin: 12px 0 24px;
+    }
+
+    .profile {
+      margin: 0;
+      max-width: 280px;
+    }
+
+    .quiz :global(.result-card--big img) {
+      height: 300px;
+    }
+
+    .also :global(.result-card img) {
+      height: 160px;
+    }
   }
 </style>

@@ -97,6 +97,29 @@ main {
   }
 }
 
+/* PC 레이아웃 (디자인 캔버스 "Allvin Wine PC Pages" 기준):
+   폰 프레임을 해제하고 전체 폭 헤더 + 최대 1440px 컨텐츠 컨테이너 */
+@media (min-width: 1100px) {
+  body {
+    padding: 0;
+  }
+
+  .app {
+    max-width: none;
+    min-height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible; /* 사이드바 position: sticky 동작 조건 */
+  }
+
+  main {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 36px 56px 72px;
+  }
+}
+
 /* 대문자 라벨 타이포 — 목업의 작은 캡스 텍스트 */
 .label {
   font-size: 10.5px;
