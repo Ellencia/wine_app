@@ -49,3 +49,9 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## 작업 요령 (메모리에서 이관, 2026-11-07)
+
+- 보틀 이미지 원본: 카탈로그 PDF 는 개별 이미지 합성이라 보틀 114개가 300dpi 임베디드 이미지 + smask(알파)로 들어 있음 → `raw_bottles\`(git 제외)에 투명 누끼로 추출해 둠. 나머지 16개는 배경에 박혀 있어 여백 크롭. 추출법: 페이지 `get_image_info` 의 bbox 와 검출 박스 겹침 매칭 → `extract_image` + smask 합성. `public/images/wines/` 를 교체할 때는 raw_bottles 를 원본으로.
+- 배포 확인 폴링: 내 커밋 SHA 와 일치하는 Actions run 이 completed 될 때까지 기다릴 것 — 첫 폴링에 직전 run 을 잡는 함정.
+- 용어사전 마크다운 굵게는 `**한글**(영문)조사` 형태로 (`)**조사` 는 강조 실패).
